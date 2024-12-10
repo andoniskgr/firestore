@@ -16,9 +16,6 @@ window.addEventListener("DOMContentLoaded", function () {
     password=login_form.password.value;
     login(email,password);
   });
-
-  // const logout_btn = this.document.querySelector("#logout_link")
-  // logout_btn.addEventListener("click", logout);
 });
 
 auth.onAuthStateChanged((user) => {
