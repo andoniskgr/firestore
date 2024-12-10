@@ -1,3 +1,9 @@
+auth.onAuthStateChanged((user) => {
+  if(user==null){
+    window.location.replace('index.html');
+  }
+  });
+
 window.addEventListener("DOMContentLoaded", function () {
   const logout_btn = this.document.querySelector("#logout_link");
   logout_btn.addEventListener("click", logout);
@@ -15,3 +21,4 @@ function logout() {
     return;
   }
 }
+
