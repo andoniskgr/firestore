@@ -4,7 +4,13 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 function logout() {
-  auth.signOut();
+  let response=window.confirm("Are you sure you want to log out?");
+  if (response) {
+    auth.signOut();
+  } else {
+    return;
+  }
+  
 }
 
 auth.onAuthStateChanged((user) => {
