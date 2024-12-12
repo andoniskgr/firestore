@@ -88,16 +88,7 @@ function renderResultTable(doc) {
   resultTable.appendChild(table_row);
 }
 
-// get data from firestore old
-// db.collection("events")
-//   .get()
-//   .then(function (snapshot) {
-//     snapshot.docs.forEach(function (doc) {
-//       renderResultTable(doc);
-//     });
-//   });
-
-// get data from firestore real-time 
+// get real-time data from firestore  
 db.collection('events').onSnapshot(function(snapshot){ 
   let changes=snapshot.docChanges();
   changes.forEach(change => {
@@ -107,9 +98,7 @@ db.collection('events').onSnapshot(function(snapshot){
       let del_event=resultTable.querySelector('[data-id='+change.doc.id+']');
       resultTable.removeChild(del_event);
     }
-    
-  });
-  
+  }); 
 })
 
 
@@ -117,9 +106,7 @@ db.collection('events').onSnapshot(function(snapshot){
 function save_event(e){
   e.preventDefault();
   console.log('save_event');
-  
   now=new Date();
-  
   const event={
     created:now,
     time:new_event_form.time.value,
@@ -143,8 +130,6 @@ function delete_event(e){
   let id=e.target.parentElement.parentElement.getAttribute("data-id");
   console.log(id);
   db.collection('events').doc(id).delete();
-  
-  
 }
 
 // edit Event
