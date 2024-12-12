@@ -2,17 +2,22 @@ db.settings({ timestampInSnapshots: true });
 
 const resultTable = document.querySelector("#table_data");
 const new_event_form=document.querySelector('#new_event_form');
-
+new_event_form.addEventListener('submit', save_event);
 
 function renderResultTable(doc) {
 
   // create table elements
   let table_row = document.createElement("tr");
   let table_time_data = document.createElement("td");
+  let time_data=document.createElement("input");
   let table_position_data = document.createElement("td");
+  let position_data=document.createElement("input");
   let table_registration_data = document.createElement("td");
+  let registration_data=document.createElement("input");
   let table_defect_data = document.createElement("td");
+  let defect_data=document.createElement("input");
   let table_notes_data = document.createElement("td");
+  let notes_data=document.createElement("input");
   let table_sl_data = document.createElement("td");
   let table_solved_data = document.createElement("td");
   let table_action_data = document.createElement("td");
@@ -24,11 +29,16 @@ function renderResultTable(doc) {
 
   // assign table values and attributes
   table_row.setAttribute("data-id", doc.id);
-  table_time_data.textContent = doc.data().time;
-  table_position_data.textContent = doc.data().position;
-  table_registration_data.textContent = doc.data().registration;
-  table_defect_data.textContent = doc.data().defect;
-  table_notes_data.textContent = doc.data().notes;
+  time_data.setAttribute("size",5);
+  time_data.value = doc.data().time;
+  position_data.value = doc.data().position;
+  position_data.setAttribute("size",5);
+  registration_data.value = doc.data().registration;
+  registration_data.setAttribute("size",5);
+  defect_data.value = doc.data().defect;
+  defect_data.className="w-100";
+  notes_data.value = doc.data().notes;
+  notes_data.className="w-100";
   table_sl_data.className = "text-center";
   table_solved_data.className = "text-center";
 
@@ -51,14 +61,18 @@ function renderResultTable(doc) {
 
   delete_icon.className="fa fa-trash-o";
   delete_icon.style.fontSize="1.5em";
-  edit_icon.className="fa fa-pencil ms-4";
+  edit_icon.className="fa fa-save ms-4";
   edit_icon.style.fontSize="1.4em";
-
-  // add event listeners
-  new_event_form.addEventListener('submit', save_event);
+ 
   delete_icon.addEventListener('click', delete_event);
   edit_icon.addEventListener('click', edit_event);
   
+
+  table_time_data.appendChild(time_data);
+  table_position_data.appendChild(position_data);
+  table_registration_data.appendChild(registration_data);
+  table_defect_data.appendChild(defect_data);
+  table_notes_data.appendChild(notes_data);
   table_row.appendChild(table_time_data);
   table_row.appendChild(table_position_data);
   table_row.appendChild(table_registration_data);
@@ -101,8 +115,11 @@ db.collection('events').onSnapshot(function(snapshot){
 
 // save data to firestore
 function save_event(e){
-  now=new Date();
   e.preventDefault();
+  console.log('save_event');
+  
+  now=new Date();
+  
   const event={
     created:now,
     time:new_event_form.time.value,
