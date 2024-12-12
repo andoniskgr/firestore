@@ -135,18 +135,18 @@ function delete_event(e){
 // edit Event
 function edit_event(e){
   e.preventDefault();
-  let updated_row=e.target.parentElement.parentElement
-  let id=updated_row.getAttribute("data-id");
+  let updated_row=e.target.parentElement.parentElement;
+  let id=updated_row.getAttribute("data-id");  
   let now=new Date();
   const event={
     updated:now,
-    time:updated_row.firstChild.firstChild.value,
-    position:updated_row.secondChild.firstChild.value,
-    registration:new_event_form.registration.value,
-    defect:new_event_form.defect.value,
-    notes:new_event_form.notes.value,
-    sl:new_event_form.sl.checked,
-    solved:new_event_form.solved.checked,
+    time:updated_row.cells[0].firstChild.value,
+    position:updated_row.cells[1].firstChild.value,
+    registration:updated_row.cells[2].firstChild.value,
+    defect:updated_row.cells[3].firstChild.value,
+    notes:updated_row.cells[4].firstChild.value,
+    sl:updated_row.cells[5].firstChild.checked,
+    solved:updated_row.cells[6].firstChild.checked
   }  
   console.log(event);
   
