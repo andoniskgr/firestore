@@ -2,6 +2,7 @@ db.settings({ timestampInSnapshots: true });
 
 const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
+const myModal = document.querySelector('.modal');
 
 new_event_form.addEventListener("submit", save_event);
 
@@ -24,7 +25,7 @@ function renderResultTable(doc) {
   let sl_data = document.createElement("input");
   let solved_data = document.createElement("input");
   let delete_icon = document.createElement("span");
-  let edit_icon = document.createElement("span");
+  let save_icon = document.createElement("span");
 
   // assign table values and attributes
   table_row.setAttribute("data-id", doc.id);
@@ -67,11 +68,18 @@ function renderResultTable(doc) {
 
   delete_icon.className = "fa fa-trash-o";
   delete_icon.style.fontSize = "1.5em";
-  edit_icon.className = "fa fa-save ms-4";
-  edit_icon.style.fontSize = "1.4em";
+  save_icon.className = "fa fa-save ms-4 d-none ";
+  save_icon.style.fontSize = "1.4em";
 
   delete_icon.addEventListener("click", delete_event);
-  edit_icon.addEventListener("click", edit_event);
+  save_icon.addEventListener("click", edit_event);
+  time_data.addEventListener('input', edit_event);
+  position_data.addEventListener('input', edit_event);
+  registration_data.addEventListener('input', edit_event);
+  defect_data.addEventListener('input', edit_event);
+  notes_data.addEventListener('input', edit_event);
+  sl_data.addEventListener('input', edit_event);
+  solved_data.addEventListener('input', edit_event);
 
   table_time_data.appendChild(time_data);
   table_position_data.appendChild(position_data);
@@ -89,7 +97,7 @@ function renderResultTable(doc) {
   table_solved_data.appendChild(solved_data);
   table_row.appendChild(table_action_data);
   table_action_data.appendChild(delete_icon);
-  table_action_data.appendChild(edit_icon);
+  table_action_data.appendChild(save_icon);
   resultTable.appendChild(table_row);
 }
 
@@ -126,6 +134,7 @@ function save_event(e) {
     sl: new_event_form.sl.checked,
     solved: new_event_form.solved.checked,
   };
+  
   $(".modal").modal("hide");
   new_event_form.reset();
   console.log(event);
@@ -147,8 +156,9 @@ function delete_event(e) {
 
 // edit Event
 function edit_event(e) {
-  e.preventDefault();
+  e.stopPropagation();
   let updated_row = e.target.parentElement.parentElement;
+  updated_row.querySelector('.fa-save').classList.remove('d-none');
 
   if (
     updated_row.cells[5].firstChild.checked == false &&
@@ -162,18 +172,26 @@ function edit_event(e) {
   if (updated_row.cells[6].firstChild.checked == true) {
     updated_row.className = "table-success";
   }
-  let id = updated_row.getAttribute("data-id");
-  let now = new Date();
-  const event = {
-    updated: now,
-    time: updated_row.cells[0].firstChild.value,
-    position: updated_row.cells[1].firstChild.value.toUpperCase(),
-    registration: updated_row.cells[2].firstChild.value.toUpperCase(),
-    defect: updated_row.cells[3].firstChild.value.toUpperCase(),
-    notes: updated_row.cells[4].firstChild.value.toUpperCase(),
-    sl: updated_row.cells[5].firstChild.checked,
-    solved: updated_row.cells[6].firstChild.checked,
-  };
-  db.collection("events").doc(id).update(event);
+  // let id = updated_row.getAttribute("data-id");
+  // let now = new Date();
+  // const event = {
+  //   updated: now,
+  //   time: updated_row.cells[0].firstChild.value,
+  //   position: updated_row.cells[1].firstChild.value.toUpperCase(),
+  //   registration: updated_row.cells[2].firstChild.value.toUpperCase(),
+  //   defect: updated_row.cells[3].firstChild.value.toUpperCase(),
+  //   notes: updated_row.cells[4].firstChild.value.toUpperCase(),
+  //   sl: updated_row.cells[5].firstChild.checked,
+  //   solved: updated_row.cells[6].firstChild.checked,
+  // };
+  // db.collection("events").doc(id).update(event);
 }
+
+
+myModal.addEventListener('shown.bs.modal', event => {
+  myModal.querySelector('[name="time"]').focus();
+});
+myModal.addEventListener('hidden.bs.modal', event => {
+  new_event_form.reset();
+});
 
