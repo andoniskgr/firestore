@@ -26,12 +26,13 @@ function renderResultTable(doc) {
   let solved_data = document.createElement("input");
   let delete_icon = document.createElement("span");
   let save_icon = document.createElement("span");
+  let clock_icon = document.createElement("span");
 
   // assign table values and attributes
   table_row.setAttribute("data-id", doc.id);
   time_data.setAttribute("size", 5);
   time_data.value = doc.data().time;
-  time_data.setAttribute("oninput",'formatTime(event)');
+  time_data.setAttribute("oninput","formatTime(event)");
   position_data.value = doc.data().position;
   position_data.setAttribute("size", 5);
   position_data.className = "text-uppercase";
@@ -69,8 +70,10 @@ function renderResultTable(doc) {
 
   delete_icon.className = "fa fa-trash-o";
   delete_icon.style.fontSize = "1.5em";
-  save_icon.className = "fa fa-save ms-4 d-none ";
+  save_icon.className = "fa fa-save ms-4 d-none";
   save_icon.style.fontSize = "1.4em";
+  clock_icon.className = "fa fa-clock-o ms-4";
+  clock_icon.style.fontSize = "1.3em";
 
   delete_icon.addEventListener("click", delete_event);
   save_icon.addEventListener("click", save_edit_event);
@@ -98,6 +101,7 @@ function renderResultTable(doc) {
   table_solved_data.appendChild(solved_data);
   table_row.appendChild(table_action_data);
   table_action_data.appendChild(delete_icon);
+  table_action_data.appendChild(clock_icon);
   table_action_data.appendChild(save_icon);
   resultTable.appendChild(table_row);
 }
@@ -107,7 +111,6 @@ db.collection("events")
   .orderBy("time")
   .onSnapshot(function (snapshot) {
     let changes = snapshot.docChanges();
-
     changes.forEach((change) => {
       if (change.type == "added") {
         renderResultTable(change.doc);
