@@ -57,7 +57,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="time" placeholder="Time">
+                                <input class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)">
                             </div>
                             <div class="col-4">
                                 <input class="form-control mb-3" type="text" name="position" placeholder="Position">
@@ -96,13 +96,13 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th class="col-1" scope="col">Time</th>
-                    <th class="col-1" scope="col">Position</th>
-                    <th class="col-1" scope="col">Registration</th>
-                    <th scope="col">Defect</th>
-                    <th scope="col-3">Notes</th>
-                    <th class="col-1" scope="col">S/L</th>
-                    <th class="col-1" scope="col">OK</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Registration</th>
+                    <th class="col-4" scope="col">Defect</th>
+                    <th class="col-4" scope="col">Notes</th>
+                    <th scope="col">S/L</th>
+                    <th scope="col">OK</th>
                     <th class="col-1" scope="col">Action</th>
                 </tr>
             </thead>
