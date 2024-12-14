@@ -1,5 +1,6 @@
 db.settings({ timestampInSnapshots: true });
 
+
 const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 const myModal = document.querySelector('.modal');
@@ -124,12 +125,14 @@ db.collection("events")
   });
 
 // save data to firestore
-function save_event(e) {
+function save_event(e) {  
+  user=auth.currentUser.email;
   e.preventDefault();
   console.log("save_event");
   now = new Date();
   const event = {
     created: now,
+    created_by:user,
     time: new_event_form.time.value,
     position: new_event_form.position.value.toUpperCase(),
     registration: new_event_form.registration.value.toUpperCase(),
@@ -182,12 +185,14 @@ function edit_event(e) {
 }
 
 function save_edit_event(e) {
+  user=auth.currentUser.email;
   e.stopPropagation();
   let updated_row = e.target.parentElement.parentElement;
   let id = updated_row.getAttribute("data-id");
   let now = new Date();
   const event = {
     updated: now,
+    updated_by:user,
     time: updated_row.cells[0].firstChild.value,
     position: updated_row.cells[1].firstChild.value.toUpperCase(),
     registration: updated_row.cells[2].firstChild.value.toUpperCase(),
