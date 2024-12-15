@@ -3,9 +3,12 @@ db.settings({ timestampInSnapshots: true });
 
 const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
-const myModal = document.querySelector('.modal');
-
+const event_reminder_form = document.querySelector("#event_reminder_form");
 new_event_form.addEventListener("submit", save_event);
+event_reminder_form.addEventListener("submit", timer);
+const myModal = document.querySelector('.modal');
+const myTimerModal = document.querySelector('#timer');
+
 
 function renderResultTable(doc) {
   // create table elements
@@ -46,6 +49,8 @@ function renderResultTable(doc) {
   notes_data.className = "w-100 text-uppercase";
   table_sl_data.className = "text-center";
   table_solved_data.className = "text-center";
+  clock_icon.setAttribute("data-bs-toggle","modal");
+  clock_icon.setAttribute("data-bs-target","#timer");
 
   if (doc.data().sl == false && doc.data().solved == false) {
     table_row.className = "table-light";
@@ -76,6 +81,7 @@ function renderResultTable(doc) {
   clock_icon.className = "fa fa-clock-o ms-4";
   clock_icon.style.fontSize = "1.3em";
 
+  
   delete_icon.addEventListener("click", delete_event);
   save_icon.addEventListener("click", save_edit_event);
   time_data.addEventListener('input', edit_event);
@@ -211,6 +217,9 @@ function save_edit_event(e) {
 myModal.addEventListener('shown.bs.modal', event => {
   myModal.querySelector('[name="time"]').focus();
 });
+myTimerModal.addEventListener('shown.bs.modal', event => {
+  myTimerModal.querySelector('[name="update_time"]').focus();
+});
 myModal.addEventListener('hidden.bs.modal', event => {
   new_event_form.reset();
 });
@@ -231,4 +240,10 @@ function formatTime(event) {
 
   // Update the input value with the formatted time
   input.value = value;
+}
+
+function timer(e){
+  e.preventDefault();
+  console.log(e);
+  
 }
