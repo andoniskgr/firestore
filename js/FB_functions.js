@@ -51,6 +51,7 @@ function renderResultTable(doc) {
   table_solved_data.className = "text-center";
   clock_icon.setAttribute("data-bs-toggle","modal");
   clock_icon.setAttribute("data-bs-target","#timer");
+  clock_icon.setAttribute("data-id", doc.id);
 
   if (doc.data().sl == false && doc.data().solved == false) {
     table_row.className = "table-light";
@@ -244,6 +245,8 @@ function formatTime(event) {
 
 function timer(e){
   e.preventDefault();
-  console.log(e);
+  console.log(this);
   
+  $(".modal").modal("hide");
+  event_reminder_form.reset();
 }
