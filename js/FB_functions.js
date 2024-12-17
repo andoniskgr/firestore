@@ -5,7 +5,7 @@ const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
 new_event_form.addEventListener("submit", save_event);
-event_reminder_form.addEventListener("submit", timer);
+// event_reminder_form.addEventListener("submit", timer);
 const myModal = document.querySelector('.modal');
 const myTimerModal = document.querySelector('#timer');
 
@@ -34,14 +34,14 @@ function renderResultTable(doc) {
 
   // assign table values and attributes
   table_row.setAttribute("data-id", doc.id);
-  time_data.setAttribute("size", 5);
+  time_data.setAttribute("size", 6);
   time_data.value = doc.data().time;
   time_data.setAttribute("oninput","formatTime(event)");
   position_data.value = doc.data().position;
-  position_data.setAttribute("size", 5);
+  position_data.setAttribute("size", 6);
   position_data.className = "text-uppercase";
   registration_data.value = doc.data().registration;
-  registration_data.setAttribute("size", 5);
+  registration_data.setAttribute("size", 7);
   registration_data.className = "text-uppercase";
   defect_data.value = doc.data().defect;
   defect_data.className = "w-100 text-uppercase";
@@ -241,9 +241,23 @@ function formatTime(event) {
   input.value = value;
 }
 
-function timer(e){
-  e.preventDefault();
-  let id=e.target.parentElement.parentElement.getAttribute("data-id");
-  $('#timer').modal('show');
-  
+function timer(e) {
+  const event_reminder_form=myTimerModal.querySelector('form');
+  let id = e.target.parentElement.parentElement.getAttribute("data-id");
+  $("#timer").modal("show");
+  event_reminder_form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const reminder_data={
+      reminder_time:this.update_time.value,
+      reminder_remarks:this.remarks.value
+    }
+    db.collection("events").doc(id).update(reminder_data).then(function(){
+      console.log('event updated!');
+          console.log(reminder_data);
+          $("#timer").modal("hide");
+    })
+    this.reset();
+    
+    
+  })
 }
