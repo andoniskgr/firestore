@@ -49,9 +49,6 @@ function renderResultTable(doc) {
   notes_data.className = "w-100 text-uppercase";
   table_sl_data.className = "text-center";
   table_solved_data.className = "text-center";
-  clock_icon.setAttribute("data-bs-toggle","modal");
-  clock_icon.setAttribute("data-bs-target","#timer");
-  clock_icon.setAttribute("data-id", doc.id);
 
   if (doc.data().sl == false && doc.data().solved == false) {
     table_row.className = "table-light";
@@ -92,6 +89,7 @@ function renderResultTable(doc) {
   notes_data.addEventListener('input', edit_event);
   sl_data.addEventListener('input', edit_event);
   solved_data.addEventListener('input', edit_event);
+  clock_icon.addEventListener('click',timer);
 
   table_time_data.appendChild(time_data);
   table_position_data.appendChild(position_data);
@@ -245,8 +243,7 @@ function formatTime(event) {
 
 function timer(e){
   e.preventDefault();
-  console.log(this);
+  let id=e.target.parentElement.parentElement.getAttribute("data-id");
+  $('#timer').modal('show');
   
-  $(".modal").modal("hide");
-  event_reminder_form.reset();
 }
