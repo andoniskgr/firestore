@@ -3,13 +3,17 @@ db.settings({ timestampInSnapshots: true });
 
 const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
-const event_reminder_form = document.querySelector("#event_reminder_form");
 new_event_form.addEventListener("submit", save_event);
-// event_reminder_form.addEventListener("submit", timer);
+const event_reminder_form = document.querySelector("#event_reminder_form");
+event_reminder_form.addEventListener("submit", function(e){
+  console.log(e.target);  
+});
 const myModal = document.querySelector('.modal');
 const myTimerModal = document.querySelector('#timer');
 
 
+
+// function that creates table row elements
 function renderResultTable(doc) {
   // create table elements
   let table_row = document.createElement("tr");
@@ -242,7 +246,6 @@ function formatTime(event) {
 }
 
 function timer(e) {
-  const event_reminder_form=myTimerModal.querySelector('form');
   let id = e.target.parentElement.parentElement.getAttribute("data-id");
   $("#timer").modal("show");
   event_reminder_form.addEventListener('submit', function(e){
@@ -251,13 +254,21 @@ function timer(e) {
       reminder_time:this.update_time.value,
       reminder_remarks:this.remarks.value
     }
-    db.collection("events").doc(id).update(reminder_data).then(function(){
-      console.log('event updated!');
-          console.log(reminder_data);
-          $("#timer").modal("hide");
-    })
-    this.reset();
+    // db.collection("events")
+    //   .doc(id)
+    //   .update(reminder_data)
+    //   .then(function () {
+        console.log("event updated!");
+        console.log(event_reminder_form.update_time.value);
+        // $("#timer").modal("hide");
+        event_reminder_form.reset();
+      // });
     
     
   })
 }
+// event_reminder_form.addEventListener('submit', function(e){
+//   e.preventDefault();
+//   console.log(e.target);
+  
+// })
