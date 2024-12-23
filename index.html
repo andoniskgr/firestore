@@ -28,20 +28,20 @@
                     <a class="d-none nav-link logged-out" href="#" id="register_link" data-bs-toggle="modal"
                         data-bs-target="#registerModal">Signup</a>
                     <a class="d-none nav-link logged-in" href="#" id="logout_link">Logout</a>
-                    <a class="d-none nav-link logged-in" href="#" id="new_event_link" data-bs-toggle="modal" data-bs-target="#new_event">New
-                        Event</a>
+                    <a class="d-none nav-link logged-in" href="#" id="new_event_link" data-bs-toggle="modal"
+                        data-bs-target="#new_event">New Event</a>
                 </div>
             </div>
         </div>
     </nav>
     <!-- NAVBAR end -->
 
-    <!-- Modals start-->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Login Modal start-->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Login Form</h5>
+                    <h5 class="modal-title" id="loginModalLabel">Login Form</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="login_form">
@@ -58,13 +58,14 @@
             </div>
         </div>
     </div>
-    <!-- Modals end -->
+    <!-- Login Modal end -->
 
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Signup Modal start-->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Register Form</h5>
+                    <h5 class="modal-title" id="registerModalLabel">Register Form</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="register_form">
@@ -81,7 +82,104 @@
             </div>
         </div>
     </div>
+    <!-- Signup Modal end-->
 
+    <!-- New Event Modal start-->
+    <div class="modal fade" id="new_event" tabindex="-1" aria-labelledby="newEventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newEventModalLabel">New Event Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="new_event_form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <input class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control mb-3" type="text" name="position" placeholder="Position">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control mb-3" type="text" name="registration" placeholder="Registration">
+                            </div>
+                            <div class="col-12">
+                                <input class="form-control mb-3" type="text" name="defect" placeholder="Defect">
+                            </div>
+                            <div class="col-12">
+                                <input class="form-control mb-3" type="text" name="notes" placeholder="Notes">
+                            </div>
+                            <div class="col-6" style="font-size: 1.4rem;">
+                                <input class="form-check-input mb-3" type="checkbox" name="sl" id="sl">
+                                <label class="form-check-label" for="sl">S/L Informed</label>
+                            </div>
+                            <div class="col-6" style="font-size: 1.4rem;">
+                                <input class="form-check-input mb-3" type="checkbox" name="solved" id="solved">
+                                <label class="form-check-label" for="solved">Defect Solved</label>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" id="clear_new_event_button" class="btn btn-danger">Clear</button>
+                        <button type="reset" id="cancel_new_event_button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" id="save_event_button" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- New Event Modal end -->
+
+    <!-- Timer Modal start-->
+    <div class="modal fade" id="timer" tabindex="-1" aria-labelledby="reminderModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reminderModalLabel">event reminder</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="event_reminder_form">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <input class="form-control mb-3" type="text" name="update_time" placeholder="Time" oninput="formatTime(event)">
+                            </div>
+                            <div class="col-9">
+                                <input class="form-control mb-3" type="text" name="remarks" placeholder="Remarks">
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" id="clear_reminder_button" class="btn btn-danger">Clear</button>
+                        <button type="reset" id="cancel_reminder_button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" id="save_reminder_button" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Timer Modal end -->
+
+    <div class="container-fluid bg-light text-light">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Registration</th>
+                    <th class="col-4" scope="col">Defect</th>
+                    <th class="col-4" scope="col">Notes</th>
+                    <th scope="col">S/L</th>
+                    <th scope="col">OK</th>
+                    <th class="col-1" scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table_data">
+
+            </tbody>
+        </table>
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -96,6 +194,7 @@
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script defer src="./js/init_FB.js"></script>
     <script defer src="./js/auth.js"></script>
+    <script defer src="./js/FB_functions.js"></script>
 </body>
 
 </html>

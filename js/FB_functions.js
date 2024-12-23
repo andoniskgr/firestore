@@ -1,4 +1,4 @@
-db.settings({ timestampInSnapshots: true });
+
 
 
 const resultTable = document.querySelector("#table_data");
