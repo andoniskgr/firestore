@@ -1,6 +1,4 @@
 
-
-
 const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 new_event_form.addEventListener("submit", save_event);
