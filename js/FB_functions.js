@@ -1,15 +1,14 @@
-
 const resultTable = document.querySelector("#table_data");
-
 const new_event_form = document.querySelector("#new_event_form");
-new_event_form.addEventListener("submit", save_event);
-
 const event_reminder_form = document.querySelector("#event_reminder_form");
+const my_modals = document.querySelectorAll('.modal');
+
+
+// listeners
+new_event_form.addEventListener("submit", save_event);
 event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
-
-const my_modals = document.querySelectorAll('.modal');
 my_modals.forEach(function(modal){  
   modal.addEventListener('shown.bs.modal',function(e){
     if (modal.id=='loginModal' || modal.id=='registerModal') {
@@ -21,12 +20,13 @@ my_modals.forEach(function(modal){
   modal.addEventListener('hidden.bs.modal',function(e){
     modal.querySelector('form').reset();
   });  
-
 });
 
 
 // function that creates table row elements
 function renderResultTable(doc) {
+  console.log('renderResultTable start');
+  
   let tr_class='';
   if (doc.data().sl == false && doc.data().solved == false) {
     tr_class = "table-light";
@@ -150,9 +150,9 @@ function renderResultTable(doc) {
   // table_action_data.appendChild(clock_icon);
   // table_action_data.appendChild(save_icon);
   // resultTable.appendChild(table_row);
-  console.log(document.querySelector('#test'));
   
   resultTable.innerHTML+=event_row;
+  console.log('renderResultTable end');
 }
 
 // get real-time data from firestore
@@ -162,10 +162,10 @@ function get_real_time_data(){
   .onSnapshot(function (snapshot) {
     let changes = snapshot.docChanges();
     if (changes.length==0) {
-      const noDataMessage=document.querySelector('#msg');
-      noDataMessage.innerHTML='There is no Data!';
+      flash_message('There is no Data!')
       console.log(changes);
     } else {
+      flash_message();
       changes.forEach((change) => {
       if (change.type == "added") {
         renderResultTable(change.doc);
@@ -307,4 +307,17 @@ function timer(e) {
     
     
   })
+}
+
+function flash_message(msg=null){
+  if (document.querySelector('#flashMsg')!=null){
+    document.querySelector('#flashMsg').remove();
+  }
+  if (msg!=null) {
+    const flashMessageElement=document.createElement('div');
+    flashMessageElement.className="text-center h2 m-4";
+    flashMessageElement.setAttribute('id','flashMsg');
+    flashMessageElement.innerHTML=msg;
+    document.querySelector('body').appendChild(flashMessageElement);
+  }
 }

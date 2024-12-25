@@ -30,6 +30,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // function control UI components
   function setUpUi(user) {
+    console.log('setUpUi');
+    
     if (user) {
       loggedInLinks.forEach(function (link) {
         link.classList.remove("d-none");
@@ -45,8 +47,7 @@ window.addEventListener("DOMContentLoaded", function () {
       loggedOutLinks.forEach(function (link) {
         link.classList.remove("d-none");
       });
-      const noDataMessage=document.querySelector('#msg');
-      noDataMessage.innerHTML='You need to Login to have access to Data!';
+      flash_message("You need to Login to have access to Data!");
     }
   }
 
