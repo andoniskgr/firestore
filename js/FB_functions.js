@@ -1,14 +1,28 @@
 
 const resultTable = document.querySelector("#table_data");
+
 const new_event_form = document.querySelector("#new_event_form");
 new_event_form.addEventListener("submit", save_event);
+
 const event_reminder_form = document.querySelector("#event_reminder_form");
 event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
-const myModal = document.querySelector('.modal');
-const myTimerModal = document.querySelector('#timer');
 
+const my_modals = document.querySelectorAll('.modal');
+my_modals.forEach(function(modal){  
+  modal.addEventListener('shown.bs.modal',function(e){
+    if (modal.id=='loginModal' || modal.id=='registerModal') {
+      modal.querySelector('[name="email"]').focus();
+    } else if (modal.id=='new_event' || modal.id=='timer'){
+      modal.querySelector('[name="time"]').focus();
+    }    
+  });  
+  modal.addEventListener('hidden.bs.modal',function(e){
+    modal.querySelector('form').reset();
+  });  
+
+});
 
 
 // function that creates table row elements
@@ -142,11 +156,17 @@ function renderResultTable(doc) {
 }
 
 // get real-time data from firestore
-db.collection("events")
+function get_real_time_data(){
+  db.collection("events")
   .orderBy("time")
   .onSnapshot(function (snapshot) {
     let changes = snapshot.docChanges();
-    changes.forEach((change) => {
+    if (changes.length==0) {
+      const noDataMessage=document.querySelector('#msg');
+      noDataMessage.innerHTML='There is no Data!';
+      console.log(changes);
+    } else {
+      changes.forEach((change) => {
       if (change.type == "added") {
         renderResultTable(change.doc);
       } else if (change.type == "removed") {
@@ -156,7 +176,10 @@ db.collection("events")
         resultTable.removeChild(del_event);
       }
     });
+    }    
   });
+}
+
 
 // save data to firestore
 function save_event(e) {  
@@ -244,16 +267,6 @@ function save_edit_event(e) {
 }
 
 
-myModal.addEventListener('shown.bs.modal', event => {
-  myModal.querySelector('[name="time"]').focus();
-});
-myTimerModal.addEventListener('shown.bs.modal', event => {
-  myTimerModal.querySelector('[name="update_time"]').focus();
-});
-myModal.addEventListener('hidden.bs.modal', event => {
-  new_event_form.reset();
-});
-
 function formatTime(event) {
   
   const input = event.target;
@@ -295,8 +308,3 @@ function timer(e) {
     
   })
 }
-// event_reminder_form.addEventListener('submit', function(e){
-//   e.preventDefault();
-//   console.log(e.target);
-  
-// })

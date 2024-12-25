@@ -1,6 +1,6 @@
 
 window.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM load start");
+  // console.log("Auth DOM load start");
 
   // declare navbar components
   const loggedOutLinks = document.querySelectorAll(".logged-out");
@@ -37,6 +37,7 @@ window.addEventListener("DOMContentLoaded", function () {
       loggedOutLinks.forEach(function (link) {
         link.classList.add("d-none");
       });
+      get_real_time_data();
     } else {
       loggedInLinks.forEach(function (link) {
         link.classList.add("d-none");
@@ -44,6 +45,8 @@ window.addEventListener("DOMContentLoaded", function () {
       loggedOutLinks.forEach(function (link) {
         link.classList.remove("d-none");
       });
+      const noDataMessage=document.querySelector('#msg');
+      noDataMessage.innerHTML='You need to Login to have access to Data!';
     }
   }
 
@@ -98,7 +101,7 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  console.log("DOM load end");
+  // console.log("Auth DOM load end");
 });
 
 
