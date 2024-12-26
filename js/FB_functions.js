@@ -32,10 +32,10 @@ function renderResultTable(doc) {
   <td id="defect"><input value="${doc.data().defect}" class="w-100 text-uppercase"></td>
   <td id="notes"><input value="${doc.data().notes}" class="w-100 text-uppercase"></td>
   <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''}></td>
-  <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''}"></td>
+  <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''}></td>
   <td><span class="fa fa-trash-o" style="font-size: 1.5em;"></span>
-  <span class="fa fa-clock-o ms-4" style="font-size: 1.3em;"></span>
-  <span class="fa fa-save ms-4 d-none" style="font-size: 1.4em;" onclick="save_edit_event(e)"></span></td>
+  <span class="fa fa-clock-o ms-3" style="font-size: 1.3em;"></span>
+  <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(e)"></span></td>
   </tr>`;
 
   // let table_row = document.createElement("tr");
@@ -98,19 +98,13 @@ function renderResultTable(doc) {
   //   checked: doc.data().solved,
   // });
 
-  // delete_icon.className = "fa fa-trash-o";
-  // delete_icon.style.fontSize = "1.5em";
-  // save_icon.className = "fa fa-save ms-4 d-none";
-  // save_icon.style.fontSize = "1.4em";
-  // clock_icon.className = "fa fa-clock-o ms-4";
-  // clock_icon.style.fontSize = "1.3em";
-
-  
+   
   // delete_icon.addEventListener("click", delete_event);
   // save_icon.addEventListener("click", save_edit_event);
   // time_data.addEventListener('input', edit_event);
   // position_data.addEventListener('input', edit_event);
-  // registration_data.addEventListener('input', edit_event);
+  
+  
   // defect_data.addEventListener('input', edit_event);
   // notes_data.addEventListener('input', edit_event);
   // sl_data.addEventListener('input', edit_event);
@@ -136,9 +130,12 @@ function renderResultTable(doc) {
   // table_action_data.appendChild(clock_icon);
   // table_action_data.appendChild(save_icon);
   // resultTable.appendChild(table_row);
-  console.log(document.querySelector('#test'));
   
   resultTable.innerHTML+=event_row;
+const registration_data=document.querySelector('#registration');
+  console.log(registration_data);
+  registration_data.addEventListener('input', edit_event);
+
 }
 
 // get real-time data from firestore
@@ -202,22 +199,22 @@ function delete_event(e) {
 function edit_event(e) {
   console.log(e);
   
-  // e.stopPropagation();
-  // let updated_row = e.target.parentElement.parentElement;
-  // updated_row.querySelector('.fa-save').classList.remove('d-none');
+  e.stopPropagation();
+  let updated_row = e.target.parentElement.parentElement;
+  updated_row.querySelector('.fa-save').classList.remove('d-none');
 
-  // if (
-  //   updated_row.cells[5].firstChild.checked == false &&
-  //   updated_row.cells[6].firstChild.checked == false
-  // ) {
-  //   updated_row.className = "table-light";
-  // }
-  // if (updated_row.cells[5].firstChild.checked == true) {
-  //   updated_row.className = "table-warning";
-  // }
-  // if (updated_row.cells[6].firstChild.checked == true) {
-  //   updated_row.className = "table-success";
-  // }
+  if (
+    updated_row.cells[5].firstChild.checked == false &&
+    updated_row.cells[6].firstChild.checked == false
+  ) {
+    updated_row.className = "table-light";
+  }
+  if (updated_row.cells[5].firstChild.checked == true) {
+    updated_row.className = "table-warning";
+  }
+  if (updated_row.cells[6].firstChild.checked == true) {
+    updated_row.className = "table-success";
+  }
 }
 
 function save_edit_event(e) {
