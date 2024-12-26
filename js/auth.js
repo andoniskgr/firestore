@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // function control UI components
   function setUpUi(user) {
-    console.log('setUpUi');
+    // console.log('setUpUi');
     
     if (user) {
       loggedInLinks.forEach(function (link) {

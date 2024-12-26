@@ -26,7 +26,7 @@ my_modals.forEach(function(modal){
 // function that creates table row elements
 function renderResultTable(doc) {
   console.log('renderResultTable start');
-  
+  let event_row='';
   let tr_class='';
   if (doc.data().sl == false && doc.data().solved == false) {
     tr_class = "table-light";
@@ -39,118 +39,22 @@ function renderResultTable(doc) {
   }
 
 
-  const event_row=`<tr class="${tr_class}" data-id="${doc.id}">
-  <td id="time"><input size="6" value="${doc.data().time}"></td>
-  <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase"></td>
-  <td id="registration"><input size="7" value="${doc.data().registration}" class="text-uppercase"></td>
-  <td id="defect"><input value="${doc.data().defect}" class="w-100 text-uppercase"></td>
-  <td id="notes"><input value="${doc.data().notes}" class="w-100 text-uppercase"></td>
-  <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''}></td>
-  <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''}></td>
-  <td><span class="fa fa-trash-o" style="font-size: 1.5em;"></span>
+  event_row=`<tr class="${tr_class}" data-id="${doc.id}">
+  <td id="time"><input size="6" value="${doc.data().time}" oninput=edit_event(event)></td>
+  <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase" oninput=edit_event(event)></td>
+  <td id="registration"><input size="7" value="${doc.data().registration}" class="text-uppercase" oninput=edit_event(event)></td>
+  <td id="defect"><input value="${doc.data().defect}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
+  <td id="notes"><input value="${doc.data().notes}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
+  <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''} oninput=edit_event(event)></td>
+  <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''} oninput=edit_event(event)></td>
+  <td class="text-nowrap"><span class="fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_event(event)></span>
   <span class="fa fa-clock-o ms-3" style="font-size: 1.3em;"></span>
-  <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(e)"></span></td>
+  <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
   </tr>`;
-
-  // let table_row = document.createElement("tr");
-  // let table_time_data = document.createElement("td");
-  // let time_data = document.createElement("input");
-  // let table_position_data = document.createElement("td");
-  // let position_data = document.createElement("input");
-  // let table_registration_data = document.createElement("td");
-  // let registration_data = document.createElement("input");
-  // let table_defect_data = document.createElement("td");
-  // let defect_data = document.createElement("input");
-  // let table_notes_data = document.createElement("td");
-  // let notes_data = document.createElement("input");
-  // let table_sl_data = document.createElement("td");
-  // let table_solved_data = document.createElement("td");
-  // let table_action_data = document.createElement("td");
-  // let sl_data = document.createElement("input");
-  // let solved_data = document.createElement("input");
-  // let delete_icon = document.createElement("span");
-  // let save_icon = document.createElement("span");
-  // let clock_icon = document.createElement("span");
-
-  // // assign table values and attributes
-  // table_row.setAttribute("data-id", doc.id);
-  // time_data.setAttribute("size", 6);
-  // time_data.value = doc.data().time;
-  // time_data.setAttribute("oninput","formatTime(event)");
-  // position_data.value = doc.data().position;
-  // position_data.setAttribute("size", 6);
-  // position_data.className = "text-uppercase";
-  // registration_data.value = doc.data().registration;
-  // registration_data.setAttribute("size", 7);
-  // registration_data.className = "text-uppercase";
-  // defect_data.value = doc.data().defect;
-  // defect_data.className = "w-100 text-uppercase";
-  // notes_data.value = doc.data().notes;
-  // notes_data.className = "w-100 text-uppercase";
-  // table_sl_data.className = "text-center";
-  // table_solved_data.className = "text-center";
-
-  // if (doc.data().sl == false && doc.data().solved == false) {
-  //   table_row.className = "table-light";
-  // }
-  // if (doc.data().sl == true) {
-  //   table_row.className = "table-warning";
-  // }
-
-  // if (doc.data().solved == true) {
-  //   table_row.className = "table-success";
-  // }
-
-  // Object.assign(sl_data, {
-  //   //assign multiple attributes
-  //   type: "checkbox",
-  //   checked: doc.data().sl,
-  // });
-  // Object.assign(solved_data, {
-  //   //assign multiple attributes
-  //   type: "checkbox",
-  //   checked: doc.data().solved,
-  // });
-
-   
-  // delete_icon.addEventListener("click", delete_event);
-  // save_icon.addEventListener("click", save_edit_event);
-  // time_data.addEventListener('input', edit_event);
-  // position_data.addEventListener('input', edit_event);
   
-  
-  // defect_data.addEventListener('input', edit_event);
-  // notes_data.addEventListener('input', edit_event);
-  // sl_data.addEventListener('input', edit_event);
-  // solved_data.addEventListener('input', edit_event);
-  // clock_icon.addEventListener('click',timer);
-
-  // table_time_data.appendChild(time_data);
-  // table_position_data.appendChild(position_data);
-  // table_registration_data.appendChild(registration_data);
-  // table_defect_data.appendChild(defect_data);
-  // table_notes_data.appendChild(notes_data);
-  // table_row.appendChild(table_time_data);
-  // table_row.appendChild(table_position_data);
-  // table_row.appendChild(table_registration_data);
-  // table_row.appendChild(table_defect_data);
-  // table_row.appendChild(table_notes_data);
-  // table_row.appendChild(table_sl_data);
-  // table_sl_data.appendChild(sl_data);
-  // table_row.appendChild(table_solved_data);
-  // table_solved_data.appendChild(solved_data);
-  // table_row.appendChild(table_action_data);
-  // table_action_data.appendChild(delete_icon);
-  // table_action_data.appendChild(clock_icon);
-  // table_action_data.appendChild(save_icon);
-  // resultTable.appendChild(table_row);
-  
-  resultTable.innerHTML+=event_row;
-  console.log('renderResultTable end');
-const registration_data=document.querySelector('#registration');
-  console.log(registration_data);
-  registration_data.addEventListener('input', edit_event);
-
+     
+  resultTable.innerHTML += event_row;
+  console.log("renderResultTable end");
 }
 
 // get real-time data from firestore
@@ -207,7 +111,7 @@ function save_event(e) {
 }
 
 // delete Event
-function delete_event(e) {
+function delete_event(e) {  
   e.stopPropagation();
   let response = window.confirm("Are you sure you want to delete this Event?");
   if (response) {
@@ -221,9 +125,11 @@ function delete_event(e) {
 
 // edit Event
 function edit_event(e) {
-  console.log(e);
-  
   e.stopPropagation();
+  if (e.target.parentElement.id=='time') {
+    formatTime(e);
+  }
+  
   let updated_row = e.target.parentElement.parentElement;
   updated_row.querySelector('.fa-save').classList.remove('d-none');
 
