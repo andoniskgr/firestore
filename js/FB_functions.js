@@ -1,6 +1,4 @@
 const resultTable = document.querySelector("#table_data");
-console.log(document.querySelector('table'));
-
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
 const my_modals = document.querySelectorAll('.modal');
@@ -11,6 +9,7 @@ new_event_form.addEventListener("submit", save_event);
 event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
+
 my_modals.forEach(function(modal){  
   modal.addEventListener('shown.bs.modal',function(e){
     if (modal.id=='loginModal' || modal.id=='registerModal') {
@@ -26,8 +25,11 @@ my_modals.forEach(function(modal){
 
 
 // function that creates table row elements
-function renderResultTable(doc) {
+function renderResultTable(doc=[]) {
   console.log('renderResultTable start');
+  if (doc.length==0) {
+    resultTable.innerHTML = '';
+  } else {
   let event_row='';
   let tr_class='';
   if (doc.data().sl == false && doc.data().solved == false) {
@@ -39,8 +41,6 @@ function renderResultTable(doc) {
   if (doc.data().solved == true) {
     tr_class = "table-success";
   }
-
-
   event_row=`<tr class="${tr_class}" data-id="${doc.id}">
   <td id="time"><input size="6" value="${doc.data().time}" oninput=edit_event(event)></td>
   <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase" oninput=edit_event(event)></td>
@@ -53,21 +53,24 @@ function renderResultTable(doc) {
   <span class="fa fa-clock-o ms-3" style="font-size: 1.3em;"></span>
   <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
   </tr>`;
-  
-     
-  resultTable.innerHTML += event_row;
+  resultTable.innerHTML += event_row; 
+}
   console.log("renderResultTable end");
 }
 
 // get real-time data from firestore
-function get_real_time_data(){
-  db.collection("events")
+function get_real_time_data(user=null){
+  let changes=[];
+  if (user!=null) {
+    document.querySelector('table').classList.remove('d-none');
+    db.collection("events")
   .orderBy("time")
   .onSnapshot(function (snapshot) {
-    let changes = snapshot.docChanges();
+    changes = snapshot.docChanges();
+    
     if (changes.length==0) {
       flash_message('There is no Data!')
-      console.log(changes);
+      console.log(changes,'changes length is 0.');
     } else {
       flash_message();
       changes.forEach((change) => {
@@ -82,6 +85,11 @@ function get_real_time_data(){
     });
     }    
   });
+  } else {
+    document.querySelector('table').classList.add('d-none');
+    renderResultTable();
+  }
+  
 }
 
 
