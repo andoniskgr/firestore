@@ -15,8 +15,8 @@ window.addEventListener("DOMContentLoaded", function () {
   auth.onAuthStateChanged((user) => {
     if (user) {
       setUpUi(user);
-      console.log("logged in as:", user.email);
-      // get_real_time_data();
+      console.log("logged in as:", user.email);      
+      get_real_time_data();
     } else {
       setUpUi();
       console.log("not login");
@@ -39,7 +39,11 @@ window.addEventListener("DOMContentLoaded", function () {
       loggedOutLinks.forEach(function (link) {
         link.classList.add("d-none");
       });
+      if (document.querySelector('table')==null) {
+        create_table();
+      }
     } else {
+      document.querySelector('table').remove();
       loggedInLinks.forEach(function (link) {
         link.classList.add("d-none");
       });
@@ -99,6 +103,27 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  function create_table(){
+    const table_render=document.querySelector('#main-section');
+    table_render.innerHTML=`<table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th scope="col">Time</th>
+                      <th scope="col">Position</th>
+                      <th scope="col">Registration</th>
+                      <th class="col-4" scope="col">Defect</th>
+                      <th class="col-4" scope="col">Notes</th>
+                      <th scope="col">S/L</th>
+                      <th scope="col">OK</th>
+                      <th class="col-1" scope="col">Action</th>
+                  </tr>
+              </thead>
+              <tbody id="table_data">
+  
+              </tbody>
+          </table>`
+  };
+  
   // console.log("Auth DOM load end");
 });
 

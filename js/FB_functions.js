@@ -1,4 +1,6 @@
 const resultTable = document.querySelector("#table_data");
+console.log(document.querySelector('table'));
+
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
 const my_modals = document.querySelectorAll('.modal');
@@ -58,7 +60,7 @@ function renderResultTable(doc) {
 }
 
 // get real-time data from firestore
-// function get_real_time_data(){
+function get_real_time_data(){
   db.collection("events")
   .orderBy("time")
   .onSnapshot(function (snapshot) {
@@ -80,7 +82,7 @@ function renderResultTable(doc) {
     });
     }    
   });
-// }
+}
 
 
 // save data to firestore
@@ -223,25 +225,10 @@ function flash_message(msg=null){
     flashMessageElement.setAttribute('id','flashMsg');
     flashMessageElement.innerHTML=msg;
     document.querySelector('body').appendChild(flashMessageElement);
+  }else{
+    console.log('test');
+    
   }
 }
 
-function create_table(){
-  `<table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Registration</th>
-                    <th class="col-4" scope="col">Defect</th>
-                    <th class="col-4" scope="col">Notes</th>
-                    <th scope="col">S/L</th>
-                    <th scope="col">OK</th>
-                    <th class="col-1" scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id="table_data">
 
-            </tbody>
-        </table>`
-}
