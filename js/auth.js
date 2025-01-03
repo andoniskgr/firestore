@@ -16,10 +16,11 @@ window.addEventListener("DOMContentLoaded", function () {
     if (user) {
       setUpUi(user);
       console.log("logged in as:", user.email);
-      // window.location.replace('main_page.html');
+      // get_real_time_data();
     } else {
       setUpUi();
       console.log("not login");
+      flash_message("You need to login for access!")
     }
   });
 
@@ -31,7 +32,6 @@ window.addEventListener("DOMContentLoaded", function () {
   // function control UI components
   function setUpUi(user) {
     // console.log('setUpUi');
-    
     if (user) {
       loggedInLinks.forEach(function (link) {
         link.classList.remove("d-none");
@@ -39,7 +39,6 @@ window.addEventListener("DOMContentLoaded", function () {
       loggedOutLinks.forEach(function (link) {
         link.classList.add("d-none");
       });
-      get_real_time_data();
     } else {
       loggedInLinks.forEach(function (link) {
         link.classList.add("d-none");
@@ -47,7 +46,6 @@ window.addEventListener("DOMContentLoaded", function () {
       loggedOutLinks.forEach(function (link) {
         link.classList.remove("d-none");
       });
-      flash_message("You need to Login to have access to Data!");
     }
   }
 
@@ -91,7 +89,6 @@ window.addEventListener("DOMContentLoaded", function () {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        console.log("Login successfully as:", userCredential.email);
         $(".modal").modal("hide");
       })
       .catch((error) => {
