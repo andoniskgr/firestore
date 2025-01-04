@@ -38,71 +38,95 @@
                 <div class="navbar-nav">
                     <a class="nav-link" href="#" id="logout_link">Logout</a>
                 </div>
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#" onclick="window.close()">Close</a>
+                </div>
             </div>
         </div>
     </nav>
     <!-- NAVBAR end -->
 
 
-    <div class="container-fluid mt-3 bg-light text-dark">
+    <div class="container p-3 bg-secondary text-light">
         <form id="service_order_form">
-            <div class="modal-body">
-                <div class="row">
-                    <div class="ms-2 col mb-3 form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="service_order_type" id="inlineRadio2"
-                            value="option2">
-                        <label class="form-check-label" for="inlineRadio2">PIREP DEFECT</label>
+
+            <!-- permanent data start -->
+            <div class="container">
+                <div class="row mb-3">
+                    <div class="col form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="service_order_type" id="rb_pirep" value="pirep" checked>
+                        <label class="form-check-label" for="rb_pirep">PIREP DEFECT</label>
                     </div>
-                    <div class="col ms-2 mb-3 form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="service_order_type" id="inlineRadio1"
-                            value="option1" checked>
-                        <label class="form-check-label" for="inlineRadio1">MAINT. ACTION</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-3">
-                        <input class="form-control mb-3" type="text" name="eta" placeholder="ETA"
-                            oninput="formatTime(event)">
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control mb-3" type="text" name="from" placeholder="From">
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control mb-3" type="text" name="to" placeholder="TO">
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control mb-3" type="text" name="flight" placeholder="FLIGHT">
+                    <div class="col form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="service_order_type" id="rb_maint" value="maint">
+                        <label class="form-check-label" for="rb_maint">MAINT. ACTION</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <input class="form-control mb-3" type="text" name="defect" placeholder="Defect">
+            
+                <div class="row mb-3">
+                    <div class="col">
+                        <input class="form-control" type="text" name="flight" placeholder="FLIGHT">
                     </div>
-                    <div class="col-12">
-                        <input class="form-control mb-3" type="text" name="notes" placeholder="Notes">
+                    <div class="col">
+                        <input class="form-control" type="text" name="from" placeholder="From">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <input class="form-control mb-3" type="text" name="defect" placeholder="Defect">
+                    <div class="col">
+                        <input class="form-control" type="text" name="to" placeholder="TO">
                     </div>
-                    <div class="col-12">
-                        <input class="form-control mb-3" type="text" name="notes" placeholder="Notes">
+                    <div class="col">
+                        <input class="form-control" type="text" name="eta" placeholder="ETA UTC" oninput="formatTime(event)">
                     </div>
-                    <div class="col-12">
-                        <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                style="height: 100px"></textarea>
-                            <label for="floatingTextarea2">Comments</label>
-                        </div>
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example" id="registration">
+                            <option value="false" selected>Select A/C</option>
+                          </select>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="reset" id="clear_new_event_button" class="btn btn-danger">Clear</button>
-                <button type="reset" id="cancel_new_event_button" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" id="save_event_button" class="btn btn-primary">Save</button>
+            <!-- permanent data end -->
+
+            <!-- pirep defect data start -->
+            <div class="container" id="pirep_defect">
+                <div class="row">
+                    <div class="col-12">
+                        <input class="form-control mb-3" type="text" name="defect" placeholder="Defect description">
+                    </div>
+                </div>
+            </div>
+            <!-- pirep defect data end -->
+
+            <!-- maintenance action data start -->
+            <div class="container d-none" id="maintenance_action">
+                <div class="row">
+                    <div class="col-3">
+                        <input class="form-control mb-3" type="text" name="mel" placeholder="MEL">
+                    </div>
+                    <div class="col-9">
+                        <input class="form-control mb-3" type="text" name="mel_description" placeholder="MEL Description">
+                    </div>
+                </div>
+            </div>
+            <!-- maintenance action data end -->
+            <div class="container">
+                <div class="row mb-3">
+                    <div class="col-12 ">
+                        <label for="so_prepared_test">Prepared text</label>
+                        <textarea class="form-control" id="so_prepared_test"
+                            style="height: 300px"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-6 text-end">
+                    <button type="submit" class="btn btn-success">Prepare</button>
+                  </div>
+                    <div class="col-6 text-start">
+                    <button type="reset" class="btn btn-danger">Clear</button>
+                  </div>
+                </div>
+                
             </div>
         </form>
     </div>
