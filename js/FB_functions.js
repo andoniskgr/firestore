@@ -12,10 +12,12 @@ event_reminder_form.addEventListener("submit", function(e){
 
 my_modals.forEach(function(modal){  
   modal.addEventListener('shown.bs.modal',function(e){
+    console.log('test:',current_time());
     if (modal.id=='loginModal' || modal.id=='registerModal') {
       modal.querySelector('[name="email"]').focus();
     } else if (modal.id=='new_event' || modal.id=='timer'){
-      modal.querySelector('[name="time"]').focus();
+      modal.querySelector('[name="time"]').value=current_time();
+      modal.querySelector('[name="position"]').focus();
     }    
   });  
   modal.addEventListener('hidden.bs.modal',function(e){
@@ -70,7 +72,6 @@ function get_real_time_data(user=null){
     
     if (changes.length==0) {
       flash_message('There is no Data!')
-      console.log(changes,'changes length is 0.');
     } else {
       flash_message();
       changes.forEach((change) => {
@@ -236,4 +237,15 @@ function flash_message(msg=null){
   }
 }
 
-
+function current_time(){
+  let now=new Date();
+  let hrs=now.getHours();
+  let min=now.getMinutes();
+  if (hrs<10) {
+    hrs='0'+String(hrs);    
+  }
+  if (min<10) {
+    min='0'+String(min);    
+  }
+  return `${hrs}:${min}`;
+}
