@@ -233,9 +233,6 @@ function flash_message(msg=null){
     flashMessageElement.setAttribute('id','flashMsg');
     flashMessageElement.innerHTML=msg;
     document.querySelector('body').appendChild(flashMessageElement);
-  }else{
-    console.log('test');
-    
   }
 }
 
