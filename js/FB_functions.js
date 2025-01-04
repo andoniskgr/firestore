@@ -28,7 +28,7 @@ my_modals.forEach(function(modal){
 
 // function that creates table row elements
 function renderResultTable(doc=[]) {
-  console.log('renderResultTable start');
+  // console.log('renderResultTable start');
   if (doc.length==0) {
     resultTable.innerHTML = '';
   } else {
@@ -57,7 +57,7 @@ function renderResultTable(doc=[]) {
   </tr>`;
   resultTable.innerHTML += event_row; 
 }
-  console.log("renderResultTable end");
+  // console.log("renderResultTable end");
 }
 
 // get real-time data from firestore
