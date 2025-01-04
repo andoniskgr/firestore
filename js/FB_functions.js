@@ -252,11 +252,11 @@ function current_time(){
 function get_aircrafts(){
   let aircrafts=[
       {
-          "REGISTRATION": "SX-DGA ",
-          "TYPE": "A321-231 ",
+          "REGISTRATION": "SX-DGA",
+          "TYPE": "A321-231",
           "EFFECTIVITY": "104",
           "MSN": "3878",
-          "SELCAL": "AS-CJ ",
+          "SELCAL": "AS-CJ",
           "WV": "000",
           "DATE RECEIVED": "24/4/2009",
           "WIFI": "-",
@@ -264,11 +264,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGB ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGB",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "018",
           "MSN": "4165",
-          "SELCAL": "DH-ES ",
+          "SELCAL": "DH-ES",
           "WV": "010",
           "DATE RECEIVED": "19/1/2010",
           "WIFI": "OK",
@@ -276,11 +276,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGC ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGC",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "401",
           "MSN": "4094",
-          "SELCAL": "CE-DQ ",
+          "SELCAL": "CE-DQ",
           "WV": "011",
           "DATE RECEIVED": "6/5/2011",
           "WIFI": "-",
@@ -288,11 +288,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGD ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGD",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "302",
           "MSN": "4065",
-          "SELCAL": "CF-PQ ",
+          "SELCAL": "CF-PQ",
           "WV": "012",
           "DATE RECEIVED": "6/5/2011",
           "WIFI": "-",
@@ -300,11 +300,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGE ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGE",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "301",
           "MSN": "3990",
-          "SELCAL": "CG-PQ ",
+          "SELCAL": "CG-PQ",
           "WV": "012",
           "DATE RECEIVED": "6/5/2011",
           "WIFI": "-",
@@ -312,11 +312,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGI ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGI",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "151",
           "MSN": "3162",
-          "SELCAL": "QS-MP ",
+          "SELCAL": "QS-MP",
           "WV": "016",
           "DATE RECEIVED": "18/12/2023",
           "WIFI": "-",
@@ -324,11 +324,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGT ",
-          "TYPE": "A321-231 ",
+          "REGISTRATION": "SX-DGT",
+          "TYPE": "A321-231",
           "EFFECTIVITY": "109",
           "MSN": "1433",
-          "SELCAL": "JP-CK ",
+          "SELCAL": "JP-CK",
           "WV": "000",
           "DATE RECEIVED": "27/3/2015",
           "WIFI": "-",
@@ -336,11 +336,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGY ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGY",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "651",
           "MSN": "6611",
-          "SELCAL": "DR-QS ",
+          "SELCAL": "DR-QS",
           "WV": "017",
           "DATE RECEIVED": "16/6/2015",
           "WIFI": "OK",
@@ -348,11 +348,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DGZ ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DGZ",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "652",
           "MSN": "6643",
-          "SELCAL": "GH-AP ",
+          "SELCAL": "GH-AP",
           "WV": "017",
           "DATE RECEIVED": "26/6/2015",
           "WIFI": "OK",
@@ -360,11 +360,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DNA ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DNA",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "653",
           "MSN": "6655",
-          "SELCAL": "LQ-FJ ",
+          "SELCAL": "LQ-FJ",
           "WV": "017",
           "DATE RECEIVED": "30/6/2015",
           "WIFI": "OK",
@@ -372,11 +372,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DNB ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DNB",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "654",
           "MSN": "6832",
-          "SELCAL": "LQ-CD ",
+          "SELCAL": "LQ-CD",
           "WV": "017",
           "DATE RECEIVED": "27/11/2015",
           "WIFI": "OK",
@@ -384,11 +384,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DNC ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DNC",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "655",
           "MSN": "6961",
-          "SELCAL": "CD-JR ",
+          "SELCAL": "CD-JR",
           "WV": "017",
           "DATE RECEIVED": "12/2/2016",
           "WIFI": "OK",
@@ -396,11 +396,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DND ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DND",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "656",
           "MSN": "6989",
-          "SELCAL": "CM-KS ",
+          "SELCAL": "CM-KS",
           "WV": "017",
           "DATE RECEIVED": "7/3/2016",
           "WIFI": "OK",
@@ -408,11 +408,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DNE ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DNE",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "657",
           "MSN": "7014",
-          "SELCAL": "DS-EH ",
+          "SELCAL": "DS-EH",
           "WV": "017",
           "DATE RECEIVED": "17/3/2016",
           "WIFI": "OK",
@@ -420,11 +420,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DNG ",
-          "TYPE": "A321-231 ",
+          "REGISTRATION": "SX-DNG",
+          "TYPE": "A321-231",
           "EFFECTIVITY": "111",
           "MSN": "2610",
-          "SELCAL": "AF-EH ",
+          "SELCAL": "AF-EH",
           "WV": "011",
           "DATE RECEIVED": "15/6/2018",
           "WIFI": "-",
@@ -432,11 +432,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DNH ",
-          "TYPE": "A321-231 ",
+          "REGISTRATION": "SX-DNH",
+          "TYPE": "A321-231",
           "EFFECTIVITY": "112",
           "MSN": "3546",
-          "SELCAL": "FQ-LP ",
+          "SELCAL": "FQ-LP",
           "WV": "000",
           "DATE RECEIVED": "25/5/2018",
           "WIFI": "-",
@@ -444,11 +444,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVG ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVG",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "001",
           "MSN": "3033",
-          "SELCAL": "GJ-DL ",
+          "SELCAL": "GJ-DL",
           "WV": "008",
           "DATE RECEIVED": "21/2/2007",
           "WIFI": "-",
@@ -456,11 +456,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVH ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVH",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "002",
           "MSN": "3066",
-          "SELCAL": "GK-BH ",
+          "SELCAL": "GK-BH",
           "WV": "008",
           "DATE RECEIVED": "19/3/2007",
           "WIFI": "-",
@@ -468,11 +468,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVI ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVI",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "003",
           "MSN": "3074",
-          "SELCAL": "GK-HL ",
+          "SELCAL": "GK-HL",
           "WV": "008",
           "DATE RECEIVED": "20/3/2007",
           "WIFI": "-",
@@ -480,11 +480,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVJ ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVJ",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "004",
           "MSN": "3365",
-          "SELCAL": "HJ-EP ",
+          "SELCAL": "HJ-EP",
           "WV": "008",
           "DATE RECEIVED": "15/1/2008",
           "WIFI": "-",
@@ -492,11 +492,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVK ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVK",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "005",
           "MSN": "3392",
-          "SELCAL": "HJ-FP ",
+          "SELCAL": "HJ-FP",
           "WV": "008",
           "DATE RECEIVED": "12/2/2008",
           "WIFI": "-",
@@ -504,11 +504,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVL ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVL",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "006",
           "MSN": "3423",
-          "SELCAL": "HK-QS ",
+          "SELCAL": "HK-QS",
           "WV": "008",
           "DATE RECEIVED": "12/3/2008",
           "WIFI": "-",
@@ -516,11 +516,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVM ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVM",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "007",
           "MSN": "3439",
-          "SELCAL": "HL-MS ",
+          "SELCAL": "HL-MS",
           "WV": "008",
           "DATE RECEIVED": "19/3/2008",
           "WIFI": "-",
@@ -528,11 +528,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVN ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVN",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "008",
           "MSN": "3478",
-          "SELCAL": "MQ-GH ",
+          "SELCAL": "MQ-GH",
           "WV": "008",
           "DATE RECEIVED": "22/4/2008",
           "WIFI": "OK",
@@ -540,11 +540,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVQ ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVQ",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "009",
           "MSN": "3526",
-          "SELCAL": "FK-QR ",
+          "SELCAL": "FK-QR",
           "WV": "010",
           "DATE RECEIVED": "24/6/2008",
           "WIFI": "OK",
@@ -552,11 +552,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVR ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVR",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "011",
           "MSN": "3714",
-          "SELCAL": "AG-HR ",
+          "SELCAL": "AG-HR",
           "WV": "008",
           "DATE RECEIVED": "21/11/2008",
           "WIFI": "-",
@@ -564,11 +564,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVS ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVS",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "010",
           "MSN": "3709",
-          "SELCAL": "AG-HS ",
+          "SELCAL": "AG-HS",
           "WV": "008",
           "DATE RECEIVED": "4/12/2008",
           "WIFI": "-",
@@ -576,11 +576,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVT ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVT",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "012",
           "MSN": "3745",
-          "SELCAL": "AG-PQ ",
+          "SELCAL": "AG-PQ",
           "WV": "010",
           "DATE RECEIVED": "16/1/2009",
           "WIFI": "OK",
@@ -588,11 +588,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVV ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVV",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "014",
           "MSN": "3773",
-          "SELCAL": "AQ-BG ",
+          "SELCAL": "AQ-BG",
           "WV": "008",
           "DATE RECEIVED": "4/2/2009",
           "WIFI": "-",
@@ -600,11 +600,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVW ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVW",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "015",
           "MSN": "3785",
-          "SELCAL": "AQ-BK ",
+          "SELCAL": "AQ-BK",
           "WV": "008",
           "DATE RECEIVED": "11/2/2009",
           "WIFI": "-",
@@ -612,11 +612,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVX ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVX",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "016",
           "MSN": "3829",
-          "SELCAL": "AQ-GK ",
+          "SELCAL": "AQ-GK",
           "WV": "008",
           "DATE RECEIVED": "18/3/2009",
           "WIFI": "-",
@@ -624,11 +624,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVY ",
-          "TYPE": "A320-232 ",
+          "REGISTRATION": "SX-DVY",
+          "TYPE": "A320-232",
           "EFFECTIVITY": "017",
           "MSN": "3850",
-          "SELCAL": "AQ-JL ",
+          "SELCAL": "AQ-JL",
           "WV": "008",
           "DATE RECEIVED": "14/4/2009",
           "WIFI": "-",
@@ -636,11 +636,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-DVZ ",
-          "TYPE": "A321-231 ",
+          "REGISTRATION": "SX-DVZ",
+          "TYPE": "A321-231",
           "EFFECTIVITY": "103",
           "MSN": "3820",
-          "SELCAL": "ΑR-ΕΜ ",
+          "SELCAL": "ΑR-ΕΜ",
           "WV": "000",
           "DATE RECEIVED": "3/3/2009",
           "WIFI": "-",
@@ -648,11 +648,11 @@ function get_aircrafts(){
           "ENGINE": "IAE V2500"
       },
       {
-          "REGISTRATION": "SX-NAA ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAA",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "751",
           "MSN": "9553",
-          "SELCAL": "LS-EP ",
+          "SELCAL": "LS-EP",
           "WV": "051",
           "DATE RECEIVED": "30/9/2020",
           "WIFI": "OK",
@@ -660,11 +660,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAB ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAB",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "752",
           "MSN": "9575",
-          "SELCAL": "GQ-DP ",
+          "SELCAL": "GQ-DP",
           "WV": "051",
           "DATE RECEIVED": "20/11/2020",
           "WIFI": "OK",
@@ -672,11 +672,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAC ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAC",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "753",
           "MSN": "10189",
-          "SELCAL": "CS-GK ",
+          "SELCAL": "CS-GK",
           "WV": "051",
           "DATE RECEIVED": "17/12/2020",
           "WIFI": "OK",
@@ -684,11 +684,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAD ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAD",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "754",
           "MSN": "10305",
-          "SELCAL": "AB-DG ",
+          "SELCAL": "AB-DG",
           "WV": "051",
           "DATE RECEIVED": "28/7/2021",
           "WIFI": "OK",
@@ -696,11 +696,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAE ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAE",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "755",
           "MSN": "10704",
-          "SELCAL": "EH-AJ ",
+          "SELCAL": "EH-AJ",
           "WV": "051",
           "DATE RECEIVED": "8/3/2022",
           "WIFI": "OK",
@@ -708,11 +708,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAF ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAF",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "756",
           "MSN": "10920",
-          "SELCAL": "GL-JR ",
+          "SELCAL": "GL-JR",
           "WV": "051",
           "DATE RECEIVED": "31/5/2022",
           "WIFI": "OK",
@@ -720,11 +720,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAG ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAG",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "757",
           "MSN": "11011",
-          "SELCAL": "GH-AC ",
+          "SELCAL": "GH-AC",
           "WV": "051",
           "DATE RECEIVED": "19/9/2022",
           "WIFI": "OK",
@@ -732,11 +732,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAH ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAH",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "758",
           "MSN": "10844",
-          "SELCAL": "FM-HP ",
+          "SELCAL": "FM-HP",
           "WV": "051",
           "DATE RECEIVED": "22/6/2022",
           "WIFI": "OK",
@@ -744,11 +744,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAJ ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAJ",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "759",
           "MSN": "10832",
-          "SELCAL": "CG-JL ",
+          "SELCAL": "CG-JL",
           "WV": "051",
           "DATE RECEIVED": "29/7/2022",
           "WIFI": "OK",
@@ -756,11 +756,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAK ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAK",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "760",
           "MSN": "10951",
-          "SELCAL": "QS-CK ",
+          "SELCAL": "QS-CK",
           "WV": "051",
           "DATE RECEIVED": "31/8/2022",
           "WIFI": "OK",
@@ -768,11 +768,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAL ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAL",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "761",
           "MSN": "10967",
-          "SELCAL": "PR-CF ",
+          "SELCAL": "PR-CF",
           "WV": "051",
           "DATE RECEIVED": "23/9/2022",
           "WIFI": "OK",
@@ -780,11 +780,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAM ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAM",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "762",
           "MSN": "11085",
-          "SELCAL": "GS-AF ",
+          "SELCAL": "GS-AF",
           "WV": "051",
           "DATE RECEIVED": "16/12/2022",
           "WIFI": "OK",
@@ -792,11 +792,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAO ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAO",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "763",
           "MSN": "11827",
-          "SELCAL": "AB-GL ",
+          "SELCAL": "AB-GL",
           "WV": "051",
           "DATE RECEIVED": "28/5/2024",
           "WIFI": "-",
@@ -804,11 +804,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NAP ",
-          "TYPE": "A321-271NX ",
+          "REGISTRATION": "SX-NAP",
+          "TYPE": "A321-271NX",
           "EFFECTIVITY": "764",
           "MSN": "12381",
-          "SELCAL": "AE-QR ",
+          "SELCAL": "AE-QR",
           "WV": "051",
           "DATE RECEIVED": "23/12/2024",
           "WIFI": "-",
@@ -816,11 +816,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEA ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEA",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "702",
           "MSN": "9497",
-          "SELCAL": "BM-GQ ",
+          "SELCAL": "BM-GQ",
           "WV": "069",
           "DATE RECEIVED": "27/1/2020",
           "WIFI": "OK",
@@ -828,11 +828,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEB ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEB",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "703",
           "MSN": "9514",
-          "SELCAL": "DM-JP ",
+          "SELCAL": "DM-JP",
           "WV": "069",
           "DATE RECEIVED": "31/1/2020",
           "WIFI": "OK",
@@ -840,11 +840,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEC ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEC",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "704",
           "MSN": "9583",
-          "SELCAL": "FK-AH ",
+          "SELCAL": "FK-AH",
           "WV": "069",
           "DATE RECEIVED": "11/3/2020",
           "WIFI": "OK",
@@ -852,11 +852,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NED ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NED",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "705",
           "MSN": "10047",
-          "SELCAL": "HM-JP ",
+          "SELCAL": "HM-JP",
           "WV": "069",
           "DATE RECEIVED": "18/6/2020",
           "WIFI": "OK",
@@ -864,11 +864,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEE ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEE",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "706",
           "MSN": "10901",
-          "SELCAL": "FQ-ER ",
+          "SELCAL": "FQ-ER",
           "WV": "069",
           "DATE RECEIVED": "30/6/2022",
           "WIFI": "OK",
@@ -876,11 +876,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEF ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEF",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "707",
           "MSN": "11013",
-          "SELCAL": "MR-DJ ",
+          "SELCAL": "MR-DJ",
           "WV": "069",
           "DATE RECEIVED": "30/11/2022",
           "WIFI": "OK",
@@ -888,11 +888,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEG ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEG",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "708",
           "MSN": "11132",
-          "SELCAL": "BJ-AM ",
+          "SELCAL": "BJ-AM",
           "WV": "069",
           "DATE RECEIVED": "15/3/2023",
           "WIFI": "OK",
@@ -900,11 +900,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEH ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEH",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "709",
           "MSN": "11308",
-          "SELCAL": "BJ-ES ",
+          "SELCAL": "BJ-ES",
           "WV": "069",
           "DATE RECEIVED": "17/2/2023",
           "WIFI": "OK",
@@ -912,11 +912,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEI ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEI",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "710",
           "MSN": "11338",
-          "SELCAL": "JQ-HL ",
+          "SELCAL": "JQ-HL",
           "WV": "069",
           "DATE RECEIVED": "31/8/2023",
           "WIFI": "OK",
@@ -924,11 +924,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEJ ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEJ",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "712",
           "MSN": "11384",
-          "SELCAL": "JS-GK ",
+          "SELCAL": "JS-GK",
           "WV": "069",
           "DATE RECEIVED": "25/4/2023",
           "WIFI": "OK",
@@ -936,11 +936,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEK ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEK",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "711",
           "MSN": "11382",
-          "SELCAL": "DP-AK ",
+          "SELCAL": "DP-AK",
           "WV": "069",
           "DATE RECEIVED": "27/3/2023",
           "WIFI": "OK",
@@ -948,11 +948,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEL ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEL",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "713",
           "MSN": "11399",
-          "SELCAL": "GJ-MS ",
+          "SELCAL": "GJ-MS",
           "WV": "069",
           "DATE RECEIVED": "12/4/2023",
           "WIFI": "OK",
@@ -960,11 +960,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEM ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEM",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "715",
           "MSN": "11474",
-          "SELCAL": "KR-AM ",
+          "SELCAL": "KR-AM",
           "WV": "069",
           "DATE RECEIVED": "17/5/2023",
           "WIFI": "OK",
@@ -972,11 +972,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEO ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEO",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "701",
           "MSN": "9400",
-          "SELCAL": "AJ-PS ",
+          "SELCAL": "AJ-PS",
           "WV": "069",
           "DATE RECEIVED": "19/12/2019",
           "WIFI": "OK",
@@ -984,11 +984,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEP ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEP",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "716",
           "MSN": "11546",
-          "SELCAL": "DK-RS ",
+          "SELCAL": "DK-RS",
           "WV": "069",
           "DATE RECEIVED": "24/8/2023",
           "WIFI": "OK",
@@ -996,11 +996,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NEQ ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NEQ",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "714",
           "MSN": "11469",
-          "SELCAL": "DL-HS ",
+          "SELCAL": "DL-HS",
           "WV": "069",
           "DATE RECEIVED": "11/5/2023",
           "WIFI": "OK",
@@ -1008,11 +1008,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NER ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NER",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "718",
           "MSN": "12079",
-          "SELCAL": "AC-EP ",
+          "SELCAL": "AC-EP",
           "WV": "069",
           "DATE RECEIVED": "16/5/2024",
           "WIFI": "-",
@@ -1020,11 +1020,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NES ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NES",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "717",
           "MSN": "12094",
-          "SELCAL": "GM-AQ ",
+          "SELCAL": "GM-AQ",
           "WV": "069",
           "DATE RECEIVED": "6/6/2024",
           "WIFI": "-",
@@ -1032,11 +1032,11 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-NET ",
-          "TYPE": "A320-271N ",
+          "REGISTRATION": "SX-NET",
+          "TYPE": "A320-271N",
           "EFFECTIVITY": "719",
           "MSN": "12070",
-          "SELCAL": "JS-CQ ",
+          "SELCAL": "JS-CQ",
           "WV": "069",
           "DATE RECEIVED": "9/10/2024",
           "WIFI": "-",
@@ -1044,8 +1044,8 @@ function get_aircrafts(){
           "ENGINE": "PW 1100"
       },
       {
-          "REGISTRATION": "SX-BIP ",
-          "TYPE": "DHC-8-102 ",
+          "REGISTRATION": "SX-BIP",
+          "TYPE": "DHC-8-102",
           "EFFECTIVITY": "",
           "MSN": "347",
           "SELCAL": "",
@@ -1056,8 +1056,8 @@ function get_aircrafts(){
           "ENGINE": "PW 120A"
       },
       {
-          "REGISTRATION": "SX-BIR ",
-          "TYPE": "DHC-8-102 ",
+          "REGISTRATION": "SX-BIR",
+          "TYPE": "DHC-8-102",
           "EFFECTIVITY": "",
           "MSN": "364",
           "SELCAL": "",
@@ -1068,11 +1068,11 @@ function get_aircrafts(){
           "ENGINE": "PW 120A"
       },
       {
-          "REGISTRATION": "SX-OAX ",
-          "TYPE": "ATR42-500 v. 600 ",
+          "REGISTRATION": "SX-OAX",
+          "TYPE": "ATR42-500 v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1016 ",
-          "SELCAL": "EQ-GJ ",
+          "MSN": "1016",
+          "SELCAL": "EQ-GJ",
           "WV": "",
           "DATE RECEIVED": "20/7/2016",
           "WIFI": "",
@@ -1080,11 +1080,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OAY ",
-          "TYPE": "ATR42-500 v. 600 ",
+          "REGISTRATION": "SX-OAY",
+          "TYPE": "ATR42-500 v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1002 ",
-          "SELCAL": "- ",
+          "MSN": "1002",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "6/8/2021",
           "WIFI": "",
@@ -1092,11 +1092,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OAZ ",
-          "TYPE": "ATR42-500 v. 600 ",
+          "REGISTRATION": "SX-OAZ",
+          "TYPE": "ATR42-500 v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1005 ",
-          "SELCAL": "- ",
+          "MSN": "1005",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "21/9/2021",
           "WIFI": "",
@@ -1104,11 +1104,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBJ ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBJ",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1325 ",
-          "SELCAL": "FG-CJ ",
+          "MSN": "1325",
+          "SELCAL": "FG-CJ",
           "WV": "",
           "DATE RECEIVED": "30/11/2021",
           "WIFI": "",
@@ -1116,11 +1116,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBM ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBM",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1058 ",
-          "SELCAL": "EP-DK ",
+          "MSN": "1058",
+          "SELCAL": "EP-DK",
           "WV": "",
           "DATE RECEIVED": "18/1/2022",
           "WIFI": "",
@@ -1128,11 +1128,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBI ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBI",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1295 ",
-          "SELCAL": "EH-LR ",
+          "MSN": "1295",
+          "SELCAL": "EH-LR",
           "WV": "",
           "DATE RECEIVED": "3/2/2022",
           "WIFI": "",
@@ -1140,11 +1140,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBN ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBN",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1073 ",
-          "SELCAL": "MR-DK ",
+          "MSN": "1073",
+          "SELCAL": "MR-DK",
           "WV": "",
           "DATE RECEIVED": "11/5/2022",
           "WIFI": "",
@@ -1152,11 +1152,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBK ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBK",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1020 ",
-          "SELCAL": "- ",
+          "MSN": "1020",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "23/5/2022",
           "WIFI": "",
@@ -1164,11 +1164,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBL ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBL",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1027 ",
-          "SELCAL": "- ",
+          "MSN": "1027",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "3/6/2022",
           "WIFI": "",
@@ -1176,11 +1176,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBP ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBP",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1033 ",
-          "SELCAL": "- ",
+          "MSN": "1033",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "10/6/2022",
           "WIFI": "",
@@ -1188,11 +1188,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBO ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBO",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1053 ",
-          "SELCAL": "JS-DE ",
+          "MSN": "1053",
+          "SELCAL": "JS-DE",
           "WV": "",
           "DATE RECEIVED": "22/6/2022",
           "WIFI": "",
@@ -1200,11 +1200,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBQ ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBQ",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "0996 ",
-          "SELCAL": "- ",
+          "MSN": "0996",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "8/7/2022",
           "WIFI": "",
@@ -1212,11 +1212,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBR ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBR",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1129 ",
-          "SELCAL": "- ",
+          "MSN": "1129",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "21/3/2023",
           "WIFI": "",
@@ -1224,11 +1224,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBS ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBS",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1693 ",
-          "SELCAL": "- ",
+          "MSN": "1693",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "29/3/2024",
           "WIFI": "",
@@ -1236,11 +1236,11 @@ function get_aircrafts(){
           "ENGINE": "PW 127"
       },
       {
-          "REGISTRATION": "SX-OBT ",
-          "TYPE": "ATR72-212A v. 600 ",
+          "REGISTRATION": "SX-OBT",
+          "TYPE": "ATR72-212A v. 600",
           "EFFECTIVITY": "",
-          "MSN": "1699 ",
-          "SELCAL": "- ",
+          "MSN": "1699",
+          "SELCAL": "-",
           "WV": "",
           "DATE RECEIVED": "1/8/2024",
           "WIFI": "",
@@ -1273,7 +1273,7 @@ function get_aircrafts(){
       },
       {
           "REGISTRATION": "SX-VVO",
-          "TYPE": "GULFSTREAM 550 GV-SP ",
+          "TYPE": "GULFSTREAM 550 GV-SP",
           "EFFECTIVITY": "",
           "MSN": "5364",
           "SELCAL": "-",
