@@ -12,10 +12,9 @@ event_reminder_form.addEventListener("submit", function(e){
 
 my_modals.forEach(function(modal){  
   modal.addEventListener('shown.bs.modal',function(e){
-    console.log('test:',current_time());
     if (modal.id=='loginModal' || modal.id=='registerModal') {
       modal.querySelector('[name="email"]').focus();
-    } else if (modal.id=='new_event' || modal.id=='timer'){
+    } else if (modal.id=='new_event'){
       modal.querySelector('[name="time"]').value=current_time();
       modal.querySelector('[name="position"]').focus();
     }    
