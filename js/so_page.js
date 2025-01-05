@@ -21,6 +21,9 @@ window.addEventListener("DOMContentLoaded", function () {
         let newOptionItem = document.createElement("option");
         newOptionItem.text = aircraft.doc.data().REGISTRATION;
         newOptionItem.value = aircraft.doc.data().REGISTRATION;
+        newOptionItem.setAttribute('data-engine',aircraft.doc.data().ENGINE);
+        newOptionItem.setAttribute('data-msn',aircraft.doc.data().MSN);
+        newOptionItem.setAttribute('data-type',aircraft.doc.data().TYPE);
         registration_selection.appendChild(newOptionItem);
       });
     });
@@ -76,23 +79,35 @@ function setupFormUi(e) {
   }
 }
 
-function handleForm(e){
+function handleForm(e) {
   e.preventDefault();
-  const flight=e.target.flight.value;
-  const from=e.target.from.value;
-  const to=e.target.to.value;
-  const eta=e.target.eta.value;
-  const registration=e.target.registration.value;
-  const mel_desc=e.target.mel_description.value;
-  const mel=e.target.mel.value;
-  const final=e.target.so_prepared_test;
-  let res=`A/C DETAILS:
-${registration} (Aircraft Type: A321-231, MSN: 02610 ENG TYPE: V2500), FLT No ${flight} (${from}-${to}), ETA:04/01/2025 ${eta} UTC.
+  if (validate_fields(e)==true) {
+    const flight = e.target.flight.value.toUpperCase();
+    const from = e.target.from.value.toUpperCase();
+    const to = e.target.to.value.toUpperCase();
+    const date = reformatDate(e.target.date.value);
+    const eta = e.target.eta.value;
+    const registration = e.target.registration.value.toUpperCase();
+    const defect = e.target.defect.value.toUpperCase();
+    const mel_desc = e.target.mel_description.value;
+    const mel = e.target.mel.value;
+    const type = e.target.registration.getAttribute('data-type');
+    console.log(type);
+    
+    const final = e.target.so_prepared_test;
+    let res = '';
 
-DEFECT DETAILS:
-A/c released iaw ${mel} ( ${mel_desc}). Please perform the necessary maintenance action iaw maintenance procedures section 28-40-00-040-005-A. before a/c departure.
+    res = `A/C DETAILS:
+${registration} (Aircraft Type: A321-231, MSN: 02610 ENG TYPE: V2500), FLT No ${flight} (${from}-${to}), ETA:${date} ${eta} UTC.
+  \nDEFECT DETAILS:\n`
 
-NOTE:
+    if (e.target.service_order_type.value == 'pirep') {
+      res += `Pilot reported: ${defect}. Please attend the A/C and perform inspection IAW AMM.`
+    } else if (e.target.service_order_type.value == 'maint') {
+      res += `A/C released iaw ${mel} (${mel_desc}). Please perform the necessary maintenance action iaw attached maintenance procedure before A/C departure.`
+    }
+
+    res += `\n\nNOTE:
 By receiving the attached training material and along with the CRS, you confirm knowledge of the operator’s processes and procedures.
 
 INFO:
@@ -102,6 +117,40 @@ Upon completion, please leave the white original workorder page in the Tech log 
 AIRCRAFT MANUALS
 Access to manuals is made by AirnavX using the link : https://extranet.aegeanair.com Username and password are provided by MCC.
 `;
-  final.value+=res;
+
+    final.value = res;
+    navigator.clipboard.writeText(final.value);
+  } 
+}
+
+function reformatDate(d){
+  const [year,month,day]=d.split('-');
+  return `${day}/${month}/${year}`;
   
 }
+
+function validate_fields(e) {
+  if (e.target.elements[7].value == "") {
+    alert('Select A/C');
+    e.target.elements[7].focus();
+    return false;
+  } if (e.target.elements[0].checked == true && e.target.elements[8].value == "") {
+    alert('Defect required!');
+    e.target.elements[8].focus();
+    return false;
+  } if (e.target.elements[1].checked == true && e.target.elements[9].value == "") {
+    alert('MEL Reference required!');
+    e.target.elements[9].focus();
+    return false;
+  } if (e.target.elements[1].checked == true && e.target.elements[10].value == "") {
+    alert('MEL Description required!');
+    e.target.elements[10].focus();
+    return false;
+  } 
+  else {
+    console.log('all ok');
+    return true;
+  }
+
+}
+
