@@ -46,7 +46,8 @@
                     <a class="d-none nav-link logged-in" href="#" id="logout_link">Logout</a>
                     <a class="d-none nav-link logged-in" href="#" id="new_event_link" data-bs-toggle="modal"
                         data-bs-target="#new_event">New Event</a>
-                    <a class="d-none nav-link logged-in" href="./so_page.html" target="_blank" id="service_order_link">Service Order</a>
+                    <a class="d-none nav-link logged-in" href="./html/so_page.html" target="_blank" id="service_order_link">Service Order</a>
+                    <a class="d-none nav-link logged-in" href="./aircraft_admin.html" target="_blank" id="aircraft_admin_link">A/C Admin</a>
                 </div>
             </div>
         </div>
@@ -113,27 +114,31 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)">
+                                <input class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)" required>
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="position" placeholder="Position">
+                                <input class="form-control mb-3" type="text" name="position" placeholder="Position" required>
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="registration" placeholder="Registration">
+                                <input class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
                             </div>
                             <div class="col-12">
-                                <input class="form-control mb-3" type="text" name="defect" placeholder="Defect">
+                                <input class="form-control mb-3" type="text" name="defect" placeholder="Defect" required>
                             </div>
                             <div class="col-12">
                                 <input class="form-control mb-3" type="text" name="notes" placeholder="Notes">
                             </div>
-                            <div class="col-6" style="font-size: 1.4rem;">
+                            <div class="col-4" style="font-size: 1.2rem;">
                                 <input class="form-check-input mb-3" type="checkbox" name="sl" id="sl">
-                                <label class="form-check-label" for="sl">S/L Informed</label>
+                                <label class="form-check-label" for="sl">S/L Inf.</label>
                             </div>
-                            <div class="col-6" style="font-size: 1.4rem;">
+                            <div class="col-4" style="font-size: 1.2rem;">
+                                <input class="form-check-input mb-3" type="checkbox" name="rst" id="rst">
+                                <label class="form-check-label" for="rst">Reset</label>
+                            </div>
+                            <div class="col-4" style="font-size: 1.2rem;">
                                 <input class="form-check-input mb-3" type="checkbox" name="solved" id="solved">
-                                <label class="form-check-label" for="solved">Defect Solved</label>
+                                <label class="form-check-label" for="solved">Solved</label>
                             </div>
                         </div>                        
                     </div>
@@ -191,8 +196,9 @@
                     <th class="col-4" scope="col">Defect</th>
                     <th class="col-4" scope="col">Notes</th>
                     <th scope="col">S/L</th>
+                    <th scope="col">RESET</th>
                     <th scope="col">OK</th>
-                    <th class="col-1" scope="col">Action</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody id="table_data">
@@ -212,9 +218,9 @@
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script defer src="./js/init_FB.js"></script>
-    <script defer src="./js/auth.js"></script>
-    <script defer src="./js/FB_functions.js"></script>
+    <script defer src="/js/init_FB.js"></script>
+    <script defer src="/js/auth.js"></script>
+    <script defer src="/js/FB_functions.js"></script>
 </body>
 
 </html>

@@ -10,6 +10,8 @@ window.addEventListener("DOMContentLoaded", function () {
     '[name="service_order_type"]'
   );
   const so_form = this.document.querySelector("#service_order_form");
+  const date_input_field=this.document.querySelector('[name="date"]');
+  date_input_field.value=get_current_day();
 
   // get aircraft data from database and build aircraft selection field
   db.collection("aircrafts")
@@ -127,6 +129,11 @@ function reformatDate(d){
   const [year,month,day]=d.split('-');
   return `${day}/${month}/${year}`;
   
+}
+
+function get_current_day(){
+  const [year,month,day]=new Date().toISOString().split('T')[0].split('-');
+  return `${year}-${month}-${day}`;
 }
 
 function validate_fields(e) {

@@ -31,6 +31,7 @@ function renderResultTable(doc=[]) {
   if (doc.length==0) {
     resultTable.innerHTML = '';
   } else {
+    document.querySelector('table').classList.remove('d-none');
   let event_row='';
   let tr_class='';
   if (doc.data().sl == false && doc.data().solved == false) {
@@ -49,6 +50,7 @@ function renderResultTable(doc=[]) {
   <td id="defect"><input value="${doc.data().defect}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="notes"><input value="${doc.data().notes}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''} oninput=edit_event(event)></td>
+  <td id="rst" class="text-center"><input type="checkbox" ${doc.data().rst?'checked':''} oninput=edit_event(event)></td>
   <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''} oninput=edit_event(event)></td>
   <td class="text-nowrap"><span class="fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_event(event)></span>
   <span class="fa fa-clock-o ms-3" style="font-size: 1.3em;"></span>
@@ -63,13 +65,14 @@ function renderResultTable(doc=[]) {
 function get_real_time_data(user=null){
   let changes=[];
   if (user!=null) {
-    document.querySelector('table').classList.remove('d-none');
+    // document.querySelector('table').classList.remove('d-none');
     db.collection("events")
   .orderBy("time")
   .onSnapshot(function (snapshot) {
     changes = snapshot.docChanges();
     
     if (changes.length==0) {
+      document.querySelector('table').classList.add('d-none');
       flash_message('There is no Data!')
     } else {
       flash_message();
@@ -108,6 +111,7 @@ function save_event(e) {
     defect: new_event_form.defect.value.toUpperCase(),
     notes: new_event_form.notes.value.toUpperCase(),
     sl: new_event_form.sl.checked,
+    rst: new_event_form.rst.checked,
     solved: new_event_form.solved.checked,
   };
 
@@ -115,7 +119,9 @@ function save_event(e) {
   new_event_form.reset();
   // console.log(event);
   db.collection("events").add(event).then(function () {
-    alert('Event saved!');
+    console.log('Event saved!');
+    
+    // alert('Event saved!');
   }
   );
 }
@@ -145,14 +151,14 @@ function edit_event(e) {
 
   if (
     updated_row.cells[5].firstChild.checked == false &&
-    updated_row.cells[6].firstChild.checked == false
+    updated_row.cells[7].firstChild.checked == false
   ) {
     updated_row.className = "table-light";
   }
   if (updated_row.cells[5].firstChild.checked == true) {
     updated_row.className = "table-warning";
   }
-  if (updated_row.cells[6].firstChild.checked == true) {
+  if (updated_row.cells[7].firstChild.checked == true) {
     updated_row.className = "table-success";
   }
 }
@@ -172,7 +178,8 @@ function save_edit_event(e) {
     defect: updated_row.cells[3].firstChild.value.toUpperCase(),
     notes: updated_row.cells[4].firstChild.value.toUpperCase(),
     sl: updated_row.cells[5].firstChild.checked,
-    solved: updated_row.cells[6].firstChild.checked,
+    rst: updated_row.cells[6].firstChild.checked,
+    solved: updated_row.cells[7].firstChild.checked,
   };
   db.collection("events").doc(id).update(event).then(function () {
     updated_row.querySelector('.fa-save').classList.add('d-none');

@@ -15,11 +15,11 @@ window.addEventListener("DOMContentLoaded", function () {
   auth.onAuthStateChanged((user) => {
     if (user) {
       setUpUi(user);
-      console.log("logged in as:", user.email);      
+      // console.log("logged in as:", user.email);      
       get_real_time_data(user);
     } else {
       setUpUi();
-      console.log("not login");
+      // console.log("not login");
       flash_message("You need to login for access!")
       get_real_time_data();
     }
