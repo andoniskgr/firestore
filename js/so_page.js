@@ -88,17 +88,17 @@ function handleForm(e) {
     const date = reformatDate(e.target.date.value);
     const eta = e.target.eta.value;
     const registration = e.target.registration.value.toUpperCase();
+    const type = e.target.registration.options[e.target.registration.selectedIndex].dataset.type;
+    const engine = e.target.registration.options[e.target.registration.selectedIndex].dataset.engine;
+    const msn = e.target.registration.options[e.target.registration.selectedIndex].dataset.msn;
     const defect = e.target.defect.value.toUpperCase();
     const mel_desc = e.target.mel_description.value;
-    const mel = e.target.mel.value;
-    const type = e.target.registration.getAttribute('data-type');
-    console.log(type);
-    
+    const mel = e.target.mel.value;    
     const final = e.target.so_prepared_test;
     let res = '';
 
     res = `A/C DETAILS:
-${registration} (Aircraft Type: A321-231, MSN: 02610 ENG TYPE: V2500), FLT No ${flight} (${from}-${to}), ETA:${date} ${eta} UTC.
+${registration} (Aircraft Type: ${type}, MSN: ${msn} ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date} ${eta} UTC.
   \nDEFECT DETAILS:\n`
 
     if (e.target.service_order_type.value == 'pirep') {
