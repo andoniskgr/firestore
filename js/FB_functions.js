@@ -265,7 +265,7 @@ function get_aircrafts(){
           "MSN": "3878",
           "SELCAL": "AS-CJ",
           "WV": "000",
-          "DATE RECEIVED": "24/4/2009",
+          "DATE_RECEIVED": "24/4/2009",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -277,7 +277,7 @@ function get_aircrafts(){
           "MSN": "4165",
           "SELCAL": "DH-ES",
           "WV": "010",
-          "DATE RECEIVED": "19/1/2010",
+          "DATE_RECEIVED": "19/1/2010",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -289,7 +289,7 @@ function get_aircrafts(){
           "MSN": "4094",
           "SELCAL": "CE-DQ",
           "WV": "011",
-          "DATE RECEIVED": "6/5/2011",
+          "DATE_RECEIVED": "6/5/2011",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -301,7 +301,7 @@ function get_aircrafts(){
           "MSN": "4065",
           "SELCAL": "CF-PQ",
           "WV": "012",
-          "DATE RECEIVED": "6/5/2011",
+          "DATE_RECEIVED": "6/5/2011",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -313,7 +313,7 @@ function get_aircrafts(){
           "MSN": "3990",
           "SELCAL": "CG-PQ",
           "WV": "012",
-          "DATE RECEIVED": "6/5/2011",
+          "DATE_RECEIVED": "6/5/2011",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -325,7 +325,7 @@ function get_aircrafts(){
           "MSN": "3162",
           "SELCAL": "QS-MP",
           "WV": "016",
-          "DATE RECEIVED": "18/12/2023",
+          "DATE_RECEIVED": "18/12/2023",
           "WIFI": "-",
           "CLS": "-",
           "ENGINE": "IAE V2500"
@@ -337,7 +337,7 @@ function get_aircrafts(){
           "MSN": "1433",
           "SELCAL": "JP-CK",
           "WV": "000",
-          "DATE RECEIVED": "27/3/2015",
+          "DATE_RECEIVED": "27/3/2015",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -349,7 +349,7 @@ function get_aircrafts(){
           "MSN": "6611",
           "SELCAL": "DR-QS",
           "WV": "017",
-          "DATE RECEIVED": "16/6/2015",
+          "DATE_RECEIVED": "16/6/2015",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -361,7 +361,7 @@ function get_aircrafts(){
           "MSN": "6643",
           "SELCAL": "GH-AP",
           "WV": "017",
-          "DATE RECEIVED": "26/6/2015",
+          "DATE_RECEIVED": "26/6/2015",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -373,7 +373,7 @@ function get_aircrafts(){
           "MSN": "6655",
           "SELCAL": "LQ-FJ",
           "WV": "017",
-          "DATE RECEIVED": "30/6/2015",
+          "DATE_RECEIVED": "30/6/2015",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -385,7 +385,7 @@ function get_aircrafts(){
           "MSN": "6832",
           "SELCAL": "LQ-CD",
           "WV": "017",
-          "DATE RECEIVED": "27/11/2015",
+          "DATE_RECEIVED": "27/11/2015",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -397,7 +397,7 @@ function get_aircrafts(){
           "MSN": "6961",
           "SELCAL": "CD-JR",
           "WV": "017",
-          "DATE RECEIVED": "12/2/2016",
+          "DATE_RECEIVED": "12/2/2016",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -409,7 +409,7 @@ function get_aircrafts(){
           "MSN": "6989",
           "SELCAL": "CM-KS",
           "WV": "017",
-          "DATE RECEIVED": "7/3/2016",
+          "DATE_RECEIVED": "7/3/2016",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -421,7 +421,7 @@ function get_aircrafts(){
           "MSN": "7014",
           "SELCAL": "DS-EH",
           "WV": "017",
-          "DATE RECEIVED": "17/3/2016",
+          "DATE_RECEIVED": "17/3/2016",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -433,7 +433,7 @@ function get_aircrafts(){
           "MSN": "2610",
           "SELCAL": "AF-EH",
           "WV": "011",
-          "DATE RECEIVED": "15/6/2018",
+          "DATE_RECEIVED": "15/6/2018",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -445,7 +445,7 @@ function get_aircrafts(){
           "MSN": "3546",
           "SELCAL": "FQ-LP",
           "WV": "000",
-          "DATE RECEIVED": "25/5/2018",
+          "DATE_RECEIVED": "25/5/2018",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -457,7 +457,7 @@ function get_aircrafts(){
           "MSN": "3033",
           "SELCAL": "GJ-DL",
           "WV": "008",
-          "DATE RECEIVED": "21/2/2007",
+          "DATE_RECEIVED": "21/2/2007",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -469,7 +469,7 @@ function get_aircrafts(){
           "MSN": "3066",
           "SELCAL": "GK-BH",
           "WV": "008",
-          "DATE RECEIVED": "19/3/2007",
+          "DATE_RECEIVED": "19/3/2007",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -481,7 +481,7 @@ function get_aircrafts(){
           "MSN": "3074",
           "SELCAL": "GK-HL",
           "WV": "008",
-          "DATE RECEIVED": "20/3/2007",
+          "DATE_RECEIVED": "20/3/2007",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -493,7 +493,7 @@ function get_aircrafts(){
           "MSN": "3365",
           "SELCAL": "HJ-EP",
           "WV": "008",
-          "DATE RECEIVED": "15/1/2008",
+          "DATE_RECEIVED": "15/1/2008",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -505,7 +505,7 @@ function get_aircrafts(){
           "MSN": "3392",
           "SELCAL": "HJ-FP",
           "WV": "008",
-          "DATE RECEIVED": "12/2/2008",
+          "DATE_RECEIVED": "12/2/2008",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -517,7 +517,7 @@ function get_aircrafts(){
           "MSN": "3423",
           "SELCAL": "HK-QS",
           "WV": "008",
-          "DATE RECEIVED": "12/3/2008",
+          "DATE_RECEIVED": "12/3/2008",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -529,7 +529,7 @@ function get_aircrafts(){
           "MSN": "3439",
           "SELCAL": "HL-MS",
           "WV": "008",
-          "DATE RECEIVED": "19/3/2008",
+          "DATE_RECEIVED": "19/3/2008",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -541,7 +541,7 @@ function get_aircrafts(){
           "MSN": "3478",
           "SELCAL": "MQ-GH",
           "WV": "008",
-          "DATE RECEIVED": "22/4/2008",
+          "DATE_RECEIVED": "22/4/2008",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -553,7 +553,7 @@ function get_aircrafts(){
           "MSN": "3526",
           "SELCAL": "FK-QR",
           "WV": "010",
-          "DATE RECEIVED": "24/6/2008",
+          "DATE_RECEIVED": "24/6/2008",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -565,7 +565,7 @@ function get_aircrafts(){
           "MSN": "3714",
           "SELCAL": "AG-HR",
           "WV": "008",
-          "DATE RECEIVED": "21/11/2008",
+          "DATE_RECEIVED": "21/11/2008",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -577,7 +577,7 @@ function get_aircrafts(){
           "MSN": "3709",
           "SELCAL": "AG-HS",
           "WV": "008",
-          "DATE RECEIVED": "4/12/2008",
+          "DATE_RECEIVED": "4/12/2008",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -589,7 +589,7 @@ function get_aircrafts(){
           "MSN": "3745",
           "SELCAL": "AG-PQ",
           "WV": "010",
-          "DATE RECEIVED": "16/1/2009",
+          "DATE_RECEIVED": "16/1/2009",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -601,7 +601,7 @@ function get_aircrafts(){
           "MSN": "3773",
           "SELCAL": "AQ-BG",
           "WV": "008",
-          "DATE RECEIVED": "4/2/2009",
+          "DATE_RECEIVED": "4/2/2009",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -613,7 +613,7 @@ function get_aircrafts(){
           "MSN": "3785",
           "SELCAL": "AQ-BK",
           "WV": "008",
-          "DATE RECEIVED": "11/2/2009",
+          "DATE_RECEIVED": "11/2/2009",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -625,7 +625,7 @@ function get_aircrafts(){
           "MSN": "3829",
           "SELCAL": "AQ-GK",
           "WV": "008",
-          "DATE RECEIVED": "18/3/2009",
+          "DATE_RECEIVED": "18/3/2009",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -637,7 +637,7 @@ function get_aircrafts(){
           "MSN": "3850",
           "SELCAL": "AQ-JL",
           "WV": "008",
-          "DATE RECEIVED": "14/4/2009",
+          "DATE_RECEIVED": "14/4/2009",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -649,7 +649,7 @@ function get_aircrafts(){
           "MSN": "3820",
           "SELCAL": "ΑR-ΕΜ",
           "WV": "000",
-          "DATE RECEIVED": "3/3/2009",
+          "DATE_RECEIVED": "3/3/2009",
           "WIFI": "-",
           "CLS": "OK",
           "ENGINE": "IAE V2500"
@@ -661,7 +661,7 @@ function get_aircrafts(){
           "MSN": "9553",
           "SELCAL": "LS-EP",
           "WV": "051",
-          "DATE RECEIVED": "30/9/2020",
+          "DATE_RECEIVED": "30/9/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -673,7 +673,7 @@ function get_aircrafts(){
           "MSN": "9575",
           "SELCAL": "GQ-DP",
           "WV": "051",
-          "DATE RECEIVED": "20/11/2020",
+          "DATE_RECEIVED": "20/11/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -685,7 +685,7 @@ function get_aircrafts(){
           "MSN": "10189",
           "SELCAL": "CS-GK",
           "WV": "051",
-          "DATE RECEIVED": "17/12/2020",
+          "DATE_RECEIVED": "17/12/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -697,7 +697,7 @@ function get_aircrafts(){
           "MSN": "10305",
           "SELCAL": "AB-DG",
           "WV": "051",
-          "DATE RECEIVED": "28/7/2021",
+          "DATE_RECEIVED": "28/7/2021",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -709,7 +709,7 @@ function get_aircrafts(){
           "MSN": "10704",
           "SELCAL": "EH-AJ",
           "WV": "051",
-          "DATE RECEIVED": "8/3/2022",
+          "DATE_RECEIVED": "8/3/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -721,7 +721,7 @@ function get_aircrafts(){
           "MSN": "10920",
           "SELCAL": "GL-JR",
           "WV": "051",
-          "DATE RECEIVED": "31/5/2022",
+          "DATE_RECEIVED": "31/5/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -733,7 +733,7 @@ function get_aircrafts(){
           "MSN": "11011",
           "SELCAL": "GH-AC",
           "WV": "051",
-          "DATE RECEIVED": "19/9/2022",
+          "DATE_RECEIVED": "19/9/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -745,7 +745,7 @@ function get_aircrafts(){
           "MSN": "10844",
           "SELCAL": "FM-HP",
           "WV": "051",
-          "DATE RECEIVED": "22/6/2022",
+          "DATE_RECEIVED": "22/6/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -757,7 +757,7 @@ function get_aircrafts(){
           "MSN": "10832",
           "SELCAL": "CG-JL",
           "WV": "051",
-          "DATE RECEIVED": "29/7/2022",
+          "DATE_RECEIVED": "29/7/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -769,7 +769,7 @@ function get_aircrafts(){
           "MSN": "10951",
           "SELCAL": "QS-CK",
           "WV": "051",
-          "DATE RECEIVED": "31/8/2022",
+          "DATE_RECEIVED": "31/8/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -781,7 +781,7 @@ function get_aircrafts(){
           "MSN": "10967",
           "SELCAL": "PR-CF",
           "WV": "051",
-          "DATE RECEIVED": "23/9/2022",
+          "DATE_RECEIVED": "23/9/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -793,7 +793,7 @@ function get_aircrafts(){
           "MSN": "11085",
           "SELCAL": "GS-AF",
           "WV": "051",
-          "DATE RECEIVED": "16/12/2022",
+          "DATE_RECEIVED": "16/12/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -805,7 +805,7 @@ function get_aircrafts(){
           "MSN": "11827",
           "SELCAL": "AB-GL",
           "WV": "051",
-          "DATE RECEIVED": "28/5/2024",
+          "DATE_RECEIVED": "28/5/2024",
           "WIFI": "-",
           "CLS": "-",
           "ENGINE": "PW 1100"
@@ -817,7 +817,7 @@ function get_aircrafts(){
           "MSN": "12381",
           "SELCAL": "AE-QR",
           "WV": "051",
-          "DATE RECEIVED": "23/12/2024",
+          "DATE_RECEIVED": "23/12/2024",
           "WIFI": "-",
           "CLS": "-",
           "ENGINE": "PW 1100"
@@ -829,7 +829,7 @@ function get_aircrafts(){
           "MSN": "9497",
           "SELCAL": "BM-GQ",
           "WV": "069",
-          "DATE RECEIVED": "27/1/2020",
+          "DATE_RECEIVED": "27/1/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -841,7 +841,7 @@ function get_aircrafts(){
           "MSN": "9514",
           "SELCAL": "DM-JP",
           "WV": "069",
-          "DATE RECEIVED": "31/1/2020",
+          "DATE_RECEIVED": "31/1/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -853,7 +853,7 @@ function get_aircrafts(){
           "MSN": "9583",
           "SELCAL": "FK-AH",
           "WV": "069",
-          "DATE RECEIVED": "11/3/2020",
+          "DATE_RECEIVED": "11/3/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -865,7 +865,7 @@ function get_aircrafts(){
           "MSN": "10047",
           "SELCAL": "HM-JP",
           "WV": "069",
-          "DATE RECEIVED": "18/6/2020",
+          "DATE_RECEIVED": "18/6/2020",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -877,7 +877,7 @@ function get_aircrafts(){
           "MSN": "10901",
           "SELCAL": "FQ-ER",
           "WV": "069",
-          "DATE RECEIVED": "30/6/2022",
+          "DATE_RECEIVED": "30/6/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -889,7 +889,7 @@ function get_aircrafts(){
           "MSN": "11013",
           "SELCAL": "MR-DJ",
           "WV": "069",
-          "DATE RECEIVED": "30/11/2022",
+          "DATE_RECEIVED": "30/11/2022",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -901,7 +901,7 @@ function get_aircrafts(){
           "MSN": "11132",
           "SELCAL": "BJ-AM",
           "WV": "069",
-          "DATE RECEIVED": "15/3/2023",
+          "DATE_RECEIVED": "15/3/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -913,7 +913,7 @@ function get_aircrafts(){
           "MSN": "11308",
           "SELCAL": "BJ-ES",
           "WV": "069",
-          "DATE RECEIVED": "17/2/2023",
+          "DATE_RECEIVED": "17/2/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -925,7 +925,7 @@ function get_aircrafts(){
           "MSN": "11338",
           "SELCAL": "JQ-HL",
           "WV": "069",
-          "DATE RECEIVED": "31/8/2023",
+          "DATE_RECEIVED": "31/8/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -937,7 +937,7 @@ function get_aircrafts(){
           "MSN": "11384",
           "SELCAL": "JS-GK",
           "WV": "069",
-          "DATE RECEIVED": "25/4/2023",
+          "DATE_RECEIVED": "25/4/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -949,7 +949,7 @@ function get_aircrafts(){
           "MSN": "11382",
           "SELCAL": "DP-AK",
           "WV": "069",
-          "DATE RECEIVED": "27/3/2023",
+          "DATE_RECEIVED": "27/3/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -961,7 +961,7 @@ function get_aircrafts(){
           "MSN": "11399",
           "SELCAL": "GJ-MS",
           "WV": "069",
-          "DATE RECEIVED": "12/4/2023",
+          "DATE_RECEIVED": "12/4/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -973,7 +973,7 @@ function get_aircrafts(){
           "MSN": "11474",
           "SELCAL": "KR-AM",
           "WV": "069",
-          "DATE RECEIVED": "17/5/2023",
+          "DATE_RECEIVED": "17/5/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -985,7 +985,7 @@ function get_aircrafts(){
           "MSN": "9400",
           "SELCAL": "AJ-PS",
           "WV": "069",
-          "DATE RECEIVED": "19/12/2019",
+          "DATE_RECEIVED": "19/12/2019",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -997,7 +997,7 @@ function get_aircrafts(){
           "MSN": "11546",
           "SELCAL": "DK-RS",
           "WV": "069",
-          "DATE RECEIVED": "24/8/2023",
+          "DATE_RECEIVED": "24/8/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -1009,7 +1009,7 @@ function get_aircrafts(){
           "MSN": "11469",
           "SELCAL": "DL-HS",
           "WV": "069",
-          "DATE RECEIVED": "11/5/2023",
+          "DATE_RECEIVED": "11/5/2023",
           "WIFI": "OK",
           "CLS": "OK",
           "ENGINE": "PW 1100"
@@ -1021,7 +1021,7 @@ function get_aircrafts(){
           "MSN": "12079",
           "SELCAL": "AC-EP",
           "WV": "069",
-          "DATE RECEIVED": "16/5/2024",
+          "DATE_RECEIVED": "16/5/2024",
           "WIFI": "-",
           "CLS": "-",
           "ENGINE": "PW 1100"
@@ -1033,7 +1033,7 @@ function get_aircrafts(){
           "MSN": "12094",
           "SELCAL": "GM-AQ",
           "WV": "069",
-          "DATE RECEIVED": "6/6/2024",
+          "DATE_RECEIVED": "6/6/2024",
           "WIFI": "-",
           "CLS": "-",
           "ENGINE": "PW 1100"
@@ -1045,7 +1045,7 @@ function get_aircrafts(){
           "MSN": "12070",
           "SELCAL": "JS-CQ",
           "WV": "069",
-          "DATE RECEIVED": "9/10/2024",
+          "DATE_RECEIVED": "9/10/2024",
           "WIFI": "-",
           "CLS": "-",
           "ENGINE": "PW 1100"
@@ -1057,7 +1057,7 @@ function get_aircrafts(){
           "MSN": "347",
           "SELCAL": "",
           "WV": "",
-          "DATE RECEIVED": "29/9/2009",
+          "DATE_RECEIVED": "29/9/2009",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 120A"
@@ -1069,7 +1069,7 @@ function get_aircrafts(){
           "MSN": "364",
           "SELCAL": "",
           "WV": "",
-          "DATE RECEIVED": "29/9/2009",
+          "DATE_RECEIVED": "29/9/2009",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 120A"
@@ -1081,7 +1081,7 @@ function get_aircrafts(){
           "MSN": "1016",
           "SELCAL": "EQ-GJ",
           "WV": "",
-          "DATE RECEIVED": "20/7/2016",
+          "DATE_RECEIVED": "20/7/2016",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1093,7 +1093,7 @@ function get_aircrafts(){
           "MSN": "1002",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "6/8/2021",
+          "DATE_RECEIVED": "6/8/2021",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1105,7 +1105,7 @@ function get_aircrafts(){
           "MSN": "1005",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "21/9/2021",
+          "DATE_RECEIVED": "21/9/2021",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1117,7 +1117,7 @@ function get_aircrafts(){
           "MSN": "1325",
           "SELCAL": "FG-CJ",
           "WV": "",
-          "DATE RECEIVED": "30/11/2021",
+          "DATE_RECEIVED": "30/11/2021",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1129,7 +1129,7 @@ function get_aircrafts(){
           "MSN": "1058",
           "SELCAL": "EP-DK",
           "WV": "",
-          "DATE RECEIVED": "18/1/2022",
+          "DATE_RECEIVED": "18/1/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1141,7 +1141,7 @@ function get_aircrafts(){
           "MSN": "1295",
           "SELCAL": "EH-LR",
           "WV": "",
-          "DATE RECEIVED": "3/2/2022",
+          "DATE_RECEIVED": "3/2/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1153,7 +1153,7 @@ function get_aircrafts(){
           "MSN": "1073",
           "SELCAL": "MR-DK",
           "WV": "",
-          "DATE RECEIVED": "11/5/2022",
+          "DATE_RECEIVED": "11/5/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1165,7 +1165,7 @@ function get_aircrafts(){
           "MSN": "1020",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "23/5/2022",
+          "DATE_RECEIVED": "23/5/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1177,7 +1177,7 @@ function get_aircrafts(){
           "MSN": "1027",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "3/6/2022",
+          "DATE_RECEIVED": "3/6/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1189,7 +1189,7 @@ function get_aircrafts(){
           "MSN": "1033",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "10/6/2022",
+          "DATE_RECEIVED": "10/6/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1201,7 +1201,7 @@ function get_aircrafts(){
           "MSN": "1053",
           "SELCAL": "JS-DE",
           "WV": "",
-          "DATE RECEIVED": "22/6/2022",
+          "DATE_RECEIVED": "22/6/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1213,7 +1213,7 @@ function get_aircrafts(){
           "MSN": "0996",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "8/7/2022",
+          "DATE_RECEIVED": "8/7/2022",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1225,7 +1225,7 @@ function get_aircrafts(){
           "MSN": "1129",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "21/3/2023",
+          "DATE_RECEIVED": "21/3/2023",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1237,7 +1237,7 @@ function get_aircrafts(){
           "MSN": "1693",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "29/3/2024",
+          "DATE_RECEIVED": "29/3/2024",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1249,7 +1249,7 @@ function get_aircrafts(){
           "MSN": "1699",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "1/8/2024",
+          "DATE_RECEIVED": "1/8/2024",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PW 127"
@@ -1261,7 +1261,7 @@ function get_aircrafts(){
           "MSN": "231",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "6/5/2011",
+          "DATE_RECEIVED": "6/5/2011",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "PWC 305"
@@ -1273,7 +1273,7 @@ function get_aircrafts(){
           "MSN": "6018",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "-",
+          "DATE_RECEIVED": "-",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "RRD BR725"
@@ -1285,17 +1285,25 @@ function get_aircrafts(){
           "MSN": "5364",
           "SELCAL": "-",
           "WV": "",
-          "DATE RECEIVED": "-",
+          "DATE_RECEIVED": "-",
           "WIFI": "",
           "CLS": "",
           "ENGINE": "RRD BR710"
       }
   ];
   
+    // aircrafts.forEach(function(aircraft){
+    //   db.collection("aircrafts").add(aircraft).then(function () {
+    //     console.log('Event saved!');
+    //   });      
+    // })
     aircrafts.forEach(function(aircraft){
-      db.collection("aircrafts").add(aircraft).then(function () {
-        console.log('Event saved!');
-      });      
+      aircraft.NOTE="";
+      aircraft.ACTIVE=true;
+      db.collection("aircrafts").add(aircraft).then(function(){
+        console.log('saved:',aircraft);
+      })
+        
     })
     
  
