@@ -1,22 +1,28 @@
+const resultTable = document.querySelector("#table_data");
+const modal=document.querySelector('.modal');
+const new_aircraft_form=document.querySelector('#new_aircraft_form');
+
 auth.onAuthStateChanged((user) => {
   if (user == null) {
     window.close();
   }
-  else{
+  else {
     get_real_time_data(user)
   }
 });
 
-const resultTable = document.querySelector("#table_data");
 window.addEventListener("DOMContentLoaded", function () {
   const logout_btn = this.document.querySelector("#logout_link");
 
   logout_btn.addEventListener("click", logout);
 });
-  
-  
-  
-  
+
+modal.addEventListener('hidden.bs.modal',function(e){
+  modal.querySelector('form').reset();
+});  
+
+new_aircraft_form.addEventListener("submit", save_event);
+
 
 function logout() {
   let response = window.confirm("Are you sure you want to log out?");
@@ -79,7 +85,6 @@ function get_real_time_data(user=null){
   .orderBy("REGISTRATION")
   .onSnapshot(function (snapshot) {
     changes = snapshot.docChanges();
-    console.log(changes);
     
     if (changes.length==0) {
       document.querySelector('table').classList.add('d-none');
@@ -90,10 +95,10 @@ function get_real_time_data(user=null){
       if (change.type == "added") {
         renderResultTable(change.doc);
       } else if (change.type == "removed") {
-        let del_event = resultTable.querySelector(
+        let del_aircraft = resultTable.querySelector(
           "[data-id=" + change.doc.id + "]"
         );
-        resultTable.removeChild(del_event);
+        resultTable.removeChild(del_aircraft);
       }
     });
     }    
@@ -107,7 +112,7 @@ function get_real_time_data(user=null){
 
 // function that creates table row elements
 function renderResultTable(doc=[]) {
-  console.log('renderResultTable start');
+  // console.log('renderResultTable start');
   if (doc.length==0) {
     console.log(doc.length);
     
@@ -128,8 +133,7 @@ function renderResultTable(doc=[]) {
   <td id="cls" class="text-center"><input type="checkbox" ${doc.data().CLS?'checked':''} oninput=edit_event(event)></td>
   <td id="wifi" class="text-center"><input type="checkbox" ${doc.data().WIFI?'checked':''} oninput=edit_event(event)></td>
   <td id="active" class="text-center"><input type="checkbox" ${doc.data().ACTIVE?'checked':''} oninput=edit_event(event)></td>
-  <td class="text-nowrap"><span class="fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_event(event)></span>
-  <span class="fa fa-clock-o ms-3" style="font-size: 1.3em;"></span>
+  <td class="text-nowrap"><span class="fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_aircraft(event)></span>
   <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
   </tr>`;
   resultTable.innerHTML += aircraft_row; 
@@ -147,5 +151,51 @@ function flash_message(msg=null){
     flashMessageElement.setAttribute('id','flashMsg');
     flashMessageElement.innerHTML=msg;
     document.querySelector('body').appendChild(flashMessageElement);
+  }
+}
+
+// save data to firestore
+function save_event(e) {  
+  user=auth.currentUser.email;
+  e.preventDefault();
+  console.log("save_event");
+  now = new Date();
+  const aircraft = {
+    created: now,
+    created_by:user,
+    ACTIVE: new_aircraft_form.active.checked,
+    CLS: new_aircraft_form.cls.checked,
+    WIFI: new_aircraft_form.wifi.checked,
+    DATE_RECEIVED: new_aircraft_form.date_received.value,
+    EFFECTIVITY: new_aircraft_form.effectivity.value,
+    ENGINE: new_aircraft_form.engine.value.toUpperCase(),
+    MSN: new_aircraft_form.msn.value,
+    NOTE: new_aircraft_form.notes.value.toUpperCase(),
+    REGISTRATION: new_aircraft_form.registration.value.toUpperCase(),
+    SELCAL: new_aircraft_form.selcal.value.toUpperCase(),
+    TYPE: new_aircraft_form.type.value.toUpperCase(),
+    WV: new_aircraft_form.weight_variant.value.toUpperCase(),
+  };
+
+  $(".modal").modal("hide");
+  new_aircraft_form.reset();
+  console.log(aircraft);
+  db.collection("aircrafts").add(aircraft).then(function () {
+    console.log('Event saved!');
+    alert('New Aircraft created!');
+  }
+  );
+}
+
+// delete Event
+function delete_aircraft(e) {  
+  e.stopPropagation();
+  let response = window.confirm("Are you sure you want to delete this Event?");
+  if (response) {
+    let id = e.target.parentElement.parentElement.getAttribute("data-id");
+    console.log(`Aircraft with ID:${id} deleted`);
+    db.collection("aircrafts").doc(id).delete();
+  } else {
+    return;
   }
 }

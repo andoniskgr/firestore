@@ -94,14 +94,20 @@ function handleForm(e) {
     const engine = e.target.registration.options[e.target.registration.selectedIndex].dataset.engine;
     const msn = e.target.registration.options[e.target.registration.selectedIndex].dataset.msn;
     const defect = e.target.defect.value.toUpperCase();
-    const mel_desc = e.target.mel_description.value;
-    const mel = e.target.mel.value;    
+    const mel_desc = e.target.mel_description.value.toUpperCase();
+    const mel = e.target.mel.value.toUpperCase();    
     const final = e.target.so_prepared_test;
     let res = '';
 
     res = `A/C DETAILS:
-${registration} (Aircraft Type: ${type}, MSN: ${msn} ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date} ${eta} UTC.
-  \nDEFECT DETAILS:\n`
+${registration} (Aircraft Type: ${type}, MSN: ${msn} ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date} ` 
+if (document.querySelector('#landed').checked) {
+  res+= `A/C already landed to destination airport.`
+} else {
+  res+=`${eta} UTC.`
+}
+
+  res+=`\n\nDEFECT DETAILS:\n`
 
     if (e.target.service_order_type.value == 'pirep') {
       res += `Pilot reported: ${defect}. Please attend the A/C and perform inspection IAW AMM.`
@@ -133,25 +139,25 @@ function reformatDate(d){
 
 function get_current_day(){
   const [year,month,day]=new Date().toISOString().split('T')[0].split('-');
-  return `${year}-${month}-${day}`;
+  return `${day}/${month}/${year}`;
 }
 
 function validate_fields(e) {
-  if (e.target.elements[7].value == "") {
+  if (e.target.elements[2].value == "") {
     alert('Select A/C');
-    e.target.elements[7].focus();
+    e.target.elements[2].focus();
     return false;
-  } if (e.target.elements[0].checked == true && e.target.elements[8].value == "") {
+  } if (e.target.elements[0].checked == true && e.target.elements[9].value == "") {
     alert('Defect required!');
-    e.target.elements[8].focus();
-    return false;
-  } if (e.target.elements[1].checked == true && e.target.elements[9].value == "") {
-    alert('MEL Reference required!');
     e.target.elements[9].focus();
     return false;
   } if (e.target.elements[1].checked == true && e.target.elements[10].value == "") {
-    alert('MEL Description required!');
+    alert('MEL Reference required!');
     e.target.elements[10].focus();
+    return false;
+  } if (e.target.elements[1].checked == true && e.target.elements[11].value == "") {
+    alert('MEL Description required!');
+    e.target.elements[11].focus();
     return false;
   } 
   else {
@@ -161,3 +167,45 @@ function validate_fields(e) {
 
 }
 
+function set_eta_type(e){
+  console.log(e.target.checked);
+  if (e.target.checked) {
+    document.querySelector('[name="eta"]').value="";
+    document.querySelector('[name="eta"]').disabled=true;
+  } else {
+    document.querySelector('[name="eta"]').disabled=false;
+  } 
+}
+
+function validateDate(input) {
+  let value = input.value;
+
+  // Allow only numbers and slashes
+  value = value.replace(/[^0-9\/]/g, '');
+
+  // Ensure the date format dd/mm/yyyy
+  if (value.length > 2 && value[2] !== '/') {
+      value = value.substring(0, 2) + '/' + value.substring(2);
+  }
+
+  if (value.length > 5 && value[5] !== '/') {
+      value = value.substring(0, 5) + '/' + value.substring(5);
+  }
+
+  input.value = value;
+
+  // Additional validation to ensure the correct number of digits for day, month, and year
+  if (value.length === 10) {
+      let parts = value.split('/');
+      let day = parseInt(parts[0], 10);
+      let month = parseInt(parts[1], 10);
+      let year = parseInt(parts[2], 10);
+
+      // Simple validation to check if day, month, and year are within valid ranges
+      if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) {
+          input.setCustomValidity("Invalid date format.");
+      } else {
+          input.setCustomValidity("");
+      }
+  }
+}
