@@ -1,3 +1,6 @@
+console.log('init');
+
+
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyASNmrXizk_zuVE6w0CnXRqexhQxSefHRg",
@@ -13,4 +16,7 @@ firebase.initializeApp(firebaseConfig);
 
 const auth= firebase.auth();
 const db = firebase.firestore();
+
 db.settings({ timestampInSnapshots: true });
+
+

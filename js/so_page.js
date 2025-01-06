@@ -1,75 +1,52 @@
+console.log('so_page');
+
+const logout_btn = this.document.querySelector("#logout_link");
+const type_selection_rb = this.document.querySelectorAll(
+  '[name="service_order_type"]'
+);
+const so_form = this.document.querySelector("#service_order_form");
+const date_input_field = this.document.querySelector('[name="date"]');
+date_input_field.value = get_current_day();
+let aircrafts = [];
+
+  // check if user is logged in
 auth.onAuthStateChanged((user) => {
   if (user == null) {
-    window.close();
+    window.close(); //  if not logged in close window
   }
 });
 
-window.addEventListener("DOMContentLoaded", function () {
-  const logout_btn = this.document.querySelector("#logout_link");
-  const type_selection_rb = this.document.querySelectorAll(
-    '[name="service_order_type"]'
-  );
-  const so_form = this.document.querySelector("#service_order_form");
-  const date_input_field=this.document.querySelector('[name="date"]');
-  date_input_field.value=get_current_day();
-
-  // get aircraft data from database and build aircraft selection field
-  db.collection("aircrafts")
-    .orderBy("REGISTRATION")
-    .onSnapshot(function (snapshot) {
-      let aircrafts = snapshot.docChanges();
+db.collection("aircrafts")
+  .orderBy("REGISTRATION")
+  .onSnapshot(function (snapshot) {
+    aircrafts = snapshot.docChanges();
+    aircrafts.forEach((aircraft) => {
       const registration_selection = document.querySelector("#registration");
-      aircrafts.forEach((aircraft) => {
-        let newOptionItem = document.createElement("option");
-        newOptionItem.text = aircraft.doc.data().REGISTRATION;
-        newOptionItem.value = aircraft.doc.data().REGISTRATION;
-        newOptionItem.setAttribute('data-engine',aircraft.doc.data().ENGINE);
-        newOptionItem.setAttribute('data-msn',aircraft.doc.data().MSN);
-        newOptionItem.setAttribute('data-type',aircraft.doc.data().TYPE);
-        registration_selection.appendChild(newOptionItem);
-      });
+      let newOptionItem = document.createElement("option");
+      newOptionItem.text = aircraft.doc.data().REGISTRATION;
+      newOptionItem.value = aircraft.doc.data().REGISTRATION;
+      newOptionItem.setAttribute("data-engine", aircraft.doc.data().ENGINE);
+      newOptionItem.setAttribute("data-msn", aircraft.doc.data().MSN);
+      newOptionItem.setAttribute("data-type", aircraft.doc.data().TYPE);
+      registration_selection.appendChild(newOptionItem);
     });
-
-    // add event listeners
-    type_selection_rb.forEach(function (rb) {
-      rb.addEventListener("input", setupFormUi);
-    });
-
-    logout_btn.addEventListener("click", logout);
-    so_form.addEventListener('submit', handleForm)
+  });
+      
+      
+// add event listeners
+type_selection_rb.forEach(function (rb) {
+  rb.addEventListener("input", setupFormUi);
 });
+
+logout_btn.addEventListener("click", logout);
+so_form.addEventListener('submit', handleForm)
   
   
   
   
 
-function logout() {
-  let response = window.confirm("Are you sure you want to log out?");
-  if (response) {
-    auth.signOut();
-  } else {
-    return;
-  }
-}
 
-function formatTime(event) {
-  
-  const input = event.target;
-  let value = input.value.replace(/[^0-9]/g, ''); // Remove all non-numeric characters
 
-  // Limit the input to at most 4 digits (HH:MM format)
-  if (value.length > 4) {
-    value = value.slice(0, 4);
-  }
-
-  // Insert the colon after the second digit
-  if (value.length >= 3) {
-    value = value.slice(0, 2) + ':' + value.slice(2);
-  }
-
-  // Update the input value with the formatted time
-  input.value = value;
-}
 
 function setupFormUi(e) {
   if (e.target.value == "pirep") {
@@ -87,7 +64,7 @@ function handleForm(e) {
     const flight = e.target.flight.value.toUpperCase();
     const from = e.target.from.value.toUpperCase();
     const to = e.target.to.value.toUpperCase();
-    const date = reformatDate(e.target.date.value);
+    const date = e.target.date.value;
     const eta = e.target.eta.value;
     const registration = e.target.registration.value.toUpperCase();
     const type = e.target.registration.options[e.target.registration.selectedIndex].dataset.type;
@@ -100,7 +77,7 @@ function handleForm(e) {
     let res = '';
 
     res = `A/C DETAILS:
-${registration} (Aircraft Type: ${type}, MSN: ${msn} ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date} ` 
+${registration} (Aircraft Type: ${type}, MSN: ${msn} ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date}, ` 
 if (document.querySelector('#landed').checked) {
   res+= `A/C already landed to destination airport.`
 } else {
@@ -129,17 +106,6 @@ Access to manuals is made by AirnavX using the link : https://extranet.aegeanair
     final.value = res;
     navigator.clipboard.writeText(final.value);
   } 
-}
-
-function reformatDate(d){
-  const [year,month,day]=d.split('-');
-  return `${day}/${month}/${year}`;
-  
-}
-
-function get_current_day(){
-  const [year,month,day]=new Date().toISOString().split('T')[0].split('-');
-  return `${day}/${month}/${year}`;
 }
 
 function validate_fields(e) {
@@ -177,6 +143,40 @@ function set_eta_type(e){
   } 
 }
 
+//   function return current day
+function get_current_day() {
+  const [year, month, day] = new Date().toISOString().split("T")[0].split("-");
+  return `${day}/${month}/${year}`;
+}
+
+//  logout function
+function logout() {
+  let response = window.confirm("Are you sure you want to log out?");
+  if (response) {
+    auth.signOut();
+  } else {
+    return;
+  }
+}
+
+
+// function format the time when input  
+function formatTime(event) {
+  const input = event.target;
+  let value = input.value.replace(/[^0-9]/g, ""); // Remove all non-numeric characters
+  // Limit the input to at most 4 digits (HH:MM format)
+  if (value.length > 4) {
+    value = value.slice(0, 4);
+  }
+  // Insert the colon after the second digit
+  if (value.length >= 3) {
+    value = value.slice(0, 2) + ":" + value.slice(2);
+  }
+  // Update the input value with the formatted time
+  input.value = value;
+}
+
+// function format the date when input 
 function validateDate(input) {
   let value = input.value;
 

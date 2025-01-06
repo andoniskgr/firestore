@@ -1,3 +1,4 @@
+console.log('auth');
 
 window.addEventListener("DOMContentLoaded", function () {
   // console.log("Auth DOM load start");
@@ -15,7 +16,8 @@ window.addEventListener("DOMContentLoaded", function () {
   auth.onAuthStateChanged((user) => {
     if (user) {
       setUpUi(user);
-      // console.log("logged in as:", user.email);      
+      // console.log("logged in as:", user.email);    
+      // get_data_from_db();  
       get_real_time_data(user);
     } else {
       setUpUi();
@@ -24,6 +26,17 @@ window.addEventListener("DOMContentLoaded", function () {
       get_real_time_data();
     }
   });
+
+//   function get_data_from_db(){
+    
+
+// db.collection("events")
+// .orderBy("time")
+// .onSnapshot(function (snapshot) {
+//   events=snapshot.docChanges();
+// })
+//   }
+  
 
   // add event listeners
   logout_btn.addEventListener("click", logout);
