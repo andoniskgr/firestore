@@ -1,11 +1,11 @@
 // **************************************************************************
 function fetchAircrafts() {
+  const myevent=new Event('aircraftsUpdated');
   db.collection("aircrafts")
     .orderBy("REGISTRATION")
     .onSnapshot(function (snapshot) {
-      aircrafts = snapshot.docChanges();
-      // You can call a global function or notify other scripts
-      window.dispatchEvent(new Event('aircraftsUpdated'));
+      aircrafts = snapshot.docChanges();     
+      window.dispatchEvent(myevent);
     });
 }
 
@@ -20,12 +20,12 @@ window.getAircrafts = getAircrafts;
 
 // **************************************************************************
 function fetchEvents() {
+  const myevent=new Event('eventsUpdated');
   db.collection("events")
     .orderBy("time")
     .onSnapshot(function (snapshot) {
       events = snapshot.docChanges();
-      // You can call a global function or notify other scripts
-      window.dispatchEvent(new Event('eventsUpdated'));
+      window.dispatchEvent(myevent);
     });
 }
 

@@ -8,7 +8,7 @@ auth.onAuthStateChanged((user) => {
 // *****************************************************************
 // Wait for aircrafts to be updated
 window.addEventListener('aircraftsUpdated', function() {
-  console.log(window.getAircrafts()); // This will give you the latest aircrafts
+  // console.log(window.getAircrafts()); // This will give you the latest aircrafts
   aircrafts.forEach((aircraft) => {
       // check if the aircraft is active
       if (!aircraft.doc.data().ACTIVE) {
