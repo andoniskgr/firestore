@@ -11,11 +11,11 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", function () {
+// window.addEventListener("DOMContentLoaded", function () {
   const logout_btn = this.document.querySelector("#logout_link");
 
   logout_btn.addEventListener("click", logout);
-});
+// });
 
 modal.addEventListener('hidden.bs.modal',function(e){
   modal.querySelector('form').reset();
@@ -78,36 +78,30 @@ function validateDate(input) {
 
 // get real-time data from firestore
 function get_real_time_data(user=null){
-  let changes=[];
   if (user!=null) {
-    // document.querySelector('table').classList.remove('d-none');
-    db.collection("aircrafts")
-  .orderBy("REGISTRATION")
-  .onSnapshot(function (snapshot) {
-    changes = snapshot.docChanges();
-    
-    if (changes.length==0) {
-      document.querySelector('table').classList.add('d-none');
-      flash_message('There is no Data!')
-    } else {
-      flash_message();
-      changes.forEach((change) => {
-      if (change.type == "added") {
-        renderResultTable(change.doc);
-      } else if (change.type == "removed") {
-        let del_aircraft = resultTable.querySelector(
-          "[data-id=" + change.doc.id + "]"
-        );
-        resultTable.removeChild(del_aircraft);
-      }
-    });
-    }    
+    window.addEventListener('aircraftsUpdated',function(){
+      if (aircrafts.length==0) {
+        document.querySelector('table').classList.add('d-none');
+        flash_message('There is no Data!')
+      } else {
+        flash_message();
+        aircrafts.forEach((aircraft) => {
+        if (aircraft.type == "added") {
+          renderResultTable(aircraft.doc);
+        } else if (aircraft.type == "removed") {
+          let del_aircraft = resultTable.querySelector(
+            "[data-id=" + aircraft.doc.id + "]"
+          );
+          resultTable.removeChild(del_aircraft);
+        }
+      });
+      }    
   });
   } else {
     document.querySelector('table').classList.add('d-none');
     renderResultTable();
   }
-  
+  window.fetchAircrafts();
 }
 
 // function that creates table row elements
@@ -121,9 +115,9 @@ function renderResultTable(doc=[]) {
     document.querySelector('table').classList.remove('d-none');
   let aircraft_row='';
   aircraft_row=`<tr data-id="${doc.id}">
-  <td id="registration"><input size="5" class=" w-100" value="${doc.data().REGISTRATION}" oninput=edit_event(event)></td>
+  <td id="registration"><input size="5" class=" w-100 text-uppercase" value="${doc.data().REGISTRATION}" oninput=edit_event(event)></td>
   <td id="type"><input value="${doc.data().TYPE}" class=" w-100 text-uppercase" oninput=edit_event(event)></td>
-  <td id="type"><input size="5" value="${doc.data().MSN}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
+  <td id="msn"><input size="5" value="${doc.data().MSN}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="effectivity"><input size="3" value="${doc.data().EFFECTIVITY}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="engine"><input size="9" value="${doc.data().ENGINE}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="date_received"><input size="9" value="${doc.data().DATE_RECEIVED}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
@@ -133,8 +127,8 @@ function renderResultTable(doc=[]) {
   <td id="cls" class="text-center"><input type="checkbox" ${doc.data().CLS?'checked':''} oninput=edit_event(event)></td>
   <td id="wifi" class="text-center"><input type="checkbox" ${doc.data().WIFI?'checked':''} oninput=edit_event(event)></td>
   <td id="active" class="text-center"><input type="checkbox" ${doc.data().ACTIVE?'checked':''} oninput=edit_event(event)></td>
-  <td class="text-nowrap"><span class="fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_aircraft(event)></span>
-  <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
+  <td class="text-nowrap"><span class="text-danger fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_aircraft(event)></span>
+  <span class="text-success fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
   </tr>`;
   resultTable.innerHTML += aircraft_row; 
 }
@@ -198,4 +192,82 @@ function delete_aircraft(e) {
   } else {
     return;
   }
+}
+
+
+// edit Event
+function edit_event(e) {
+  e.stopPropagation();
+  if (e.target.parentElement.id=='date_received') { 
+    validateDate(e);
+  }
+  
+  let updated_row = e.target.parentElement.parentElement;
+  updated_row.querySelector('.fa-save').classList.remove('d-none');
+}
+
+
+
+// function format the date when input 
+function validateDate(input) {
+  let value = input.target.value;
+
+  // Allow only numbers and slashes
+  value = value.replace(/[^0-9\/]/g, '');
+
+  // Ensure the date format dd/mm/yyyy
+  if (value.length > 2 && value[2] !== '/') {
+      value = value.substring(0, 2) + '/' + value.substring(2);
+  }
+
+  if (value.length > 5 && value[5] !== '/') {
+      value = value.substring(0, 5) + '/' + value.substring(5);
+  }
+
+  input.target.value = value;
+
+  // Additional validation to ensure the correct number of digits for day, month, and year
+  if (value.length === 10) {
+      let parts = value.split('/');
+      let day = parseInt(parts[0], 10);
+      let month = parseInt(parts[1], 10);
+      let year = parseInt(parts[2], 10);
+
+      // Simple validation to check if day, month, and year are within valid ranges
+      if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) {
+          input.target.setCustomValidity("Invalid date format.");
+      } else {
+          input.target.setCustomValidity("");
+      }
+  }
+}
+
+
+function save_edit_event(e) {
+  user=auth.currentUser.email;
+  e.stopPropagation();
+  let updated_row = e.target.parentElement.parentElement;
+  let id = updated_row.getAttribute("data-id");
+  let now = new Date();
+  const aircraft = {
+    created: now,
+    created_by:user,
+    ACTIVE: updated_row.cells[11].firstChild.checked,
+    CLS: updated_row.cells[9].firstChild.checked,
+    WIFI: updated_row.cells[10].firstChild.checked,
+    DATE_RECEIVED: updated_row.cells[5].firstChild.value,
+    EFFECTIVITY: updated_row.cells[3].firstChild.value,
+    ENGINE: updated_row.cells[4].firstChild.value.toUpperCase(),
+    MSN: updated_row.cells[2].firstChild.value,
+    NOTE: updated_row.cells[8].firstChild.value.toUpperCase(),
+    REGISTRATION: updated_row.cells[0].firstChild.value.toUpperCase(),
+    SELCAL: updated_row.cells[6].firstChild.value.toUpperCase(),
+    TYPE: updated_row.cells[1].firstChild.value.toUpperCase(),
+    WV: updated_row.cells[7].firstChild.value,
+  };
+
+  db.collection("aircrafts").doc(id).update(aircraft).then(function () {
+    updated_row.querySelector('.fa-save').classList.add('d-none');
+    alert('Aircraft saved!');
+  });
 }

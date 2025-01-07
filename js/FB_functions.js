@@ -54,48 +54,47 @@ function renderResultTable(doc=[]) {
   <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''} oninput=edit_event(event)></td>
   <td id="rst" class="text-center"><input type="checkbox" ${doc.data().rst?'checked':''} oninput=edit_event(event)></td>
   <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''} oninput=edit_event(event)></td>
-  <td class="text-nowrap"><span class="fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_event(event)></span>
-  <span class="fa fa-clock-o ms-3" style="font-size: 1.3em;"></span>
-  <span class="fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
+  <td class="text-nowrap"><span class="text-danger fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_event(event)></span>
+  <span class="text-primary fa fa-clock-o ms-3 d-none" style="font-size: 1.3em;"></span>
+  <span class="text-success fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
   </tr>`;
   resultTable.innerHTML += event_row; 
 }
   // console.log("renderResultTable end");
 }
 
-// get real-time data from firestore
+
 function get_real_time_data(user=null){
-  let changes=[];
-  if (user!=null) {
-    // document.querySelector('table').classList.remove('d-none');
-    db.collection("events")
-  .orderBy("time")
-  .onSnapshot(function (snapshot) {
-    changes = snapshot.docChanges();
-    
-    if (changes.length==0) {
-      document.querySelector('table').classList.add('d-none');
-      flash_message('There is no Data!')
-    } else {
-      flash_message();
-      changes.forEach((change) => {
-      if (change.type == "added") {
-        renderResultTable(change.doc);
-      } else if (change.type == "removed") {
-        let del_event = resultTable.querySelector(
-          "[data-id=" + change.doc.id + "]"
-        );
-        resultTable.removeChild(del_event);
-      }
-    });
-    }    
-  });
-  } else {
+if (user!=null) {
+window.addEventListener('eventsUpdated',function(){  
+      if (events.length==0) {
+        console.log('no events');
+        document.querySelector('table').classList.add('d-none');
+        flash_message('There is no Data!')
+      } else {
+        flash_message();
+        events.forEach((event) => {
+            if (event.type == "added") {
+              renderResultTable(event.doc);
+            } else if (event.type == "removed") {
+              let del_event = resultTable.querySelector(
+                `[data-id="${event.doc.id}"]`
+              );
+              resultTable.removeChild(del_event);
+            }
+        });
+      }  
+  })
+}
+  else {
     document.querySelector('table').classList.add('d-none');
+    flash_message("You need to login for access!")
     renderResultTable();
   }
-  
+  window.fetchEvents();
 }
+
+
 
 
 // save data to firestore
@@ -136,6 +135,7 @@ function delete_event(e) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     console.log(id);
     db.collection("events").doc(id).delete();
+    window.fetchEvents();
   } else {
     return;
   }

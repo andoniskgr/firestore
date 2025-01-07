@@ -1,26 +1,19 @@
-console.log('so_page');
-
-const logout_btn = this.document.querySelector("#logout_link");
-const type_selection_rb = this.document.querySelectorAll(
-  '[name="service_order_type"]'
-);
-const so_form = this.document.querySelector("#service_order_form");
-const date_input_field = this.document.querySelector('[name="date"]');
-date_input_field.value = get_current_day();
-let aircrafts = [];
-
-  // check if user is logged in
+// check if user is logged in
 auth.onAuthStateChanged((user) => {
   if (user == null) {
     window.close(); //  if not logged in close window
   }
 });
 
-db.collection("aircrafts")
-  .orderBy("REGISTRATION")
-  .onSnapshot(function (snapshot) {
-    aircrafts = snapshot.docChanges();
-    aircrafts.forEach((aircraft) => {
+// *****************************************************************
+// Wait for aircrafts to be updated
+window.addEventListener('aircraftsUpdated', function() {
+  console.log(window.getAircrafts()); // This will give you the latest aircrafts
+  aircrafts.forEach((aircraft) => {
+      // check if the aircraft is active
+      if (!aircraft.doc.data().ACTIVE) {
+        return;
+      }
       const registration_selection = document.querySelector("#registration");
       let newOptionItem = document.createElement("option");
       newOptionItem.text = aircraft.doc.data().REGISTRATION;
@@ -30,24 +23,37 @@ db.collection("aircrafts")
       newOptionItem.setAttribute("data-type", aircraft.doc.data().TYPE);
       registration_selection.appendChild(newOptionItem);
     });
-  });
+});
+
+// Call fetchAircrafts when the page loads or based on some event
+window.fetchAircrafts();
+// *****************************************************************
+
+
+// declare variables and constants
+const logout_btn = this.document.querySelector("#logout_link");
+const type_selection_rb = this.document.querySelectorAll('[name="service_order_type"]');
+const so_form = this.document.querySelector("#service_order_form");
+const date_input_field = this.document.querySelector('[name="date"]');
+
+date_input_field.value = get_current_day();
+
+ 
+
+    
+    
+  // });
       
       
 // add event listeners
 type_selection_rb.forEach(function (rb) {
   rb.addEventListener("input", setupFormUi);
 });
-
 logout_btn.addEventListener("click", logout);
 so_form.addEventListener('submit', handleForm)
   
-  
-  
-  
 
-
-
-
+// function that adjust the layout
 function setupFormUi(e) {
   if (e.target.value == "pirep") {
     document.querySelector("#pirep_defect").classList.remove("d-none");
@@ -58,6 +64,8 @@ function setupFormUi(e) {
   }
 }
 
+
+// function that handle form submit action
 function handleForm(e) {
   e.preventDefault();
   if (validate_fields(e)==true) {
@@ -73,25 +81,22 @@ function handleForm(e) {
     const defect = e.target.defect.value.toUpperCase();
     const mel_desc = e.target.mel_description.value.toUpperCase();
     const mel = e.target.mel.value.toUpperCase();    
-    const final = e.target.so_prepared_test;
+    const final = e.target.so_prepared_text;
     let res = '';
 
     res = `A/C DETAILS:
-${registration} (Aircraft Type: ${type}, MSN: ${msn} ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date}, ` 
+${registration} (Aircraft Type: ${type}), MSN: ${msn}, ENG TYPE: ${engine}), FLT No ${flight} (${from}-${to}), ETA:${date}, ` 
 if (document.querySelector('#landed').checked) {
   res+= `A/C already landed to destination airport.`
 } else {
   res+=`${eta} UTC.`
 }
-
   res+=`\n\nDEFECT DETAILS:\n`
-
     if (e.target.service_order_type.value == 'pirep') {
       res += `Pilot reported: ${defect}. Please attend the A/C and perform inspection IAW AMM.`
     } else if (e.target.service_order_type.value == 'maint') {
-      res += `A/C released iaw ${mel} (${mel_desc}). Please perform the necessary maintenance action iaw attached maintenance procedure before A/C departure.`
+      res += `A/C released IAW: ${mel} (${mel_desc}). Please perform the necessary maintenance action iaw attached maintenance procedure before A/C departure.`
     }
-
     res += `\n\nNOTE:
 By receiving the attached training material and along with the CRS, you confirm knowledge of the operator’s processes and procedures.
 
@@ -209,3 +214,4 @@ function validateDate(input) {
       }
   }
 }
+

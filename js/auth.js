@@ -1,6 +1,6 @@
 console.log('auth');
 
-window.addEventListener("DOMContentLoaded", function () {
+// window.addEventListener("DOMContentLoaded", function () {
   // console.log("Auth DOM load start");
 
   // declare navbar components
@@ -16,27 +16,13 @@ window.addEventListener("DOMContentLoaded", function () {
   auth.onAuthStateChanged((user) => {
     if (user) {
       setUpUi(user);
-      // console.log("logged in as:", user.email);    
-      // get_data_from_db();  
       get_real_time_data(user);
     } else {
       setUpUi();
-      // console.log("not login");
-      flash_message("You need to login for access!")
-      get_real_time_data();
+      flash_message("You need to login for access!");
     }
   });
 
-//   function get_data_from_db(){
-    
-
-// db.collection("events")
-// .orderBy("time")
-// .onSnapshot(function (snapshot) {
-//   events=snapshot.docChanges();
-// })
-//   }
-  
 
   // add event listeners
   logout_btn.addEventListener("click", logout);
@@ -115,7 +101,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     
   // console.log("Auth DOM load end");
-});
+// });
 
 
 
