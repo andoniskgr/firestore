@@ -29,7 +29,7 @@
 
 <body>
     <!-- NAVBAR start -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">MCC APPLICATION</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -113,28 +113,28 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)" required>
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)" required>
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="position" placeholder="Position" required>
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="position" placeholder="Position" required>
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="eta" placeholder="Arr. time" oninput="formatTime(event)" >
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="eta" placeholder="Arr. time" oninput="formatTime(event)" >
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="etd" placeholder="Dep. time" oninput="formatTime(event)" >
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="etd" placeholder="Dep. time" oninput="formatTime(event)" >
                             </div>
                             <div class="col-4">
-                                <input class="form-control mb-3" type="text" name="occ_upd" placeholder="UPD. time" oninput="formatTime(event)" >
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="occ_upd" placeholder="UPD. time" oninput="formatTime(event)" >
                             </div>
                             <div class="col-12">
-                                <input class="form-control mb-3" type="text" name="defect" placeholder="Defect" required>
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="defect" placeholder="Defect" required>
                             </div>
                             <div class="col-12">
-                                <input class="form-control mb-3" type="text" name="notes" placeholder="Notes">
+                                <input autocomplete="off" class="form-control mb-3" type="text" name="notes" placeholder="Notes">
                             </div>
                             <div class="col-4" style="font-size: 1.2rem;">
                                 <input class="form-check-input mb-3" type="checkbox" name="sl" id="sl">
@@ -194,13 +194,13 @@
 
     <!-- <div class="text-center h2 m-3" id="msg"></div> -->
 
-    <div class="container-fluid bg-light text-light">
+    <div class="container-fluid bg-light text-light mt-5">
         <table class="table table-bordered d-none">
             <thead>
                 <tr>
                     <th scope="col">Time</th>
-                    <th scope="col">Position</th>
                     <th scope="col">Registration</th>
+                    <th scope="col">Position</th>
                     <th scope="col">ETA</th>
                     <th scope="col">ETD</th>
                     <th scope="col">OCC</th>

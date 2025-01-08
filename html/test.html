@@ -7,6 +7,18 @@
 </head>
 <body>
     <button style="font-size: 4rem;">TEST</button>
+
+    <label>Choose a browser from this list:
+        <input list="browsers" name="myBrowser" /></label>
+        <datalist id="browsers">
+          <option value="Chrome">
+          <option value="Firefox">
+          <option value="Internet Explorer">
+          <option value="Opera">
+          <option value="Safari">
+          <option value="Microsoft Edge">
+        </datalist>
+
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>

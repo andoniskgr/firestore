@@ -18,7 +18,7 @@ my_modals.forEach(function(modal){
       modal.querySelector('[name="email"]').focus();
     } else if (modal.id=='new_event'){
       modal.querySelector('[name="time"]').value=current_time();
-      modal.querySelector('[name="position"]').focus();
+      modal.querySelector('[name="registration"]').focus();
     }    
   });  
   modal.addEventListener('hidden.bs.modal',function(e){
@@ -45,18 +45,18 @@ function renderResultTable(doc=[]) {
   if (doc.data().solved == true) {
     tr_class = "table-success";
   }
-  event_row=`<tr class="${tr_class}" data-id="${doc.id}">
+    event_row = `<tr class="${tr_class}" data-id="${doc.id}">
   <td id="time"><input size="6" value="${doc.data().time}" oninput=edit_event(event)></td>
-  <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase" oninput=edit_event(event)></td>
   <td id="registration"><input size="7" value="${doc.data().registration}" class="text-uppercase" oninput=edit_event(event)></td>
+  <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase" oninput=edit_event(event)></td>
   <td id="eta"><input size="6" value="${doc.data().eta}" oninput=edit_event(event)></td>
   <td id="etd"><input size="6" value="${doc.data().etd}" oninput=edit_event(event)></td>
   <td id="occ_upd"><input size="6" value="${doc.data().occ_upd}" oninput=edit_event(event)></td>
   <td id="defect"><input value="${doc.data().defect}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="notes"><input value="${doc.data().notes}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
-  <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''} oninput=edit_event(event)></td>
-  <td id="rst" class="text-center"><input type="checkbox" ${doc.data().rst?'checked':''} oninput=edit_event(event)></td>
-  <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved?'checked':''} oninput=edit_event(event)></td>
+  <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl ? 'checked' : ''} oninput=edit_event(event)></td>
+  <td id="rst" class="text-center"><input type="checkbox" ${doc.data().rst ? 'checked' : ''} oninput=edit_event(event)></td>
+  <td id="solved" class="text-center"><input type="checkbox" ${doc.data().solved ? 'checked' : ''} oninput=edit_event(event)></td>
   <td class="text-nowrap"><span class="text-danger fa fa-trash-o" id="delete_icon" style="font-size: 1.5em;" onclick=delete_event(event)></span>
   <span class="text-primary fa fa-clock-o ms-3 d-none" style="font-size: 1.3em;"></span>
   <span class="text-success fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
@@ -186,8 +186,8 @@ function save_edit_event(e) {
     updated: now,
     updated_by:user,
     time: updated_row.cells[0].firstChild.value,
-    position: updated_row.cells[1].firstChild.value.toUpperCase(),
-    registration: updated_row.cells[2].firstChild.value.toUpperCase(),
+    registration: updated_row.cells[1].firstChild.value.toUpperCase(),
+    position: updated_row.cells[2].firstChild.value.toUpperCase(),
     eta: updated_row.cells[3].firstChild.value,
     etd: updated_row.cells[4].firstChild.value,
     occ_upd: updated_row.cells[5].firstChild.value,
