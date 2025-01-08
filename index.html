@@ -121,6 +121,15 @@
                             <div class="col-4">
                                 <input class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
                             </div>
+                            <div class="col-4">
+                                <input class="form-control mb-3" type="text" name="eta" placeholder="Arr. time" oninput="formatTime(event)" >
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control mb-3" type="text" name="etd" placeholder="Dep. time" oninput="formatTime(event)" >
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control mb-3" type="text" name="occ_upd" placeholder="UPD. time" oninput="formatTime(event)" >
+                            </div>
                             <div class="col-12">
                                 <input class="form-control mb-3" type="text" name="defect" placeholder="Defect" required>
                             </div>
@@ -192,11 +201,14 @@
                     <th scope="col">Time</th>
                     <th scope="col">Position</th>
                     <th scope="col">Registration</th>
-                    <th class="col-4" scope="col">Defect</th>
-                    <th class="col-4" scope="col">Notes</th>
-                    <th scope="col">S/L</th>
+                    <th scope="col">ETA</th>
+                    <th scope="col">ETD</th>
+                    <th scope="col">OCC</th>
+                    <th class="col-3" scope="col">Defect</th>
+                    <th class="col-3" scope="col">Notes</th>
+                    <th scope="col">S / L</th>
                     <th scope="col">RESET</th>
-                    <th scope="col">OK</th>
+                    <th scope="col">O K</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>

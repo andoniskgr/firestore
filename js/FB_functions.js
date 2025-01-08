@@ -49,6 +49,9 @@ function renderResultTable(doc=[]) {
   <td id="time"><input size="6" value="${doc.data().time}" oninput=edit_event(event)></td>
   <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase" oninput=edit_event(event)></td>
   <td id="registration"><input size="7" value="${doc.data().registration}" class="text-uppercase" oninput=edit_event(event)></td>
+  <td id="eta"><input size="6" value="${doc.data().eta}" oninput=edit_event(event)></td>
+  <td id="etd"><input size="6" value="${doc.data().etd}" oninput=edit_event(event)></td>
+  <td id="occ_upd"><input size="6" value="${doc.data().occ_upd}" oninput=edit_event(event)></td>
   <td id="defect"><input value="${doc.data().defect}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="notes"><input value="${doc.data().notes}" class="w-100 text-uppercase" oninput=edit_event(event)></td>
   <td id="sl" class="text-center"><input type="checkbox" ${doc.data().sl?'checked':''} oninput=edit_event(event)></td>
@@ -108,6 +111,9 @@ function save_event(e) {
     created_by:user,
     time: new_event_form.time.value,
     position: new_event_form.position.value.toUpperCase(),
+    eta: new_event_form.eta.value,
+    etd: new_event_form.etd.value,
+    occ_upd: new_event_form.occ_upd.value,
     registration: new_event_form.registration.value.toUpperCase(),
     defect: new_event_form.defect.value.toUpperCase(),
     notes: new_event_form.notes.value.toUpperCase(),
@@ -144,7 +150,12 @@ function delete_event(e) {
 // edit Event
 function edit_event(e) {
   e.stopPropagation();
-  if (e.target.parentElement.id=='time') {
+  if (
+    e.target.parentElement.id == "time" ||
+    e.target.parentElement.id == "eta" ||
+    e.target.parentElement.id == "etd" ||
+    e.target.parentElement.id == "occ_upd"
+  ) {
     formatTime(e);
   }
   
@@ -177,11 +188,14 @@ function save_edit_event(e) {
     time: updated_row.cells[0].firstChild.value,
     position: updated_row.cells[1].firstChild.value.toUpperCase(),
     registration: updated_row.cells[2].firstChild.value.toUpperCase(),
-    defect: updated_row.cells[3].firstChild.value.toUpperCase(),
-    notes: updated_row.cells[4].firstChild.value.toUpperCase(),
-    sl: updated_row.cells[5].firstChild.checked,
-    rst: updated_row.cells[6].firstChild.checked,
-    solved: updated_row.cells[7].firstChild.checked,
+    eta: updated_row.cells[3].firstChild.value,
+    etd: updated_row.cells[4].firstChild.value,
+    occ_upd: updated_row.cells[5].firstChild.value,
+    defect: updated_row.cells[6].firstChild.value.toUpperCase(),
+    notes: updated_row.cells[7].firstChild.value.toUpperCase(),
+    sl: updated_row.cells[8].firstChild.checked,
+    rst: updated_row.cells[9].firstChild.checked,
+    solved: updated_row.cells[10].firstChild.checked,
   };
   db.collection("events").doc(id).update(event).then(function () {
     updated_row.querySelector('.fa-save').classList.add('d-none');
