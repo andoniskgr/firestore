@@ -163,15 +163,15 @@ function edit_event(e) {
   updated_row.querySelector('.fa-save').classList.remove('d-none');
 
   if (
-    updated_row.cells[5].firstChild.checked == false &&
-    updated_row.cells[7].firstChild.checked == false
+    updated_row.cells[8].firstChild.checked == false &&
+    updated_row.cells[10].firstChild.checked == false
   ) {
     updated_row.className = "table-light";
   }
-  if (updated_row.cells[5].firstChild.checked == true) {
+  if (updated_row.cells[8].firstChild.checked == true) {
     updated_row.className = "table-warning";
   }
-  if (updated_row.cells[7].firstChild.checked == true) {
+  if (updated_row.cells[10].firstChild.checked == true) {
     updated_row.className = "table-success";
   }
 }
