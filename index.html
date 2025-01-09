@@ -9,6 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         table,
@@ -16,6 +20,7 @@
             width: 1.4em;
             height: 1.4em;
         }
+
         .fa {
             cursor: pointer;
         }
@@ -47,6 +52,7 @@
                         data-bs-target="#new_event">New Event</a>
                     <a class="d-none nav-link logged-in" href="html/so_page.html" target="_blank" id="service_order_link">Service Order</a>
                     <a class="d-none nav-link logged-in" href="html/aircraft_admin.html" target="_blank" id="aircraft_admin_link">A/C Admin</a>
+                    <!-- <a class="d-none nav-link logged-in" href="#" id="downloadPDF">PDF</a> -->
                 </div>
             </div>
         </div>
@@ -195,7 +201,7 @@
     <!-- <div class="text-center h2 m-3" id="msg"></div> -->
 
     <div class="container-fluid bg-light text-light mt-5">
-        <table class="table table-bordered d-none">
+        <table class="table table-bordered d-none" id="myTable">
             <thead>
                 <tr>
                     <th scope="col">Time</th>

@@ -2,6 +2,8 @@ const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
 const my_modals = document.querySelectorAll('.modal');
+// const PDFbtn = document.querySelector('#downloadPDF');
+
 
 
 // listeners
@@ -10,6 +12,35 @@ event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
 
+// PDFbtn.addEventListener('click',function(e){
+//   const { jsPDF } = window.jspdf;
+//   // const jsPDF=window.jspdf;
+//   const doc = new jsPDF();
+//   console.log(doc);
+//  // Get the HTML table element
+//  const table = document.getElementById('myTable');
+//             const rows = table.querySelectorAll('tr');
+//  const tableData = [];
+//  rows.forEach((row, index) => {
+//      const cols = row.querySelectorAll('th, td');
+//      const rowData = [];
+//      cols.forEach(col => {
+//          rowData.push(col.innerText.trim());
+//      });
+//      tableData.push(rowData);
+//  });
+
+//  // Now pass the extracted tableData to autoTable
+//  doc.autoTable({
+//      head: [tableData[0]], // First row is the header
+//      body: tableData.slice(1) // The rest are the body rows
+//  });
+
+//  // Save the generated PDF
+//  doc.save('table.pdf');
+  
+  
+// })
 
 // adding listeners to modals
 my_modals.forEach(function(modal){  
