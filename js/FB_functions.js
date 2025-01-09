@@ -12,6 +12,8 @@ event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
 
+
+// adding listeners to modals
 my_modals.forEach(function(modal){  
   modal.addEventListener('shown.bs.modal',function(e){
     if (modal.id=='loginModal' || modal.id=='registerModal') {
@@ -36,15 +38,26 @@ function renderResultTable(doc=[]) {
     document.querySelector('table').classList.remove('d-none');
   let event_row='';
   let tr_class='';
-  if (doc.data().sl == false && doc.data().solved == false) {
+
+  // control table row color according checkboxes
+switch (true) {
+  case (doc.data().sl==false && doc.data().solved==false):
+        tr_class = "table-light";
+    break;
+  case (doc.data().sl==true && doc.data().solved==false):
+        tr_class = "table-warning";
+    break;
+  case (doc.data().sl==true && doc.data().solved==true):
+        tr_class = "table-success";
+    break;
+  case (doc.data().sl==false && doc.data().solved==true):
+        tr_class = "table-success";
+    break;
+  default:
     tr_class = "table-light";
-  }
-  if (doc.data().sl == true) {
-    tr_class = "table-warning";
-  }
-  if (doc.data().solved == true) {
-    tr_class = "table-success";
-  }
+    break;
+}
+
     event_row = `<tr class="${tr_class}" data-id="${doc.id}">
   <td id="time"><input size="6" value="${doc.data().time}" oninput=edit_event(event)></td>
   <td id="registration"><input size="7" value="${doc.data().registration}" class="text-uppercase" oninput=edit_event(event)></td>
@@ -67,9 +80,10 @@ function renderResultTable(doc=[]) {
 }
 
 
-function get_real_time_data(user=null){
+function get_real_time_data(user=null){  
 if (user!=null) {
 window.addEventListener('eventsUpdated',function(){  
+  
       if (events.length==0) {
         console.log('no events');
         document.querySelector('table').classList.add('d-none');
@@ -79,22 +93,21 @@ window.addEventListener('eventsUpdated',function(){
         events.forEach((event) => {
             if (event.type == "added") {
               renderResultTable(event.doc);
-            } else if (event.type == "removed") {
-              let del_event = resultTable.querySelector(
-                `[data-id="${event.doc.id}"]`
-              );
-              resultTable.removeChild(del_event);
+            }else if (event.type == "removed") {
+              if (events.length==0) {
+                flash_message('There is no Data!');
+              }
             }
         });
       }  
   })
+  window.fetchEvents();
 }
   else {
     document.querySelector('table').classList.add('d-none');
     flash_message("You need to login for access!")
     renderResultTable();
-  }
-  window.fetchEvents();
+  }  
 }
 
 
@@ -125,7 +138,7 @@ function save_event(e) {
   $(".modal").modal("hide");
   new_event_form.reset();
   // console.log(event);
-  db.collection("events").add(event).then(function () {
+  db.collection(events_collection).add(event).then(function () {
     console.log('Event saved!');
     
     // alert('Event saved!');
@@ -140,8 +153,12 @@ function delete_event(e) {
   if (response) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     console.log(id);
-    db.collection("events").doc(id).delete();
-    window.fetchEvents();
+    db.collection(events_collection).doc(id).delete();
+    let del_event = resultTable.querySelector(
+      `[data-id="${id}"]`
+    );
+    resultTable.removeChild(del_event);
+    // get_real_time_data();
   } else {
     return;
   }
@@ -197,7 +214,7 @@ function save_edit_event(e) {
     rst: updated_row.cells[9].firstChild.checked,
     solved: updated_row.cells[10].firstChild.checked,
   };
-  db.collection("events").doc(id).update(event).then(function () {
+  db.collection(events_collection).doc(id).update(event).then(function () {
     updated_row.querySelector('.fa-save').classList.add('d-none');
     alert('Event saved!');
   });
@@ -1316,7 +1333,7 @@ function get_aircrafts(){
     aircrafts.forEach(function(aircraft){
       aircraft.NOTE="";
       aircraft.ACTIVE=true;
-      db.collection("aircrafts").add(aircraft).then(function(){
+      db.collection(aircrafts_collection).add(aircraft).then(function(){
         console.log('saved:',aircraft);
       })
     })
@@ -1324,3 +1341,29 @@ function get_aircrafts(){
  
   
 }
+
+// *****************************************************************
+// Wait for aircrafts to be updated
+window.addEventListener('aircraftsUpdated', function() {
+  // console.log(window.getAircrafts()); // This will give you the latest aircrafts
+  const aircraft_datalist=document.createElement('datalist');
+  aircraft_datalist.id='registrations'
+  const registration_selection = new_event_form.registration
+  aircrafts.forEach((aircraft) => {
+      // check if the aircraft is active
+      if (!aircraft.doc.data().ACTIVE) {
+        return;
+      }
+      let newOptionItem = document.createElement("option");
+      // newOptionItem.text = aircraft.doc.data().REGISTRATION;
+      newOptionItem.value = aircraft.doc.data().REGISTRATION;
+    //  console.log(registration_selection);
+     
+      aircraft_datalist.appendChild(newOptionItem);
+    });
+    registration_selection.appendChild(aircraft_datalist);
+});
+
+// Call fetchAircrafts when the page loads or based on some event
+window.fetchAircrafts();
+// *****************************************************************

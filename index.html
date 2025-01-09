@@ -116,7 +116,7 @@
                                 <input autocomplete="off" class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)" required>
                             </div>
                             <div class="col-4">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
+                                <input autocomplete="off" list="registrations" class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
                             </div>
                             <div class="col-4">
                                 <input autocomplete="off" class="form-control mb-3" type="text" name="position" placeholder="Position" required>
@@ -206,9 +206,9 @@
                     <th scope="col">OCC</th>
                     <th class="col-3" scope="col">Defect</th>
                     <th class="col-3" scope="col">Notes</th>
-                    <th scope="col">S / L</th>
+                    <th class="text-nowrap" scope="col">S / L</th>
                     <th scope="col">RESET</th>
-                    <th scope="col">O K</th>
+                    <th class="text-nowrap" scope="col">O K</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>

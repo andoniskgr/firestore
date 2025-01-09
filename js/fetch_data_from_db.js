@@ -1,7 +1,7 @@
 // **************************************************************************
 function fetchAircrafts() {
   const myevent=new Event('aircraftsUpdated');
-  db.collection("aircrafts")
+  db.collection(aircrafts_collection)
     .orderBy("REGISTRATION")
     .onSnapshot(function (snapshot) {
       aircrafts = snapshot.docChanges();     
@@ -21,7 +21,7 @@ window.getAircrafts = getAircrafts;
 // **************************************************************************
 function fetchEvents() {
   const myevent=new Event('eventsUpdated');
-  db.collection("events")
+  db.collection(events_collection)
     .orderBy("time")
     .onSnapshot(function (snapshot) {
       events = snapshot.docChanges();

@@ -174,7 +174,7 @@ function save_event(e) {
   $(".modal").modal("hide");
   new_aircraft_form.reset();
   console.log(aircraft);
-  db.collection("aircrafts").add(aircraft).then(function () {
+  db.collection(aircrafts_collection).add(aircraft).then(function () {
     console.log('Event saved!');
     alert('New Aircraft created!');
   }
@@ -188,7 +188,7 @@ function delete_aircraft(e) {
   if (response) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     console.log(`Aircraft with ID:${id} deleted`);
-    db.collection("aircrafts").doc(id).delete();
+    db.collection(aircrafts_collection).doc(id).delete();
   } else {
     return;
   }
@@ -266,7 +266,7 @@ function save_edit_event(e) {
     WV: updated_row.cells[7].firstChild.value,
   };
 
-  db.collection("aircrafts").doc(id).update(aircraft).then(function () {
+  db.collection(aircrafts_collection).doc(id).update(aircraft).then(function () {
     updated_row.querySelector('.fa-save').classList.add('d-none');
     alert('Aircraft saved!');
   });
