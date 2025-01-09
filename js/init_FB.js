@@ -20,6 +20,6 @@ const db = firebase.firestore();
 db.settings({ timestampInSnapshots: true });
 
 
-const events_collection="events1"
+const events_collection="events"
 const aircrafts_collection="aircrafts"
 
