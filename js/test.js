@@ -1,18 +1,29 @@
-let aircraft_types=[];
-window.addEventListener('aircraftsUpdated', function(e){
-    const select_type_element = document.createElement("select");
-    aircrafts.forEach(aircraft => {
-        if (!aircraft_types.includes(aircraft.doc.data().TYPE)) {
-            aircraft_types.push(aircraft.doc.data().TYPE);
-        }
-    });
-    aircraft_types.forEach((type) => {
-      const opt = document.createElement("option");
-      opt.text = type;
-      select_type_element.appendChild(opt);
-      document.querySelector("body").appendChild(select_type_element);
-    });
-});
-fetchAircrafts();
 
 
+    // Fetching events from Firestore
+async function fetchEvents1() {
+    try {
+    //   const db = firebase.firestore(); // Assuming you initialized Firebase globally
+    let events=[];
+      const querySnapshot = await db.collection('events1').orderBy('time').onSnapshot(function(snapshot){
+        events=snapshot.docChanges();
+      })
+      
+    //   const events = [];
+    //   querySnapshot.forEach((doc) => {
+    //     events.push(doc.data()); // Collect events
+    //   });
+  
+      // Create and dispatch the custom event with the events data
+      const event = new CustomEvent('eventsFetched', {
+        detail: { events: events }
+      });
+      
+      // Dispatch the event globally (on the document)
+      document.dispatchEvent(event);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+    }
+  }
+  
+fetchEvents1();

@@ -1,7 +1,3 @@
-console.log('auth');
-
-// window.addEventListener("DOMContentLoaded", function () {
-  // console.log("Auth DOM load start");
 
   // declare navbar components
   const loggedOutLinks = document.querySelectorAll(".logged-out");
@@ -99,9 +95,6 @@ console.log('auth');
       });
   }
 
-    
-  // console.log("Auth DOM load end");
-// });
-
+  
 
 

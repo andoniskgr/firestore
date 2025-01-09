@@ -1,5 +1,3 @@
-console.log('FB_functions');
-
 const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
