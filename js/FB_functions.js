@@ -2,7 +2,10 @@ const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
 const my_modals = document.querySelectorAll('.modal');
-// const PDFbtn = document.querySelector('#downloadPDF');
+const show_solved_events_btn=document.querySelector('#btn_table_sel_ok');
+const show_in_progress_events_btn=document.querySelector('#btn_table_sel_inp');
+const show_all_events_btn=document.querySelector('#btn_table_sel_all');
+const delete_all_events_btn=document.querySelector('#btn_table_del_all');
 
 
 
@@ -11,36 +14,12 @@ new_event_form.addEventListener("submit", save_event);
 event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
+delete_all_events_btn.addEventListener('click', delete_all_events);
 
-// PDFbtn.addEventListener('click',function(e){
-//   const { jsPDF } = window.jspdf;
-//   // const jsPDF=window.jspdf;
-//   const doc = new jsPDF();
-//   console.log(doc);
-//  // Get the HTML table element
-//  const table = document.getElementById('myTable');
-//             const rows = table.querySelectorAll('tr');
-//  const tableData = [];
-//  rows.forEach((row, index) => {
-//      const cols = row.querySelectorAll('th, td');
-//      const rowData = [];
-//      cols.forEach(col => {
-//          rowData.push(col.innerText.trim());
-//      });
-//      tableData.push(rowData);
-//  });
+function delete_all_events(){
 
-//  // Now pass the extracted tableData to autoTable
-//  doc.autoTable({
-//      head: [tableData[0]], // First row is the header
-//      body: tableData.slice(1) // The rest are the body rows
-//  });
+}
 
-//  // Save the generated PDF
-//  doc.save('table.pdf');
-  
-  
-// })
 
 // adding listeners to modals
 my_modals.forEach(function(modal){  
@@ -141,7 +120,6 @@ window.addEventListener('eventsUpdated',function(){
 
 
 
-
 // save data to firestore
 function save_event(e) {  
   user=auth.currentUser.email;
@@ -166,8 +144,8 @@ function save_event(e) {
 
   $(".modal").modal("hide");
   new_event_form.reset();
-  // console.log(event);
-  db.collection(events_collection).add(event).then(function () {
+  const date=`${event.created.getDate()}_${event.created.getMonth()}`;
+  db.collection(events_collection+":"+date).add(event).then(function () {
     console.log('Event saved!');
     
     // alert('Event saved!');
