@@ -121,14 +121,14 @@ window.addEventListener('eventsUpdated',function(){
 
 
 // save data to firestore
-function save_event(e) {  
-  user=auth.currentUser.email;
+function save_event(e) {
+  user = auth.currentUser.email;
   e.preventDefault();
   console.log("save_event");
   now = new Date();
   const event = {
     created: now,
-    created_by:user,
+    created_by: user,
     time: new_event_form.time.value,
     position: new_event_form.position.value.toUpperCase(),
     eta: new_event_form.eta.value,
@@ -141,14 +141,12 @@ function save_event(e) {
     rst: new_event_form.rst.checked,
     solved: new_event_form.solved.checked,
   };
-
+  // HIDE mODAL AND RESET THE FIELDS
   $(".modal").modal("hide");
   new_event_form.reset();
-  const date=`${event.created.getDate()}_${event.created.getMonth()}`;
-  db.collection(events_collection+":"+date).add(event).then(function () {
+  const date = `${event.created.getDate()}_${event.created.getMonth()}`;
+  db.collection(events_collection).add(event).then(function () {
     console.log('Event saved!');
-    
-    // alert('Event saved!');
   }
   );
 }
