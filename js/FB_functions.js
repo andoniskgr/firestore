@@ -17,7 +17,16 @@ event_reminder_form.addEventListener("submit", function(e){
 delete_all_events_btn.addEventListener('click', delete_all_events);
 
 function delete_all_events(){
-
+console.log('delete events');
+let response = window.confirm("Are you sure you want to delete this Event?");
+  if (response) {
+    let id = e.target.parentElement.parentElement.getAttribute("data-id");
+    console.log(id);
+    db.collection(events_collection).doc(id).delete();
+    let del_event = resultTable.querySelector(
+      `[data-id="${id}"]`
+    );
+  }
 }
 
 
@@ -141,10 +150,19 @@ function save_event(e) {
     rst: new_event_form.rst.checked,
     solved: new_event_form.solved.checked,
   };
-  // HIDE mODAL AND RESET THE FIELDS
+  // Hide modal and reset the fields
   $(".modal").modal("hide");
   new_event_form.reset();
-  const date = `${event.created.getDate()}_${event.created.getMonth()}`;
+  save_event_to_db(event);
+}
+
+function save_event_to_db(event){
+  let d=String(event.created.getDate());
+  let m=String(event.created.getMonth()+1);
+  d=d.length<2? +"0"+d : d;
+  m=m.length<2? +"0"+m : m;
+  const date=`${d}_${m}`;
+   
   db.collection(events_collection).add(event).then(function () {
     console.log('Event saved!');
   }
