@@ -17,15 +17,12 @@ event_reminder_form.addEventListener("submit", function(e){
 delete_all_events_btn.addEventListener('click', delete_all_events);
 
 function delete_all_events(){
-console.log('delete events');
-let response = window.confirm("Are you sure you want to delete this Event?");
+let response = window.confirm("Are you sure you want to delete all Events?");
   if (response) {
-    let id = e.target.parentElement.parentElement.getAttribute("data-id");
-    console.log(id);
-    db.collection(events_collection).doc(id).delete();
-    let del_event = resultTable.querySelector(
-      `[data-id="${id}"]`
-    );
+    resultTable.innerHTML="";
+    events.forEach(ev => {      
+      db.collection(events_collection).doc(ev.doc.id).delete();
+    });    
   }
 }
 
