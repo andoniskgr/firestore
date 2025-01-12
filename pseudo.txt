@@ -1,0 +1,4 @@
+create variable to keep the date created of the event
+iterate the event and check the created date
+    if event created date doesn't exist in accordion header create new accordion and update the header with the event created date
+    if event created date exist add the event in the table

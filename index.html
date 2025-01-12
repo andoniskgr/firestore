@@ -196,18 +196,19 @@
      
 
 
-    <div class="container-fluid bg-light text-light mt-5">
+    <div class="container-fluid bg-light text-light mt-5" id="data">
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button id="date_selected" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        Table selections
+                        <span>Table selections</span>
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <div class="d-flex justify-content-evenly">
+                            <input type="date" name="" id="events_date" onkeydown="event.preventDefault()" onchange="console.log(value)">
                             <button id="btn_table_sel_ok" type="button" class="btn btn-success">Events OK</button>
                             <button id="btn_table_sel_inp" type="button" class="btn btn-warning">Events in progress</button>
                             <button id="btn_table_sel_all" type="button" class="btn btn-info">All Events</button>
@@ -218,8 +219,8 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered d-none" id="myTable">
-            <thead>
+         <table class="table table-bordered d-none" id="myTable">
+          <!--  <thead>
                 <tr>
                     <th scope="col">Time</th>
                     <th scope="col">Registration</th>
@@ -237,8 +238,8 @@
             </thead>
             <tbody id="table_data">
     
-            </tbody>
-        </table>
+            </tbody>-->
+        </table> 
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

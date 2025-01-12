@@ -1,4 +1,3 @@
-const resultTable = document.querySelector("#table_data");
 const new_event_form = document.querySelector("#new_event_form");
 const event_reminder_form = document.querySelector("#event_reminder_form");
 const my_modals = document.querySelectorAll('.modal');
@@ -16,10 +15,14 @@ event_reminder_form.addEventListener("submit", function(e){
 });
 delete_all_events_btn.addEventListener('click', delete_all_events);
 
-function delete_all_events(){
+
+function delete_all_events(e){
+  let current_table=e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1];
+  
+  
 let response = window.confirm("Are you sure you want to delete all Events?");
   if (response) {
-    resultTable.innerHTML="";
+    current_table.innerHTML="";
     events.forEach(ev => {      
       db.collection(events_collection).doc(ev.doc.id).delete();
     });    
@@ -42,12 +45,49 @@ my_modals.forEach(function(modal){
   });  
 });
 
+function format_date(d){
+  d=d*1000;
+  return new Date(d).toLocaleDateString();
+}
+
+function create_table(){
+
+  const table=`
+            <thead>
+                <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Registration</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">ETA</th>
+                    <th scope="col">ETD</th>
+                    <th scope="col">OCC</th>
+                    <th class="col-3" scope="col">Defect</th>
+                    <th class="col-3" scope="col">Notes</th>
+                    <th class="text-nowrap" scope="col">S / L</th>
+                    <th scope="col">RESET</th>
+                    <th class="text-nowrap" scope="col">O K</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody id="table_data">
+    
+            </tbody>`
+        document.querySelector('#myTable').innerHTML=table;
+        console.log('table created');
+        
+}
 
 // function that creates table row elements
 function renderResultTable(doc=[]) {
-  // console.log('renderResultTable start');
+  if (document.getElementById('myTable')==null) {
+    create_table();
+  }
+  
+  const resultTable = document.querySelector("#myTable");
+
   if (doc.length==0) {
     resultTable.innerHTML = '';
+    
   } else {
     document.querySelector('table').classList.remove('d-none');
   let event_row='';
@@ -94,34 +134,40 @@ switch (true) {
 }
 
 
-function get_real_time_data(user=null){  
-if (user!=null) {
-window.addEventListener('eventsUpdated',function(){  
-  
-      if (events.length==0) {
-        console.log('no events');
-        document.querySelector('table').classList.add('d-none');
-        flash_message('There is no Data!')
-      } else {
-        flash_message();
-        events.forEach((event) => {
-            if (event.type == "added") {
-              renderResultTable(event.doc);
-            }else if (event.type == "removed") {
-              if (events.length==0) {
-                flash_message('There is no Data!');
-              }
-            }
-        });
-      }  
-  })
-  window.fetchEvents();
-}
-  else {
-    document.querySelector('table').classList.add('d-none');
-    flash_message("You need to login for access!")
+function get_real_time_data(user = null) {
+  let events=[];
+  if (user != null) {
+    events_date = document.querySelector("#events_date").value = current_date();
+    const [y, m, d] = events_date.split("-");
+    events_date = `${d}_${m}_${y}`;
+
+    db.collection("data/events/" + events_date)
+      .orderBy("time")
+      .onSnapshot(function (snapshot) {
+        events = snapshot.docChanges();
+        window.events=events;
+    if (events.length == 0) {
+      console.log("no events");
+      flash_message("There is no Data!");
+    } else {
+      flash_message();
+      console.log(events);
+      events.forEach((event) => {
+        if (event.type == "added") {
+          renderResultTable(event.doc);
+        } else if (event.type == "removed") {
+          if (events.length == 0) {
+            flash_message("There is no Data!");
+          }
+        }
+      });
+    }
+     });
+  } else {
+    document.querySelector("table").classList.add("d-none");
+    flash_message("You need to login for access!");
     renderResultTable();
-  }  
+  }
 }
 
 
@@ -154,13 +200,9 @@ function save_event(e) {
 }
 
 function save_event_to_db(event){
-  let d=String(event.created.getDate());
-  let m=String(event.created.getMonth()+1);
-  d=d.length<2? +"0"+d : d;
-  m=m.length<2? +"0"+m : m;
-  const date=`${d}_${m}`;
-   
-  db.collection(events_collection).add(event).then(function () {
+  let event_date=new Date(event.created).toLocaleDateString();
+  event_date=event_date.replace(/\//g, "_");  
+  db.collection(events_collection+"/events"+"/"+event_date).add(event).then(function () {
     console.log('Event saved!');
   }
   );
@@ -169,16 +211,22 @@ function save_event_to_db(event){
 // delete Event
 function delete_event(e) {  
   e.stopPropagation();
+  const tableData=e.target.parentElement.parentElement.parentElement;
+  
   let response = window.confirm("Are you sure you want to delete this Event?");
   if (response) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     console.log(id);
-    db.collection(events_collection).doc(id).delete();
-    let del_event = resultTable.querySelector(
+    let event_date=new Date(event.created).toLocaleDateString();
+    event_date=event_date.replace(/\//g, "_");
+    db.collection(events_collection+"/events"+"/"+event_date).doc(id).delete();
+    console.log(db.collection(events_collection+"/events"+"/"+event_date).doc(id));
+    console.log(events);
+    
+    let del_event = tableData.querySelector(
       `[data-id="${id}"]`
     );
-    resultTable.removeChild(del_event);
-    // get_real_time_data();
+    tableData.removeChild(del_event);
   } else {
     return;
   }
@@ -307,6 +355,20 @@ function current_time(){
     min='0'+String(min);    
   }
   return `${hrs}:${min}`;
+}
+
+function current_date(){
+  let now=new Date();
+  let day=now.getDate();
+  let mon=now.getMonth()+1;
+  let year=now.getFullYear();
+  if (day<10) {
+    day='0'+String(day);    
+  }
+  if (mon<10) {
+    mon='0'+String(mon);    
+  }
+  return `${year}-${mon}-${day}`;
 }
 
 function get_aircrafts(){
@@ -1387,3 +1449,4 @@ window.addEventListener('aircraftsUpdated', function() {
 // Call fetchAircrafts when the page loads or based on some event
 window.fetchAircrafts();
 // *****************************************************************
+
