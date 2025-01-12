@@ -200,8 +200,12 @@ function save_event(e) {
 }
 
 function save_event_to_db(event){
-  let event_date=new Date(event.created).toLocaleDateString();
-  event_date=event_date.replace(/\//g, "_");  
+  let [m,d,y]=new Date(event.created).toLocaleDateString().split("/");
+  d=d<2?"0"+d:d;
+  m=m<2?"0"+m:m;
+  console.log(`${d}-${m}-${y}`);
+  
+  let event_date=`${d}_${m}_${y}`;
   db.collection(events_collection+"/events"+"/"+event_date).add(event).then(function () {
     console.log('Event saved!');
   }
