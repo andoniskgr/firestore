@@ -89,11 +89,9 @@ function create_table(){
 
 // function that creates table row elements
 function renderResultTable(doc=[]) {
-  if (document.getElementById('myTable')==null) {
+  if (document.querySelector('thead')==null) {
     create_table();
   }
-  
-  const resultTable = document.querySelector("#myTable");
 
   if (doc.length==0) {
     resultTable.innerHTML = '';
@@ -162,6 +160,8 @@ function get_real_time_data(user = null) {
           flash_message("There is no Data!");
         } else {
           flash_message();
+          console.log(events.length);
+          
           events.forEach((event) => {
             if (event.type == "added") {
               renderResultTable(event.doc);
@@ -277,6 +277,7 @@ function save_edit_event(e) {
   user=auth.currentUser.email;
   e.stopPropagation();
   let updated_row = e.target.parentElement.parentElement;
+  let cp = updated_row.getAttribute("data-cp");
   let id = updated_row.getAttribute("data-id");
   let now = new Date();
   const event = {
@@ -294,7 +295,8 @@ function save_edit_event(e) {
     rst: updated_row.cells[9].firstChild.checked,
     solved: updated_row.cells[10].firstChild.checked,
   };
-  db.collection(events_collection).doc(id).update(event).then(function () {
+  
+  db.collection(cp).doc(id).update(event).then(function () {
     updated_row.querySelector('.fa-save').classList.add('d-none');
     alert('Event saved!');
   });
