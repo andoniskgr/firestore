@@ -5,6 +5,8 @@ const show_solved_events_btn=document.querySelector('#btn_table_sel_ok');
 const show_in_progress_events_btn=document.querySelector('#btn_table_sel_inp');
 const show_all_events_btn=document.querySelector('#btn_table_sel_all');
 const delete_all_events_btn=document.querySelector('#btn_table_del_all');
+const events_date_select = document.querySelector("#events_date");
+const resultTable=document.querySelector('#myTable');
 
 
 
@@ -14,21 +16,29 @@ event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
 delete_all_events_btn.addEventListener('click', delete_all_events);
+events_date_select.addEventListener('change', on_event_date_selection)
+events_date_select.value=current_date();
 
-
-function delete_all_events(e){
-  let current_table=e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1];
-  
-  
-let response = window.confirm("Are you sure you want to delete all Events?");
-  if (response) {
-    current_table.innerHTML="";
-    events.forEach(ev => {      
-      db.collection(events_collection).doc(ev.doc.id).delete();
-    });    
-  }
+function on_event_date_selection(e){
+  resultTable.innerHTML='';
+  get_real_time_data(user);
 }
 
+function delete_all_events(e) {
+  const [y, m, d] = events_date_select.value.split("-");
+  let date = `${d}_${m}_${y}`;
+  let response = window.confirm("Are you sure you want to delete all Events?");
+  if (response) {
+    resultTable.innerHTML = "";
+    db.collection(events_collection + "/events" + "/" + date)
+      .get().then(function(events){
+        events.forEach(function(ev){
+          db.collection(events_collection + "/events" + "/" + date)
+          .doc(ev.id).delete();          
+        })
+      })
+  }
+}
 
 // adding listeners to modals
 my_modals.forEach(function(modal){  
@@ -90,6 +100,8 @@ function renderResultTable(doc=[]) {
     
   } else {
     document.querySelector('table').classList.remove('d-none');
+    const c_p=doc.ref.path.split("/").slice(0,3).join("/");
+    
   let event_row='';
   let tr_class='';
 
@@ -112,7 +124,7 @@ switch (true) {
     break;
 }
 
-    event_row = `<tr class="${tr_class}" data-id="${doc.id}">
+    event_row = `<tr class="${tr_class}" data-id="${doc.id}" data-cp="${c_p}">
   <td id="time"><input size="6" value="${doc.data().time}" oninput=edit_event(event)></td>
   <td id="registration"><input size="7" value="${doc.data().registration}" class="text-uppercase" oninput=edit_event(event)></td>
   <td id="position"><input size="6" value="${doc.data().position}" class="text-uppercase" oninput=edit_event(event)></td>
@@ -133,36 +145,34 @@ switch (true) {
   // console.log("renderResultTable end");
 }
 
-
 function get_real_time_data(user = null) {
-  let events=[];
+  
+  let events = [];
   if (user != null) {
-    events_date = document.querySelector("#events_date").value = current_date();
-    const [y, m, d] = events_date.split("-");
-    events_date = `${d}_${m}_${y}`;
+    const [y, m, d] = events_date_select.value.split("-");
+    let date = `${d}_${m}_${y}`;
 
-    db.collection("data/events/" + events_date)
+    db.collection("data/events/" + date)
       .orderBy("time")
       .onSnapshot(function (snapshot) {
         events = snapshot.docChanges();
-        window.events=events;
-    if (events.length == 0) {
-      console.log("no events");
-      flash_message("There is no Data!");
-    } else {
-      flash_message();
-      console.log(events);
-      events.forEach((event) => {
-        if (event.type == "added") {
-          renderResultTable(event.doc);
-        } else if (event.type == "removed") {
-          if (events.length == 0) {
-            flash_message("There is no Data!");
-          }
+        window.events = events;
+        if (events.length == 0) {
+          console.log("no events");
+          flash_message("There is no Data!");
+        } else {
+          flash_message();
+          events.forEach((event) => {
+            if (event.type == "added") {
+              renderResultTable(event.doc);
+            } else if (event.type == "removed") {
+              if (events.length == 0) {
+                flash_message("There is no Data!");
+              }
+            }
+          });
         }
       });
-    }
-     });
   } else {
     document.querySelector("table").classList.add("d-none");
     flash_message("You need to login for access!");
@@ -199,17 +209,18 @@ function save_event(e) {
   save_event_to_db(event);
 }
 
-function save_event_to_db(event){
-  let [m,d,y]=new Date(event.created).toLocaleDateString().split("/");
-  d=d<2?"0"+d:d;
-  m=m<2?"0"+m:m;
-  console.log(`${d}-${m}-${y}`);
-  
-  let event_date=`${d}_${m}_${y}`;
-  db.collection(events_collection+"/events"+"/"+event_date).add(event).then(function () {
-    console.log('Event saved!');
-  }
-  );
+function save_event_to_db(event) {
+
+  let date = new Date(event.created).toLocaleString().split(",")[0];
+  let [d, m, y] = date.split("/");
+  let event_date = `${d}_${m}_${y}`;
+  console.log(`event date:${event_date}`);
+
+  db.collection(events_collection + "/events" + "/" + event_date)
+    .add(event)
+    .then(function () {
+      console.log("Event saved!");
+    });
 }
 
 // delete Event
@@ -217,16 +228,13 @@ function delete_event(e) {
   e.stopPropagation();
   const tableData=e.target.parentElement.parentElement.parentElement;
   
+  
   let response = window.confirm("Are you sure you want to delete this Event?");
   if (response) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
-    console.log(id);
-    let event_date=new Date(event.created).toLocaleDateString();
-    event_date=event_date.replace(/\//g, "_");
-    db.collection(events_collection+"/events"+"/"+event_date).doc(id).delete();
-    console.log(db.collection(events_collection+"/events"+"/"+event_date).doc(id));
-    console.log(events);
-    
+    let cp = e.target.parentElement.parentElement.getAttribute("data-cp");
+    console.log(db.collection(cp).doc(id));
+    db.collection(cp).doc(id).delete();
     let del_event = tableData.querySelector(
       `[data-id="${id}"]`
     );

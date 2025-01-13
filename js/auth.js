@@ -11,9 +11,11 @@
   // function that checks if user logged in or not
   auth.onAuthStateChanged((user) => {
     if (user) {
+      window.user=user;
       setUpUi(user);
       get_real_time_data(user);
     } else {
+      window.user="";
       setUpUi();
       flash_message("You need to login for access!");
     }
