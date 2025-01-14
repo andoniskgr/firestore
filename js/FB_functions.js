@@ -140,7 +140,6 @@ switch (true) {
   </tr>`;
   resultTable.innerHTML += event_row; 
 }
-  // console.log("renderResultTable end");
 }
 
 function get_real_time_data(user = null) {
@@ -350,7 +349,7 @@ function flash_message(msg=null){
   }
   if (msg!=null) {
     const flashMessageElement=document.createElement('div');
-    flashMessageElement.className="text-center h2 m-4";
+    flashMessageElement.className="text-center h2 m-4 pt-3";
     flashMessageElement.setAttribute('id','flashMsg');
     flashMessageElement.innerHTML=msg;
     document.querySelector('body').appendChild(flashMessageElement);
@@ -1460,6 +1459,6 @@ window.addEventListener('aircraftsUpdated', function() {
 });
 
 // Call fetchAircrafts when the page loads or based on some event
-window.fetchAircrafts();
+// window.fetchAircrafts();
 // *****************************************************************
 

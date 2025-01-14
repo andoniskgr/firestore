@@ -57,6 +57,7 @@
   function logout() {
     let response = window.confirm("Are you sure you want to log out?");
     if (response) {
+      document.querySelector('#myTable').innerHTML='';
       auth.signOut();
     } else {
       return;
