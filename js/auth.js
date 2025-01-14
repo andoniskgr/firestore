@@ -33,6 +33,10 @@
     if (user) {
       loggedInLinks.forEach(function (link) {
         link.classList.remove("d-none");
+        if (user.email!="andoniskgr@yahoo.gr" && link.id=="aircraft_admin_link") {
+          link.classList.add("d-none");
+          
+        }        
       });
       loggedOutLinks.forEach(function (link) {
         link.classList.add("d-none");

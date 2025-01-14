@@ -18,9 +18,6 @@ window.addEventListener('aircraftsUpdated', function() {
       let newOptionItem = document.createElement("option");
       newOptionItem.text = aircraft.doc.data().REGISTRATION;
       newOptionItem.value = aircraft.doc.data().REGISTRATION;
-      newOptionItem.setAttribute("data-engine", aircraft.doc.data().ENGINE);
-      newOptionItem.setAttribute("data-msn", aircraft.doc.data().MSN);
-      newOptionItem.setAttribute("data-type", aircraft.doc.data().TYPE);
       registration_selection.appendChild(newOptionItem);
     });
 });
