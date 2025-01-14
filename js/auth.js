@@ -37,6 +37,7 @@
       loggedOutLinks.forEach(function (link) {
         link.classList.add("d-none");
       });
+      // document.querySelector(".accordion").classList.remove("d-none");
     } else {
       loggedInLinks.forEach(function (link) {
         link.classList.add("d-none");
@@ -44,6 +45,7 @@
       loggedOutLinks.forEach(function (link) {
         link.classList.remove("d-none");
       });
+      // document.querySelector(".accordion").classList.add("d-none");
     }
   }
 
