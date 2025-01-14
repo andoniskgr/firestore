@@ -1,4 +1,4 @@
-// check if user is logged in
+check if user is logged in
 auth.onAuthStateChanged((user) => {
   if (user == null) {
     window.close(); //  if not logged in close window

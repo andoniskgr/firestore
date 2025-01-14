@@ -83,16 +83,16 @@ function create_table(){
     
             </tbody>`
         document.querySelector('#myTable').innerHTML=table;
-        console.log('table created');
+        // console.log('table created');
         
 }
 
 // function that creates table row elements
 function renderResultTable(doc=[]) {
+
   if (document.querySelector('thead')==null) {
     create_table();
   }
-
   if (doc.length==0) {
     resultTable.innerHTML = '';
     
@@ -158,9 +158,7 @@ function get_real_time_data(user = null) {
           console.log("no events");
           flash_message("There is no Data!");
         } else {
-          flash_message();
-          console.log(events.length);
-          
+          flash_message();          
           events.forEach((event) => {
             if (event.type == "added") {
               renderResultTable(event.doc);
@@ -1459,6 +1457,6 @@ window.addEventListener('aircraftsUpdated', function() {
 });
 
 // Call fetchAircrafts when the page loads or based on some event
-// window.fetchAircrafts();
+window.fetchAircrafts();
 // *****************************************************************
 

@@ -10,12 +10,13 @@
 
   // function that checks if user logged in or not
   auth.onAuthStateChanged((user) => {
+    document.querySelector('#myTable').innerHTML='';
     if (user) {
       window.user=user;
       setUpUi(user);
       get_real_time_data(user);
     } else {
-      window.user="";
+      window.user=user;
       setUpUi();
       flash_message("You need to login for access!");
     }
@@ -35,7 +36,6 @@
         link.classList.remove("d-none");
         if (user.email!="andoniskgr@yahoo.gr" && link.id=="aircraft_admin_link") {
           link.classList.add("d-none");
-          
         }        
       });
       loggedOutLinks.forEach(function (link) {
@@ -67,13 +67,11 @@
   // function controlling signup
   function signup(e) {
     e.preventDefault();
-    console.log("signup function");
     const email = register_form.email.value.toLowerCase();
     const password = register_form.password.value;
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        console.log("Signup successfully as:", userCredential.email);
         $(".modal").modal("hide");
       })
       .catch((error) => {
@@ -86,11 +84,9 @@
 
   // function controlling login
   function login(e) {
-    console.log("login function");
     e.preventDefault();
     const email = login_form.email.value.toLowerCase();
     const password = login_form.password.value;
-    console.log(email, password);
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {

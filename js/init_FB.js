@@ -1,5 +1,3 @@
-console.log('init');
-
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -22,4 +20,3 @@ db.settings({ timestampInSnapshots: true });
 
 const events_collection="data"
 const aircrafts_collection="aircrafts"
-
