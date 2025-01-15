@@ -9,7 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.24/jspdf.plugin.autotable.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         table,
         input[type="checkbox"] {
@@ -214,6 +217,7 @@
                             <button id="btn_table_sel_inp" type="button" class="btn btn-warning">Events in progress</button>
                             <button id="btn_table_sel_all" type="button" class="btn btn-info">All Events</button>
                             <button id="btn_table_del_all" type="button" class="btn btn-danger">Delete all</button>
+                            <button id="btn_export_pdf" type="button" class="btn btn-primary">PDF</button>
                         </div>
                         
                     </div>
@@ -258,6 +262,7 @@
     <script defer src="js/auth.js"></script>
     <script defer src="js/fetch_data_from_db.js"></script>
     <script defer src="js/FB_functions.js"></script>
+    <script defer src="js/test.js"></script>
 </body>
 
 </html>
