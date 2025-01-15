@@ -18,6 +18,15 @@ event_reminder_form.addEventListener("submit", function(e){
 delete_all_events_btn.addEventListener('click', delete_all_events);
 events_date_select.addEventListener('change', on_event_date_selection)
 events_date_select.value=current_date();
+show_in_progress_events_btn.addEventListener('click',function(e){
+  get_real_time_data(user,'in_progress');
+});
+show_all_events_btn.addEventListener('click',function(e){
+  get_real_time_data(user,null);
+});
+show_solved_events_btn.addEventListener('click',function(e){
+  get_real_time_data(user,'solved');
+});
 
 function on_event_date_selection(e){
   resultTable.innerHTML='';
@@ -142,26 +151,32 @@ switch (true) {
 }
 }
 
-function get_real_time_data(user = null) {
-  
+function get_real_time_data(user = null,viewSelection=null) {
+  resultTable.innerHTML='';
   let events = [];
   if (user != null) {
+    console.log('user not null');
+    
     const [y, m, d] = events_date_select.value.split("-");
     let date = `${d}_${m}_${y}`;
 
-    db.collection("data/events/" + date)
-      .orderBy("time")
-      .onSnapshot(function (snapshot) {
+    db.collection("data/events/" + date).orderBy("time").onSnapshot(function (snapshot) {
         events = snapshot.docChanges();
         window.events = events;
         if (events.length == 0) {
           console.log("no events");
           flash_message("There is no Data!");
         } else {
-          flash_message();          
+          flash_message();                
           events.forEach((event) => {
             if (event.type == "added") {
-              renderResultTable(event.doc);
+              if (viewSelection=='in_progress' && event.doc.data().sl==true && event.doc.data().solved==false) {
+                renderResultTable(event.doc);
+              } else if (viewSelection=='solved' && event.doc.data().solved==true) {
+                renderResultTable(event.doc);
+              } else if (viewSelection==null) {
+                renderResultTable(event.doc);
+              }
             } else if (event.type == "removed") {
               if (events.length == 0) {
                 flash_message("There is no Data!");
@@ -183,7 +198,7 @@ function get_real_time_data(user = null) {
 function save_event(e) {
   user = auth.currentUser.email;
   e.preventDefault();
-  console.log("save_event");
+  // console.log("save_event");
   now = new Date();
   const event = {
     created: now,
@@ -215,7 +230,7 @@ function save_event_to_db(event) {
   db.collection(events_collection + "/events" + "/" + event_date)
     .add(event)
     .then(function () {
-      console.log("Event saved!");
+      console.log("save_event_to_db!");
     });
 }
 
@@ -229,7 +244,7 @@ function delete_event(e) {
   if (response) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     let cp = e.target.parentElement.parentElement.getAttribute("data-cp");
-    console.log(db.collection(cp).doc(id));
+    // console.log(db.collection(cp).doc(id));
     db.collection(cp).doc(id).delete();
     let del_event = tableData.querySelector(
       `[data-id="${id}"]`

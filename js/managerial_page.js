@@ -1,4 +1,4 @@
-check if user is logged in
+// check if user is logged in
 auth.onAuthStateChanged((user) => {
   if (user == null) {
     window.close(); //  if not logged in close window
@@ -29,7 +29,7 @@ window.fetchAircrafts();
 
 // declare variables and constants
 const logout_btn = this.document.querySelector("#logout_link");
-const managerial_form = this.document.querySelector("#service_order_form");
+const managerial_form = this.document.querySelector("#managerial_order_form");
 
       
 // add event listeners
