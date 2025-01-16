@@ -40,9 +40,8 @@ function cd(){
 }
 
 // Function to process the snapshot
-function handleSnapshot(snapshot){
-  // resultTable.innerHTML='';
-  console.log('handleSnapshot');
+function handleSnapshot(snapshot,sort=null){
+  console.log('handleSnapshot',sort);
   const events = snapshot.docChanges();
   if (events.length==0) {
     console.log(`no events for selected date!`);
@@ -51,18 +50,36 @@ function handleSnapshot(snapshot){
     flash_message();
     events.forEach(event => {
       if (event.type == "added") {
-        renderResultTable(event.doc);
-      } 
+        if (sort == null) {
+          console.log("show all");
+          renderResultTable(event.doc);
+        }
+        if (
+          sort == "in_progress" &&
+          event.doc.data().sl == true &&
+          event.doc.data().solved == false
+        ) {
+          console.log("in_progress");
+          renderResultTable(event.doc);
+        }
+        if (
+          sort == "solved" &&
+          event.doc.data().solved==true
+        ) {
+          console.log("in_progress");
+          renderResultTable(event.doc);
+        }
+      }
   });
   }
 }
 
 // Setting up the listener with the onSnapshot, but also adding a manual trigger
-// db.collection(`${events_collection}${cd()}`)
-//     .orderBy("time")
-//     .onSnapshot(function (snapshot) {
-//       handleSnapshot(snapshot);      
-//     });
+db.collection(`${events_collection}${cd()}`)
+    .orderBy("time")
+    .onSnapshot(function (snapshot) {
+      handleSnapshot(snapshot);      
+    });
 
 function on_event_date_selection(e){
   resultTable.innerHTML='';
@@ -83,13 +100,14 @@ function on_event_date_selection(e){
 
 
 function specific_type_event(type){
+  resultTable.innerHTML='';
   const [y, m, d] = events_date_select.value.split("-");
   let date = `${d}_${m}_${y}`;
   db.collection(`${events_collection}${date}`)
   .orderBy("time")
   .get()
   .then(function (snapshot) {
-    handleSnapshot(snapshot);
+    handleSnapshot(snapshot,type);
   })
   .catch(function (error) {
     console.log("Error getting documents: ", error);
@@ -99,15 +117,15 @@ function specific_type_event(type){
 function manual_calling_db(){
   const [y, m, d] = events_date_select.value.split("-");
   let date = `${d}_${m}_${y}`;
-  db.collection(`${events_collection}${date}`)
-  .orderBy("time")
-  .get()
-  .then(function (snapshot) {
-    handleSnapshot(snapshot);
-  })
-  .catch(function (error) {
-    console.log("Error getting documents: ", error);
-  });
+  // db.collection(`${events_collection}${date}`)
+  // .orderBy("time")
+  // .get()
+  // .then(function (snapshot) {
+  //   handleSnapshot(snapshot);
+  // })
+  // .catch(function (error) {
+  //   console.log("Error getting documents: ", error);
+  // });
 }
 
 
