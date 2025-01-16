@@ -6,9 +6,7 @@ const show_in_progress_events_btn=document.querySelector('#btn_table_sel_inp');
 const show_all_events_btn=document.querySelector('#btn_table_sel_all');
 const delete_all_events_btn=document.querySelector('#btn_table_del_all');
 const events_date_select = document.querySelector("#events_date");
-const resultTable=document.querySelector('#myTable');
-
-
+const resultTable=document.querySelector('#table_data');
 
 // listeners
 new_event_form.addEventListener("submit", save_event);
@@ -19,19 +17,100 @@ delete_all_events_btn.addEventListener('click', delete_all_events);
 events_date_select.addEventListener('change', on_event_date_selection)
 events_date_select.value=current_date();
 show_in_progress_events_btn.addEventListener('click',function(e){
-  get_real_time_data(user,'in_progress');
+  specific_type_event('in_progress');
 });
 show_all_events_btn.addEventListener('click',function(e){
-  get_real_time_data(user,null);
+  specific_type_event(null);
 });
 show_solved_events_btn.addEventListener('click',function(e){
-  get_real_time_data(user,'solved');
+  specific_type_event('solved');
 });
+
+function cd(){
+  const currentDate=new Date();
+  const localISOString = currentDate.toLocaleString('en-US',{timeZoneName:'short'});
+  let [m,d,y]=localISOString.split(',')[0].split('/');
+  if (d.length<2) {
+    d="0"+d;
+  }
+  if (m.length<2) {
+    m="0"+m;
+  }
+  return `${d}_${m}_${y}`;
+}
+
+// Function to process the snapshot
+function handleSnapshot(snapshot){
+  // resultTable.innerHTML='';
+  console.log('handleSnapshot');
+  const events = snapshot.docChanges();
+  if (events.length==0) {
+    console.log(`no events for selected date!`);
+    flash_message("There is no Data!");
+  } else {
+    flash_message();
+    events.forEach(event => {
+      if (event.type == "added") {
+        renderResultTable(event.doc);
+      } 
+  });
+  }
+}
+
+// Setting up the listener with the onSnapshot, but also adding a manual trigger
+// db.collection(`${events_collection}${cd()}`)
+//     .orderBy("time")
+//     .onSnapshot(function (snapshot) {
+//       handleSnapshot(snapshot);      
+//     });
 
 function on_event_date_selection(e){
   resultTable.innerHTML='';
-  get_real_time_data(user);
+  console.log(e.target.value);
+  const [y, m, d] = e.target.value.split("-");
+  let date = `${d}_${m}_${y}`;
+  // Manually calling the snapshot handler at any point:
+  db.collection(`${events_collection}${date}`)
+  .orderBy("time")
+  .get()
+  .then(function (snapshot) {
+  handleSnapshot(snapshot); // Manually trigger the function with the current snapshot
+  })
+  .catch(function (error) {
+    console.error("Error getting documents:", error);
+  });    
 }
+
+
+function specific_type_event(type){
+  const [y, m, d] = events_date_select.value.split("-");
+  let date = `${d}_${m}_${y}`;
+  db.collection(`${events_collection}${date}`)
+  .orderBy("time")
+  .get()
+  .then(function (snapshot) {
+    handleSnapshot(snapshot);
+  })
+  .catch(function (error) {
+    console.log("Error getting documents: ", error);
+  });
+}
+
+function manual_calling_db(){
+  const [y, m, d] = events_date_select.value.split("-");
+  let date = `${d}_${m}_${y}`;
+  db.collection(`${events_collection}${date}`)
+  .orderBy("time")
+  .get()
+  .then(function (snapshot) {
+    handleSnapshot(snapshot);
+  })
+  .catch(function (error) {
+    console.log("Error getting documents: ", error);
+  });
+}
+
+
 
 function delete_all_events(e) {
   const [y, m, d] = events_date_select.value.split("-");
@@ -39,10 +118,10 @@ function delete_all_events(e) {
   let response = window.confirm("Are you sure you want to delete all Events?");
   if (response) {
     resultTable.innerHTML = "";
-    db.collection(events_collection + "/events" + "/" + date)
+    db.collection(`${events_collection}${date}`)
       .get().then(function(events){
         events.forEach(function(ev){
-          db.collection(events_collection + "/events" + "/" + date)
+          db.collection(`${events_collection}${date}`)
           .doc(ev.id).delete();          
         })
       })
@@ -64,48 +143,10 @@ my_modals.forEach(function(modal){
   });  
 });
 
-function format_date(d){
-  d=d*1000;
-  return new Date(d).toLocaleDateString();
-}
 
-function create_table(){
-
-  const table=`
-            <thead>
-                <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">Registration</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">ETA</th>
-                    <th scope="col">ETD</th>
-                    <th scope="col">OCC</th>
-                    <th class="col-3" scope="col">Defect</th>
-                    <th class="col-3" scope="col">Notes</th>
-                    <th class="text-nowrap" scope="col">S / L</th>
-                    <th scope="col">RESET</th>
-                    <th class="text-nowrap" scope="col">O K</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id="table_data">
-    
-            </tbody>`
-        document.querySelector('#myTable').innerHTML=table;
-        // console.log('table created');
-        
-}
 
 // function that creates table row elements
-function renderResultTable(doc=[]) {
-
-  if (document.querySelector('thead')==null) {
-    create_table();
-  }
-  if (doc.length==0) {
-    resultTable.innerHTML = '';
-    
-  } else {
+function renderResultTable(doc=[]) {    
     document.querySelector('table').classList.remove('d-none');
     const c_p=doc.ref.path.split("/").slice(0,3).join("/");
     
@@ -148,49 +189,49 @@ switch (true) {
   <span class="text-success fa fa-save ms-3 d-none" style="font-size: 1.4em;" onclick="save_edit_event(event)"></span></td>
   </tr>`;
   resultTable.innerHTML += event_row; 
-}
+
 }
 
-function get_real_time_data(user = null,viewSelection=null) {
-  resultTable.innerHTML='';
-  let events = [];
-  if (user != null) {
-    console.log('user not null');
+// function get_real_time_data(user = null,viewSelection=null) {
+//   // resultTable.innerHTML='';
+//   // let events = [];
+//   // if (user != null) {
+//   //   console.log('user not null');
     
-    const [y, m, d] = events_date_select.value.split("-");
-    let date = `${d}_${m}_${y}`;
+//   //   const [y, m, d] = events_date_select.value.split("-");
+//   //   let date = `${d}_${m}_${y}`;
 
-    db.collection("data/events/" + date).orderBy("time").onSnapshot(function (snapshot) {
-        events = snapshot.docChanges();
-        window.events = events;
-        if (events.length == 0) {
-          console.log("no events");
-          flash_message("There is no Data!");
-        } else {
-          flash_message();                
-          events.forEach((event) => {
-            if (event.type == "added") {
-              if (viewSelection=='in_progress' && event.doc.data().sl==true && event.doc.data().solved==false) {
-                renderResultTable(event.doc);
-              } else if (viewSelection=='solved' && event.doc.data().solved==true) {
-                renderResultTable(event.doc);
-              } else if (viewSelection==null) {
-                renderResultTable(event.doc);
-              }
-            } else if (event.type == "removed") {
-              if (events.length == 0) {
-                flash_message("There is no Data!");
-              }
-            }
-          });
-        }
-      });
-  } else {
-    document.querySelector("table").classList.add("d-none");
-    flash_message("You need to login for access!");
-    renderResultTable();
-  }
-}
+//   //   db.collection("data/events/" + date).orderBy("time").onSnapshot(function (snapshot) {
+//   //       events = snapshot.docChanges();
+//   //       window.events = events;
+//   //       if (events.length == 0) {
+//   //         console.log("no events");
+//   //         flash_message("There is no Data!");
+//   //       } else {
+//   //         flash_message();                
+//   //         events.forEach((event) => {
+//   //           if (event.type == "added") {
+//   //             if (viewSelection=='in_progress' && event.doc.data().sl==true && event.doc.data().solved==false) {
+//   //               renderResultTable(event.doc);
+//   //             } else if (viewSelection=='solved' && event.doc.data().solved==true) {
+//   //               renderResultTable(event.doc);
+//   //             } else if (viewSelection==null) {
+//   //               renderResultTable(event.doc);
+//   //             }
+//   //           } else if (event.type == "removed") {
+//   //             if (events.length == 0) {
+//   //               flash_message("There is no Data!");
+//   //             }
+//   //           }
+//   //         });
+//   //       }
+//   //     });
+//   // } else {
+//   //   document.querySelector("table").classList.add("d-none");
+//   //   flash_message("You need to login for access!");
+//   //   renderResultTable();
+//   // }
+// }
 
 
 
@@ -218,20 +259,19 @@ function save_event(e) {
   // Hide modal and reset the fields
   $(".modal").modal("hide");
   new_event_form.reset();
-  save_event_to_db(event);
+  db.collection(`${events_collection}${cd()}`)
+    .add(event)
+    .then(function () {
+      console.log("save_event_to_db!");
+    });
 }
 
 function save_event_to_db(event) {
 
   let date = new Date(event.created).toISOString().split("T")[0];
   let [y, m, d] = date.split("-");
-  let event_date = `${d}_${m}_${y}`;
-
-  db.collection(events_collection + "/events" + "/" + event_date)
-    .add(event)
-    .then(function () {
-      console.log("save_event_to_db!");
-    });
+  let event_date = `${cd}`;
+  console.log(event_date);
 }
 
 // delete Event
@@ -244,12 +284,13 @@ function delete_event(e) {
   if (response) {
     let id = e.target.parentElement.parentElement.getAttribute("data-id");
     let cp = e.target.parentElement.parentElement.getAttribute("data-cp");
-    // console.log(db.collection(cp).doc(id));
-    db.collection(cp).doc(id).delete();
+    console.log(`${id}//${cp}`);    
+    
     let del_event = tableData.querySelector(
       `[data-id="${id}"]`
     );
     tableData.removeChild(del_event);
+    db.collection(cp).doc(id).delete();
   } else {
     return;
   }
@@ -1452,7 +1493,7 @@ function get_aircrafts(){
 // *****************************************************************
 // Wait for aircrafts to be updated
 window.addEventListener('aircraftsUpdated', function() {
-  // console.log(window.getAircrafts()); // This will give you the latest aircrafts
+  console.log('window.getAircrafts()'); // This will give you the latest aircrafts
   const aircraft_datalist=document.createElement('datalist');
   aircraft_datalist.id='registrations'
   const registration_selection = new_event_form.registration

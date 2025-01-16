@@ -10,11 +10,13 @@
 
   // function that checks if user logged in or not
   auth.onAuthStateChanged((user) => {
-    document.querySelector('#myTable').innerHTML='';
+    console.log('onAuthStateChanged');
+    
     if (user) {
       window.user=user;
       setUpUi(user);
-      get_real_time_data(user);
+      flash_message();
+      manual_calling_db();
     } else {
       window.user=user;
       setUpUi();
