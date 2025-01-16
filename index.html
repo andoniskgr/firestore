@@ -1,266 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.24/jspdf.plugin.autotable.min.js"></script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        table,
-        input[type="checkbox"] {
-            width: 1.4em;
-            height: 1.4em;
+        .form-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-        .fa {
-            cursor: pointer;
-        }
-
-        input[type="text"] {
-            text-transform: uppercase;
+        .form-card {
+            width: 100%;
+            max-width: 400px;
         }
     </style>
-    <title>MCC APPLICATION</title>
 </head>
-
 <body>
-    <!-- NAVBAR start -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">MCC APPLICATION</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="d-none nav-link logged-out" href="#" id="login_link" data-bs-toggle="modal"
-                        data-bs-target="#loginModal">Login</a>
-                    <a class="d-none nav-link logged-out" href="#" id="register_link" data-bs-toggle="modal"
-                        data-bs-target="#registerModal">Signup</a>
-                    <a class="d-none nav-link logged-in" href="#" id="logout_link">Logout</a>
-                    <a class="d-none nav-link logged-in" href="#" id="new_event_link" data-bs-toggle="modal"
-                        data-bs-target="#new_event">New Event</a>
-                    <a class="d-none nav-link logged-in" href="html/so_page.html" target="_blank" id="service_order_link">Service Order</a>
-                    <a class="d-none nav-link logged-in" href="html/managerial_page.html" target="_blank" id="managerial_link">Managerial</a>
-                    <a class="d-none nav-link logged-in" href="html/aircraft_admin.html" target="_blank" id="aircraft_admin_link">A/C Admin</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- NAVBAR end -->
 
-    <!-- Login Modal start-->
-    <div class="modal register_login_modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login Form</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="login_form">
-                    <div class="modal-body">
-                        <input class="form-control mb-3" type="email" name="email" placeholder="email" autocomplete="off">
-                        <input class="form-control mb-3" type="password" name="password" placeholder="password">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" id="cancel_login_button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" id="login_button" class="btn btn-primary">Login</button>
-                    </div>
-                </form>
+<div class="container-fluid form-container bg-dark">
+    <div class="card form-card">
+        <div class="card-body">
+            <h5 class="card-title text-center" id="form-title">Login</h5>
+            <div class="mb-3 form-check form-switch">
+                <input type="checkbox" class="form-check-input" id="toggleSwitch">
+                <label class="form-check-label" for="toggleSwitch">Switch to Signup</label>
             </div>
+            <form id="authForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" onclick="cancelForm()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">OK</button>
+                </div>
+            </form>
         </div>
     </div>
-    <!-- Login Modal end -->
-
-    <!-- Signup Modal start-->
-    <div class="modal register_login_modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Register Form</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="register_form">
-                    <div class="modal-body">
-                        <input class="form-control mb-3" name="email" type="email" placeholder="email" autocomplete="off">
-                        <input class="form-control mb-3" name="password" type="password" placeholder="password">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" id="cancel_register_button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" id="register_button" class="btn btn-primary">Register</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Signup Modal end-->
-
-    <!-- New Event Modal start-->
-    <div class="modal fade" id="new_event" tabindex="-1" aria-labelledby="newEventModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newEventModalLabel">New Event Register</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="new_event_form">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="time" placeholder="Time" oninput="formatTime(event)" required>
-                            </div>
-                            <div class="col-4">
-                                <input autocomplete="off" list="registrations" class="form-control mb-3" type="text" name="registration" placeholder="Registration" required>
-                            </div>
-                            <div class="col-4">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="position" placeholder="Position" required>
-                            </div>
-                            <div class="col-4">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="eta" placeholder="Arr. time" oninput="formatTime(event)" >
-                            </div>
-                            <div class="col-4">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="etd" placeholder="Dep. time" oninput="formatTime(event)" >
-                            </div>
-                            <div class="col-4">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="occ_upd" placeholder="UPD. time" oninput="formatTime(event)" >
-                            </div>
-                            <div class="col-12">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="defect" placeholder="Defect" required>
-                            </div>
-                            <div class="col-12">
-                                <input autocomplete="off" class="form-control mb-3" type="text" name="notes" placeholder="Notes">
-                            </div>
-                            <div class="col-4" style="font-size: 1.2rem;">
-                                <input class="form-check-input mb-3" type="checkbox" name="sl" id="sl">
-                                <label class="form-check-label" for="sl">S/L Inf.</label>
-                            </div>
-                            <div class="col-4" style="font-size: 1.2rem;">
-                                <input class="form-check-input mb-3" type="checkbox" name="rst" id="rst">
-                                <label class="form-check-label" for="rst">Reset</label>
-                            </div>
-                            <div class="col-4" style="font-size: 1.2rem;">
-                                <input class="form-check-input mb-3" type="checkbox" name="solved" id="solved">
-                                <label class="form-check-label" for="solved">Solved</label>
-                            </div>
-                        </div>                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" id="clear_new_event_button" class="btn btn-danger">Clear</button>
-                        <button type="reset" id="cancel_new_event_button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" id="save_event_button" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- New Event Modal end -->
+</div>
 
 
-    <!-- Timer Modal start-->
-    <div class="modal fade" id="timer" tabindex="-1" aria-labelledby="reminderModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reminderModalLabel">event reminder</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="event_reminder_form">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-3">
-                                <input class="form-control mb-3" type="text" name="update_time" placeholder="Time" oninput="formatTime(event)">
-                            </div>
-                            <div class="col-9">
-                                <input class="form-control mb-3" type="text" name="remarks" placeholder="Remarks">
-                            </div>
-                        </div>                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" id="clear_reminder_button" class="btn btn-danger">Clear</button>
-                        <button type="reset" id="cancel_reminder_button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" id="save_reminder_button" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Timer Modal end -->
 
-     
-
-
-    <div class="container-fluid bg-light text-light mt-5" id="data">
-        <div class="logged-in accordion accordion-flush d-none" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button id="date_selected" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        <span>Tools & Functions</span>
-                    </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        <div class="d-flex justify-content-evenly">
-                            <input type="date" id="events_date" onkeydown="event.preventDefault()">
-                            <button id="btn_table_sel_ok" type="button" class="btn btn-success">Events OK</button>
-                            <button id="btn_table_sel_inp" type="button" class="btn btn-warning">Events in progress</button>
-                            <button id="btn_table_sel_all" type="button" class="btn btn-info">All Events</button>
-                            <button id="btn_table_del_all" type="button" class="btn btn-danger">Delete all</button>
-                            <button id="btn_export_pdf" type="button" class="btn btn-primary">PDF</button>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-         <table class="logged-in table table-bordered d-none" id="myTable">
-           <thead>
-                <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">Registration</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">ETA</th>
-                    <th scope="col">ETD</th>
-                    <th scope="col">OCC</th>
-                    <th class="col-3" scope="col">Defect</th>
-                    <th class="col-3" scope="col">Notes</th>
-                    <th class="text-nowrap" scope="col">S / L</th>
-                    <th scope="col">RESET</th>
-                    <th class="text-nowrap" scope="col">O K</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody id="table_data"></tbody>
-        </table> 
-    </div>
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
-
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script defer src="js/init_FB.js"></script>
-    <script defer src="js/auth.js"></script>
-    <script defer src="js/fetch_data_from_db.js"></script>
-    <script defer src="js/FB_functions.js"></script>
-    <script defer src="js/test.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script defer src="js/index.js"></script>
+<script defer src="js/init_FB.js"></script>
+<script defer src="js/auth.js"></script>
 </body>
-
 </html>
