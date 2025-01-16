@@ -59,14 +59,14 @@ function handleSnapshot(snapshot,sort=null){
           event.doc.data().sl == true &&
           event.doc.data().solved == false
         ) {
-          console.log("in_progress");
+          console.log("in_progress",event);
           renderResultTable(event.doc);
         }
         if (
           sort == "solved" &&
           event.doc.data().solved==true
         ) {
-          console.log("in_progress");
+          console.log("solve",event);
           renderResultTable(event.doc);
         }
       }
