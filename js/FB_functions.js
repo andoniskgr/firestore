@@ -27,21 +27,29 @@ show_solved_events_btn.addEventListener('click',function(e){
 });
 
 function cd(){
-  const currentDate=new Date();
+  let [y,m,d]=events_date_select.value.split('-');
+
+  const currentDate=new Date(y,m-1,d);
+  // console.log(currentDate);
+  
   const localISOString = currentDate.toLocaleString('en-US',{timeZoneName:'short'});
-  let [m,d,y]=localISOString.split(',')[0].split('/');
+  // console.log(localISOString);
+  
+  [m,d,y]=localISOString.split(',')[0].split('/');
   if (d.length<2) {
     d="0"+d;
   }
   if (m.length<2) {
     m="0"+m;
   }
+  // console.log(`${d}_${m}_${y}`);
+  
   return `${d}_${m}_${y}`;
 }
 
 // Function to process the snapshot
 function handleSnapshot(snapshot,sort=null){
-  const events = snapshot.docChanges();
+  const events = snapshot.docChanges();  
   if (events.length==0) {
     console.log(`no events for selected date!`);
     flash_message("There is no Data!");
@@ -50,7 +58,7 @@ function handleSnapshot(snapshot,sort=null){
     events.forEach(event => {
       if (event.type == "added") {
         if (sort == null) {
-          console.log("show all");
+          // console.log("show all");
           renderResultTable(event.doc);
         }
         if (
@@ -58,14 +66,14 @@ function handleSnapshot(snapshot,sort=null){
           event.doc.data().sl == true &&
           event.doc.data().solved == false
         ) {
-          console.log("in_progress",event);
+          // console.log("in_progress",event);
           renderResultTable(event.doc);
         }
         if (
           sort == "solved" &&
           event.doc.data().solved==true
         ) {
-          console.log("solve",event);
+          // console.log("solve",event);
           renderResultTable(event.doc);
         }
       }
@@ -198,6 +206,9 @@ function save_event(e) {
   user = auth.currentUser.email;
   e.preventDefault();
   // console.log("save_event");
+  // if (condition) {
+    
+  // }
   now = new Date();
   const event = {
     created: now,

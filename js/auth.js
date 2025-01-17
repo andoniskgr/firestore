@@ -11,7 +11,7 @@
 
 // function that checks if user logged in or not
 auth.onAuthStateChanged((user) => {
-  console.log("onAuthStateChanged");
+  // console.log("onAuthStateChanged");
   if (user) {
     setUpUi(user)
   } else {    
