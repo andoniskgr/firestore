@@ -34,18 +34,18 @@
             <form id="authForm">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" required>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" autocomplete="off" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email" autocomplete="off" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" required>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <button type="button" class="btn btn-secondary" onclick="cancelForm()">Cancel</button>
+                    <button type="reset" class="btn btn-secondary">Cancel</button>
                     <button type="submit" class="btn btn-primary">OK</button>
                 </div>
             </form>
@@ -59,8 +59,8 @@
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script defer src="js/index.js"></script>
 <script defer src="js/init_FB.js"></script>
-<script defer src="js/auth.js"></script>
+<script defer src="js/index.js"></script>
+<!-- <script defer src="js/auth.js"></script> -->
 </body>
 </html>

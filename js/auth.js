@@ -1,25 +1,11 @@
 
 
+  // declare navbar components
+  const loggedOutLinks = document.querySelectorAll(".logged-out");
+  const loggedInLinks = document.querySelectorAll(".logged-in");
+  const logout_btn = this.document.querySelector("#logout_link");
 
-function set_up_variables() {
-  if (
-    window.location.pathname === "/" ||
-    window.location.pathname === "/index.html"
-  ) {
-    const form = document.querySelector("#authForm");
-    // add event listeners
-    form.addEventListener("submit", handle_form);
-  }
-  if (window.location.pathname != "/") {
-    // declare navbar components
-    console.log("declare navbar components");
-    const loggedOutLinks = document.querySelectorAll(".logged-out");
-    const loggedInLinks = document.querySelectorAll(".logged-in");
-    const logout_btn = this.document.querySelector("#logout_link");
-    console.log('const ok');
-    
-  }
-}
+  logout_btn.addEventListener('click',logout);
 
 
 
@@ -27,61 +13,12 @@ function set_up_variables() {
 auth.onAuthStateChanged((user) => {
   console.log("onAuthStateChanged");
   if (user) {
-    window.user = user;
-    if (window.location.pathname==='/' || window.location.pathname==='/index.html') {
-      window.location = "index_old.html";
+    setUpUi(user)
+  } else {    
+      window.location = "../index.html";
+      setUpUi();
     }
-    console.log('2');
-    set_up_variables();
-    // console.log(loggedInLinks);
-
-    // setUpUi(user)
-    // flash_message();
-    // manual_calling_db();
-  } else {
-    if (!window.location.pathname==='/') {
-      window.location = "index.html";
-      // setUpUi();
-    }
-  }
 });
-
-
-// function handle form
-function handle_form(e) {
-  e.preventDefault();
-  const form = e.target;
-  const email = form.email.value.toLowerCase();
-  const password = form.password.value;
-  // if login selected
-  if (!toggleSwitch.checked) {
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        console.log("Login ok!");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("error code:", errorCode);
-        console.log("error message:", errorMessage);
-      });
-  } else {
-    //  if signup selected
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        console.log("Signup ok!");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("error code:", errorCode);
-        console.log("error message:", errorMessage);
-      });
-  }
-}
-
 
 
 // function control UI components

@@ -2,32 +2,34 @@
 auth.onAuthStateChanged((user) => {
   if (user == null) {
     window.close(); //  if not logged in close window
+  }else{
+    generate_registration_list();
   }
 });
 
-// *****************************************************************
-// Wait for aircrafts to be updated
-window.addEventListener('aircraftsUpdated', function() {
-  // console.log(window.getAircrafts()); // This will give you the latest aircrafts
-  aircrafts.forEach((aircraft) => {
-      // check if the aircraft is active
-      if (!aircraft.doc.data().ACTIVE) {
-        return;
-      }
-      const registration_selection = document.querySelector("#registration");
-      let newOptionItem = document.createElement("option");
-      newOptionItem.text = aircraft.doc.data().REGISTRATION;
-      newOptionItem.value = aircraft.doc.data().REGISTRATION;
-      newOptionItem.setAttribute("data-engine", aircraft.doc.data().ENGINE);
-      newOptionItem.setAttribute("data-msn", aircraft.doc.data().MSN);
-      newOptionItem.setAttribute("data-type", aircraft.doc.data().TYPE);
-      registration_selection.appendChild(newOptionItem);
-    });
-});
 
-// Call fetchAircrafts when the page loads or based on some event
-window.fetchAircrafts();
-// *****************************************************************
+function generate_registration_list() {
+  db.collection(aircrafts_collection)
+    .orderBy("REGISTRATION")
+    .onSnapshot(function (snapshot) {
+      aircrafts = snapshot.docChanges();
+      aircrafts.forEach((aircraft) => {
+        // check if the aircraft is active
+        if (!aircraft.doc.data().ACTIVE) {
+          return;
+        }
+        const registration_selection = document.querySelector("#registration");
+        let newOptionItem = document.createElement("option");
+        newOptionItem.text = aircraft.doc.data().REGISTRATION;
+        newOptionItem.value = aircraft.doc.data().REGISTRATION;
+        newOptionItem.setAttribute("data-engine", aircraft.doc.data().ENGINE);
+        newOptionItem.setAttribute("data-msn", aircraft.doc.data().MSN);
+        newOptionItem.setAttribute("data-type", aircraft.doc.data().TYPE);
+        registration_selection.appendChild(newOptionItem);
+      });
+    });
+}
+
 
 
 // declare variables and constants
@@ -38,13 +40,7 @@ const date_input_field = this.document.querySelector('[name="date"]');
 
 date_input_field.value = get_current_day();
 
- 
-
     
-    
-  // });
-      
-      
 // add event listeners
 type_selection_rb.forEach(function (rb) {
   rb.addEventListener("input", setupFormUi);

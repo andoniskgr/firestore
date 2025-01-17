@@ -41,7 +41,6 @@ function cd(){
 
 // Function to process the snapshot
 function handleSnapshot(snapshot,sort=null){
-  console.log('handleSnapshot',sort);
   const events = snapshot.docChanges();
   if (events.length==0) {
     console.log(`no events for selected date!`);
@@ -71,6 +70,9 @@ function handleSnapshot(snapshot,sort=null){
         }
       }
   });
+  if (resultTable.children.length===0) {
+    flash_message('There is no Data!')
+  }
   }
 }
 
@@ -114,22 +116,6 @@ function specific_type_event(type){
   });
 }
 
-function manual_calling_db(){
-  const [y, m, d] = events_date_select.value.split("-");
-  let date = `${d}_${m}_${y}`;
-  // db.collection(`${events_collection}${date}`)
-  // .orderBy("time")
-  // .get()
-  // .then(function (snapshot) {
-  //   handleSnapshot(snapshot);
-  // })
-  // .catch(function (error) {
-  //   console.log("Error getting documents: ", error);
-  // });
-}
-
-
-
 function delete_all_events(e) {
   const [y, m, d] = events_date_select.value.split("-");
   let date = `${d}_${m}_${y}`;
@@ -149,9 +135,8 @@ function delete_all_events(e) {
 // adding listeners to modals
 my_modals.forEach(function(modal){  
   modal.addEventListener('shown.bs.modal',function(e){
-    if (modal.id=='loginModal' || modal.id=='registerModal') {
-      modal.querySelector('[name="email"]').focus();
-    } else if (modal.id=='new_event'){
+    generate_registration_list();
+    if (modal.id=='new_event'){
       modal.querySelector('[name="time"]').value=current_time();
       modal.querySelector('[name="registration"]').focus();
     }    
@@ -160,8 +145,6 @@ my_modals.forEach(function(modal){
     modal.querySelector('form').reset();
   });  
 });
-
-
 
 // function that creates table row elements
 function renderResultTable(doc=[]) {    
@@ -210,49 +193,6 @@ switch (true) {
 
 }
 
-// function get_real_time_data(user = null,viewSelection=null) {
-//   // resultTable.innerHTML='';
-//   // let events = [];
-//   // if (user != null) {
-//   //   console.log('user not null');
-    
-//   //   const [y, m, d] = events_date_select.value.split("-");
-//   //   let date = `${d}_${m}_${y}`;
-
-//   //   db.collection("data/events/" + date).orderBy("time").onSnapshot(function (snapshot) {
-//   //       events = snapshot.docChanges();
-//   //       window.events = events;
-//   //       if (events.length == 0) {
-//   //         console.log("no events");
-//   //         flash_message("There is no Data!");
-//   //       } else {
-//   //         flash_message();                
-//   //         events.forEach((event) => {
-//   //           if (event.type == "added") {
-//   //             if (viewSelection=='in_progress' && event.doc.data().sl==true && event.doc.data().solved==false) {
-//   //               renderResultTable(event.doc);
-//   //             } else if (viewSelection=='solved' && event.doc.data().solved==true) {
-//   //               renderResultTable(event.doc);
-//   //             } else if (viewSelection==null) {
-//   //               renderResultTable(event.doc);
-//   //             }
-//   //           } else if (event.type == "removed") {
-//   //             if (events.length == 0) {
-//   //               flash_message("There is no Data!");
-//   //             }
-//   //           }
-//   //         });
-//   //       }
-//   //     });
-//   // } else {
-//   //   document.querySelector("table").classList.add("d-none");
-//   //   flash_message("You need to login for access!");
-//   //   renderResultTable();
-//   // }
-// }
-
-
-
 // save data to firestore
 function save_event(e) {
   user = auth.currentUser.email;
@@ -282,14 +222,6 @@ function save_event(e) {
     .then(function () {
       console.log("save_event_to_db!");
     });
-}
-
-function save_event_to_db(event) {
-
-  let date = new Date(event.created).toISOString().split("T")[0];
-  let [y, m, d] = date.split("-");
-  let event_date = `${cd}`;
-  console.log(event_date);
 }
 
 // delete Event
@@ -1509,28 +1441,23 @@ function get_aircrafts(){
 }
 
 // *****************************************************************
-// Wait for aircrafts to be updated
-window.addEventListener('aircraftsUpdated', function() {
-  console.log('window.getAircrafts()'); // This will give you the latest aircrafts
-  const aircraft_datalist=document.createElement('datalist');
-  aircraft_datalist.id='registrations'
+
+function generate_registration_list() {
+  const aircraft_datalist = document.createElement('datalist');
+  aircraft_datalist.id = 'registrations'
   const registration_selection = new_event_form.registration
-  aircrafts.forEach((aircraft) => {
-      // check if the aircraft is active
-      if (!aircraft.doc.data().ACTIVE) {
-        return;
-      }
-      let newOptionItem = document.createElement("option");
-      // newOptionItem.text = aircraft.doc.data().REGISTRATION;
-      newOptionItem.value = aircraft.doc.data().REGISTRATION;
-    //  console.log(registration_selection);
-     
-      aircraft_datalist.appendChild(newOptionItem);
+  db.collection(aircrafts_collection)
+    .orderBy("REGISTRATION")
+    .onSnapshot(function (snapshot) {
+      aircrafts = snapshot.docChanges();
+      aircrafts.forEach(aircraft => {
+        if (!aircraft.doc.data().ACTIVE) {
+          return;
+        }
+        let newOptionItem = document.createElement("option");
+        newOptionItem.value = aircraft.doc.data().REGISTRATION;
+        aircraft_datalist.appendChild(newOptionItem);
+      });
+      registration_selection.appendChild(aircraft_datalist);
     });
-    registration_selection.appendChild(aircraft_datalist);
-});
-
-// Call fetchAircrafts when the page loads or based on some event
-window.fetchAircrafts();
-// *****************************************************************
-
+}

@@ -49,9 +49,9 @@
                     <a class="d-none nav-link logged-in" href="#" id="logout_link">Logout</a>
                     <a class="d-none nav-link logged-in" href="#" id="new_event_link" data-bs-toggle="modal"
                         data-bs-target="#new_event">New Event</a>
-                    <a class="d-none nav-link logged-in" href="html/so_page.html" target="_blank" id="service_order_link">Service Order</a>
-                    <a class="d-none nav-link logged-in" href="html/managerial_page.html" target="_blank" id="managerial_link">Managerial</a>
-                    <a class="d-none nav-link logged-in" href="html/aircraft_admin.html" target="_blank" id="aircraft_admin_link">A/C Admin</a>
+                    <a class="d-none nav-link logged-in" href="so_page.html" target="_blank" id="service_order_link">Service Order</a>
+                    <a class="d-none nav-link logged-in" href="managerial_page.html" target="_blank" id="managerial_link">Managerial</a>
+                    <a class="d-none nav-link logged-in" href="aircraft_admin.html" target="_blank" id="aircraft_admin_link">A/C Admin</a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
     <!-- NAVBAR end -->
 
     <!-- Login Modal start-->
-    <div class="modal register_login_modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <!-- <div class="modal register_login_modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -79,11 +79,11 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Login Modal end -->
 
     <!-- Signup Modal start-->
-    <div class="modal register_login_modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <!-- <div class="modal register_login_modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,8 +103,8 @@
                 </form>
             </div>
         </div>
-    </div>
-    <!-- Signup Modal end-->
+    </div> -->
+    <!-- Signup Modal end -->
 
     <!-- New Event Modal start-->
     <div class="modal fade" id="new_event" tabindex="-1" aria-labelledby="newEventModalLabel" aria-hidden="true">
@@ -256,11 +256,9 @@
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script defer src="js/init_FB.js"></script>
-    <script defer src="js/auth.js"></script>
-    <!-- <script defer src="js/fetch_data_from_db.js"></script>
-    <script defer src="js/FB_functions.js"></script>
-    <script defer src="js/test.js"></script> -->
+    <script defer src="../js/init_FB.js"></script>
+    <script defer src="../js/auth.js"></script>
+    <script defer src="../js/FB_functions.js"></script>
 </body>
 
 </html>
