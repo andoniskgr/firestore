@@ -9,7 +9,7 @@ const events_date_select = document.querySelector("#events_date");
 const resultTable=document.querySelector('#table_data');
 
 // listeners
-new_event_form.addEventListener("submit", save_event);
+new_event_form.addEventListener("submit", save_event); 
 event_reminder_form.addEventListener("submit", function(e){
   console.log(e.target);  
 });
